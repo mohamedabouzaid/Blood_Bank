@@ -11,12 +11,19 @@ session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
 {
   if(isset($_POST['insert'])){
-      echo $_POST['comments'];
-      /*
-      include '../model/nurse.php';
-      $re=nurse::insert($_POST['ID_Blood'],$_POST['NID'],$_POST['bagWeight'],$_POST['bloodGroup'],$_POST['time']);
-      $_SESSION['operation']=$re;
-      header('location:nurse.php');*/
+
+      if(!empty( $_POST['comments_list']))
+      {
+          $comment=implode('-',$_POST['comments_list']);
+      }
+      else{$comment=NULL;}
+
+
+
+      include '../model/NurseModel.php';
+      $result=NurseModel::insert($_POST['ID_Blood'],$_POST['NID'],$_POST['bagWeight'],$_POST['bloodGroup'],$_POST['time'],$comment);
+      $_SESSION['operation']=$result;
+      header('location:nurse.php');
   }
 else {
 
@@ -62,13 +69,13 @@ else {
     Sealed by ID<input type="number" name="ID_Blood"><br>
     Bag Weight <input type="number" name="bagWeight"><br>
     Time of collections<input type="number" name="time"><br>
-    Confirmed Blood Group <input type="number" name="bloodGroup"><br>
+    Confirmed Blood Group <input type="text" name="bloodGroup"><br>
 
     <h5>Comments</h5>
-    <input type="checkbox" name="comments" value="Slow bleed"> Slow bleed<br>
-    <input type="checkbox" name="comments" value=" Aspirin"> Aspirin<br>
-    <input type="checkbox" name="comments" value="Relative"> Relative<br>
-    <input type="checkbox" name="comments" value="Other" checked> Other<br>
+    <input type="checkbox" name="comments_list[]" value="Slow bleed"> Slow bleed<br>
+    <input type="checkbox" name="comments_list[]" value=" Aspirin"> Aspirin<br>
+    <input type="checkbox" name="comments_list[]" value="Relative"> Relative<br>
+    <input type="checkbox" name="comments_list[]" value="Other" checked> Other<br>
     <input type="hidden" name="NID" value="<?php echo $_GET['nid'];  ?>">
     <input type="submit" value="Save" name="insert">
 
