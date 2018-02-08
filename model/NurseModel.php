@@ -8,7 +8,7 @@
 
 class NurseModel
 {
-
+//insert
     public function insert($id,$donar_id,$wieght,$bloodGroup,$time,$comment){
 
         include 'vars.php';
@@ -24,6 +24,39 @@ class NurseModel
             return $e->getMessage();
 
         }
+
+
+    }
+
+//search
+    public function search($NID){
+
+
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT donar_NID from bloodsample where  donar_NID=? ");
+            $stmt->execute(array($NID));
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+
 
 
     }
