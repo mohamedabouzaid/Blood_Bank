@@ -8,7 +8,7 @@
 
 class NurseModel
 {
-//insert
+//insert blood
     public function insert($id,$donar_id,$wieght,$bloodGroup,$time,$comment){
 
         include 'vars.php';
@@ -28,7 +28,7 @@ class NurseModel
 
     }
 
-//search
+//search blood
     public function search($NID){
 
 
@@ -60,6 +60,64 @@ class NurseModel
 
 
     }
+
+
+
+    public function insertComponent($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
+    $cryo,$Fwb,$Fprbc,$Fpc,$bag){
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("INSERT INTO component (donar_nid,centerNo,unitNo,timeCollected,timeSeparated,
+                                      prbc,pc,ffp,cryo,Fwb,Fprbc,Fpc,bagType)
+                               VALUES (?,?,? ,?,?,?,?,? ,?,?,?,?,?)");
+            $stmt->execute(array($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
+                $cryo,$Fwb,$Fprbc,$Fpc,$bag));
+            return "Insert record  successfully";
+
+        } catch (PDOException $e) {
+            //return "sorry,try again ";
+            return $e->getMessage();
+
+        }
+
+
+    }
+
+//in component
+    public function searchComponent($NID){
+
+
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT donar_NID from component where  donar_NID=? ");
+            $stmt->execute(array($NID));
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+
+
+
+    }
+
 
 
 

@@ -71,7 +71,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
 
             echo "   <tr>
                                                 <td>" . $user['donar_NID'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=insert& nid=" . $user['donar_NID'] . "'>Insert</a></td>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=insert& nid=" . $user['donar_NID'] . "'>Insert blood</a>
+                                                 <a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=component& nid=" . $user['donar_NID'] . "'> blood  component</a></td>
+                                                 
                                                 </tr>";
 
         }
