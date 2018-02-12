@@ -1,0 +1,63 @@
+.blur-body{
+    position: absolute;
+    z-index: 1;
+    background: linear-gradient(to left, #ffffff00 ,#822528);
+    /*background: linear-gradient(#ffffff00, #15151573 ,#253340);*/
+    width: 100%;
+    height: 631px;
+  }
+  #carousel-example-generic{
+      margin-top: 0;
+      padding: 0;
+  }
+  .carousel-indicators{
+      left: 114%;
+      width: 10%
+  }
+  
+  .carousel-inner>.item>img{
+      height: 631px;
+      width: 100%;
+  
+  }
+
+
+  .blure{
+    height: 301px;
+    background: #ce323b96;
+    position: absolute;
+    box-shadow: 0px 0px 46px -1px #ffffffb8;
+    z-index: 2;
+    color: #fffefe;
+    margin-top: 149px;
+    padding-left: 39px;
+    padding-right: 34px;
+    padding-top: 9px;
+    border-radius: 14px;
+  }
+  .blure h1{
+      text-align: center
+  }
+
+.blure form{
+    margin-top: 28px;
+}
+
+.blure label{
+    font-size: 18px;
+    float: right;
+    margin-right: 7px
+}
+.btn{
+    
+    padding: 10px 0;
+    font-size: 18px;
+    color: #FE3C47;
+    background-color: #FFF;
+}
+
+.btn:hover{
+    background: #fe3c47cc;
+    color: #FFF;
+    border: 1px solid #FFF
+}

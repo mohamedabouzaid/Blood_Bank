@@ -7,6 +7,79 @@ include '../controller/user/CheckUser.php';    //session of user and job
 
 
 <!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blood Bank</title>
+  <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resource/css/home.component.css">
+  <link rel="stylesheet" href="../resource/css/reciptionist.css">
+</head>
+<body>
+  <header class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav links">
+            <li class="active"><a href="Home.php"> Home</a> </li>      <!-- create button-->
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn" id="login" href="Login.php">Login</a> </li>       <!-- logout button-->
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="blur-body"></div>
+  <div id="carousel-example-generic" class="carousel slide col-xs-12" data-ride="carousel">
+
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="../resource/images/1.jpeg" alt="...">
+      </div>
+      <div class="item">
+        <img src="../resource/images/5.jpg"   alt="...">
+      </div>
+      <div class="item">
+        <img src="../resource/images/3.jpg"  alt="...">
+      </div>
+      <div class="item">
+        <img src="../resource/images/4.jpg"   alt="...">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="blure col-xs-4 col-md-offset-4">
+        <h1>Questionnaire</h1>
+        <form action="Questionnaire.php" method="post">
+            <div class="input-group">
+                <label>
+                : ادخل رقم السجل المدنى /الاقامه للاجابه على الاسئله
+                </label>
+                <input class="form-control input-lg" type="number" name="NID" required min="0">
+            </div>
+            <br>
+            
+            <button class="btn col-xs-12" type="submit" value="دخول">دخول</button>
+        </form>
+   </div>
+
+<script src="../resource/js/jquery.min.js"></script>
+<script src="../resource/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+<!-- 
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -17,10 +90,10 @@ include '../controller/user/CheckUser.php';    //session of user and job
     <body>
         <div class="w3-container w3-gray">
             <a href="Login.php"><h2>Login</h2></a>                      <!--login page-->
-        </div>
-
+        <!-- </div> -->
+<!-- 
         <center>
-            <h3>  questionnaire   </h3><br>                    <!--questionnaire for user-->
+            <h3>  questionnaire   </h3><br>                    <!--questionnaire for user
             <form action="Questionnaire.php" method="post">
                 ادخل رقم السجل المدنى /الاقامه للاجابه على الاسئله:<br>
                 <input type="number" name="NID" required>
@@ -28,4 +101,4 @@ include '../controller/user/CheckUser.php';    //session of user and job
             </form>
         </center>
     </body>
-</html>
+</html>  -->
