@@ -15,7 +15,7 @@ include '../controller/user/CheckUser.php';    //session of user and job
   <title>Blood Bank</title>
   <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
   <link rel="stylesheet" href="../resource/css/home.component.css">
-  <link rel="stylesheet" href="../resource/css/reciptionist.css">
+  <link rel="stylesheet" href="../resource/css/header.css">
 </head>
 <body>
   <header class="container">

@@ -39,17 +39,30 @@ ul.links{
   margin-left: 46px;
 }
 
+.navbar-default .navbar-nav>li>a {
+  color: #777;
+  font-weight: bold;
+}
+
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover{
-   background-color: #fe3c47ad;
+   background-color: #ff4b57;
+   color: #FFF;
+   font-weight: bold;
+ }
+
+ .navbar-default ul.links>li>a:hover{color: #FFF}
+
+.navbar-default ul.links>li:hover{
+   background-color: #ff4b57;
    color: #FFF;
    font-weight: bold;
  }
 
  #login{
-  font-size: 17px;
-  color: #FE3C47;
+  font-size: 16px;
+  color: #ff4b57;
   background-color: #FFF;
   border: 2px solid #f8868b;
   border-radius: 9px;
@@ -57,9 +70,11 @@ ul.links{
 }
 
 #login:hover{
-  background: #fe3c47cc;
+  background: #ff4b57;
   color: #FFF;
   border: 2px solid #f8868b;
+  border-radius: 9px;
+  
 }
 
 .navbar{
