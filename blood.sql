@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2018 at 04:41 PM
+-- Generation Time: Feb 13, 2018 at 04:57 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -25,6 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bacteriallab`
+--
+
+CREATE TABLE `bacteriallab` (
+  `id` int(11) NOT NULL,
+  `component_unitNo` varchar(255) NOT NULL,
+  `test` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bloodsample`
 --
 
@@ -33,8 +45,16 @@ CREATE TABLE `bloodsample` (
   `donar_NID` double NOT NULL,
   `bagWeight` int(11) NOT NULL,
   `timeCollection` int(11) NOT NULL,
-  `bloodGroup` varchar(255) NOT NULL
+  `bloodGroup` varchar(255) NOT NULL,
+  `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bloodsample`
+--
+
+INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`) VALUES
+(1, 1111111111, 22, 33, 'c+', 'Slow bleed- Aspirin');
 
 -- --------------------------------------------------------
 
@@ -62,6 +82,28 @@ INSERT INTO `clinic` (`id`, `donar_NID`, `weight`, `height`, `temp`, `bloodGroup
 (1, 1111111111, 86, 110, 35, 'A', 30, 33, 48),
 (4, 3333333333, 100, 120, 35, 'C', 34, 56, 78),
 (5, 2222222222, 99, 160, 40, 'b', 45, 55, 67);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `component`
+--
+
+CREATE TABLE `component` (
+  `donar_NID` double NOT NULL,
+  `centerNo` varchar(255) NOT NULL,
+  `unitNo` varchar(255) NOT NULL,
+  `timeCollected` int(11) NOT NULL,
+  `timeSeparated` int(11) NOT NULL,
+  `prbc` varchar(255) NOT NULL,
+  `pc` varchar(255) NOT NULL,
+  `ffp` varchar(255) NOT NULL,
+  `cryo` varchar(255) NOT NULL,
+  `Fwb` varchar(255) NOT NULL,
+  `Fprbc` varchar(255) NOT NULL,
+  `Fpc` varchar(255) NOT NULL,
+  `bagType` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -120,7 +162,36 @@ INSERT INTO `employees` (`ID`, `userName`, `password`, `job`) VALUES
 (1, 'mohamed', 111, 'receptionist'),
 (2, 'ahmed', 222, 'labTechnician'),
 (3, 'ali', 333, 'physician'),
-(4, 'mahmoud', 444, 'nurse');
+(4, 'mahmoud', 444, 'nurse'),
+(5, 'mona', 555, 'NAT'),
+(6, 'alia', 666, 'bacterial'),
+(7, 'salah', 22, 'malaria');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `malarialab`
+--
+
+CREATE TABLE `malarialab` (
+  `id` int(11) NOT NULL,
+  `component_unitNo` varchar(255) NOT NULL,
+  `test` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `natlab`
+--
+
+CREATE TABLE `natlab` (
+  `id` int(11) NOT NULL,
+  `component_unitNo` varchar(255) NOT NULL,
+  `HBV` varchar(255) NOT NULL,
+  `HCV` varchar(255) NOT NULL,
+  `HIV` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -161,11 +232,19 @@ CREATE TABLE `state` (
 
 INSERT INTO `state` (`id`, `donar_NID`, `status`) VALUES
 (1, 1111111111, 0),
-(2, 3333333333, 1);
+(2, 3333333333, 1),
+(3, 2222222222, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bacteriallab`
+--
+ALTER TABLE `bacteriallab`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lab1` (`component_unitNo`);
 
 --
 -- Indexes for table `bloodsample`
@@ -182,6 +261,13 @@ ALTER TABLE `clinic`
   ADD UNIQUE KEY `donar_NID` (`donar_NID`);
 
 --
+-- Indexes for table `component`
+--
+ALTER TABLE `component`
+  ADD PRIMARY KEY (`unitNo`),
+  ADD KEY `keyy` (`donar_NID`);
+
+--
 -- Indexes for table `donars`
 --
 ALTER TABLE `donars`
@@ -193,6 +279,20 @@ ALTER TABLE `donars`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `malarialab`
+--
+ALTER TABLE `malarialab`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lab2` (`component_unitNo`);
+
+--
+-- Indexes for table `natlab`
+--
+ALTER TABLE `natlab`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lab3` (`component_unitNo`);
 
 --
 -- Indexes for table `questionnaire`
@@ -213,6 +313,12 @@ ALTER TABLE `state`
 --
 
 --
+-- AUTO_INCREMENT for table `bacteriallab`
+--
+ALTER TABLE `bacteriallab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `clinic`
 --
 ALTER TABLE `clinic`
@@ -222,7 +328,19 @@ ALTER TABLE `clinic`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `malarialab`
+--
+ALTER TABLE `malarialab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `natlab`
+--
+ALTER TABLE `natlab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `questionnaire`
@@ -234,11 +352,17 @@ ALTER TABLE `questionnaire`
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `bacteriallab`
+--
+ALTER TABLE `bacteriallab`
+  ADD CONSTRAINT `lab1` FOREIGN KEY (`component_unitNo`) REFERENCES `component` (`unitNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bloodsample`
@@ -251,6 +375,24 @@ ALTER TABLE `bloodsample`
 --
 ALTER TABLE `clinic`
   ADD CONSTRAINT `fkey2` FOREIGN KEY (`donar_NID`) REFERENCES `donars` (`NID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `component`
+--
+ALTER TABLE `component`
+  ADD CONSTRAINT `keyy` FOREIGN KEY (`donar_NID`) REFERENCES `donars` (`NID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `malarialab`
+--
+ALTER TABLE `malarialab`
+  ADD CONSTRAINT `lab2` FOREIGN KEY (`component_unitNo`) REFERENCES `component` (`unitNo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `natlab`
+--
+ALTER TABLE `natlab`
+  ADD CONSTRAINT `lab3` FOREIGN KEY (`component_unitNo`) REFERENCES `component` (`unitNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `questionnaire`
