@@ -54,6 +54,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/bacterial.php');
 
         }
+
+        elseif($_SESSION['job']=='malaria'){
+
+            header('location:../../view/malaria.php');
+
+        }
+
     }
     else{
         $error='Invalid username or password';

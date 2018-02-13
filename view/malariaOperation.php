@@ -6,12 +6,12 @@
  * Time: 1:28 AM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='malaria')
 {
     if(isset($_POST['save']))
     {
-        include "../model/bacterial.php";
-        $result= bacterial::insert($_POST['unitNo'],$_POST['test']);
+        include "../model/malaria.php";
+        $result= malaria::insert($_POST['unitNo'],$_POST['test']);
         $_SESSION['operation']= $result;
         header('location:NAT.php');
     }
@@ -29,7 +29,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
             <meta charset="UTF-8">
-            <title>Bacterial Department</title>
+            <title>Malaria Department</title>
         </head>
 
 
@@ -37,7 +37,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
 
 
     <div class="w3-bar w3-light-grey">
-        <a href="bacterial.php" class="w3-bar-item w3-button">Bacterial Department Home</a>     <!-- Bacterial Department home button -->
+        <a href="malaria.php" class="w3-bar-item w3-button">Malaria Department Home</a>     <!-- Malaria Department home button -->
 
         <div class="w3-dropdown-hover">
             <!-- user name -->
@@ -53,8 +53,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
 
     <?php
     // already inserted
-    include "../model/bacterial.php";
-    $search=bacterial::search($_GET['unit']);
+    include "../model/malaria.php";
+    $search=malaria::search($_GET['unit']);
     if($search){
 
         echo "Result already inserted";

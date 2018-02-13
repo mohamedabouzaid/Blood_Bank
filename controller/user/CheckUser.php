@@ -36,6 +36,11 @@
          header('location:bacterial.php');
 
      }
+     elseif($_SESSION['job']=='malaria'){
+
+         header('location:malaria.php');
+
+     }
 
 
  }
