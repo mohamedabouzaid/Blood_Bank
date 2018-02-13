@@ -118,7 +118,72 @@ class NurseModel
 
     }
 
+//get all user for lab
+    public function getALLUnit(){
 
+
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT * from component ");
+            $stmt->execute();
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+
+
+
+    }
+
+
+// search for lab
+    public function searchUnit($unidNo){
+
+
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT * from component where  unitNo=?");
+            $stmt->execute(array($unidNo));
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+
+
+
+    }
 
 
 }

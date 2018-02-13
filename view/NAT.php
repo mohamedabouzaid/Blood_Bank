@@ -2,28 +2,25 @@
 /**
  * Created by PhpStorm.
  * User: abouzaid
- * Date: 2/7/2018
- * Time: 4:58 PM
+ * Date: 2/13/2018
+ * Time: 12:58 AM
  */
 session_start();
-
-if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
 {
-
-     //search
+    //search
     if(isset($_POST['search'])) {
-        include '../model/physician.php';
-        $users=physician::search(filter_var($_POST['search'], FILTER_SANITIZE_NUMBER_INT));
+        include '../model/NurseModel.php';
+        $units=NurseModel::searchUnit(filter_var($_POST['search'], FILTER_SANITIZE_STRING));
     }
 
     else{
-    //accept donar
-  include '../model/physician.php';
-  $users=physician::getAllAccept(0);
-
+        //accept donar
+        include '../model/NurseModel.php';
+        $units=NurseModel::getAllUnit();
     }
-
 ?>
+
 
     <!DOCTYPE html>
     <html lang="en">
@@ -31,7 +28,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <meta charset="UTF-8">
-        <title>Nurse</title>
+        <title>NAT Department</title>
     </head>
 
 
@@ -39,7 +36,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
 
 
 <div class="w3-bar w3-light-grey">
-    <a href="nurse.php" class="w3-bar-item w3-button">Nurse Home</a>     <!-- nurse home button -->
+    <a href="NAT.php" class="w3-bar-item w3-button">NAT Department Home</a>     <!-- NAT Department home button -->
     <!--search form-->
     <form action="" method="post">
         <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
@@ -55,24 +52,21 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
 
 
 </div>
+<?php
 
-
-
-    <?php
-    if($users!= null)
+    if($units!= null)
     {
         echo '<table  class="w3-table w3-striped">
                                           <caption >Users</caption>
                                           <tr class="w3-blue">
-                                              <th>رقم السجل القومى /الاقامه</th>
-                                              <th> Blood Information</th>
+                                              <th>Unit NO</th>
+                                              <th> Result</th>
                                           </tr>';
-        foreach ($users as $user) {
+        foreach ($units as $unit) {
 
             echo "   <tr>
-                                                <td>" . $user['donar_NID'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=insert& nid=" . $user['donar_NID'] . "'>Insert blood</a>
-                                                 <a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=component& nid=" . $user['donar_NID'] . "'> blood  component</a></td>
+                                                <td>" . $unit['unitNo'] . "</td>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='NAToperation.php ?do=insert& unit=" . $unit['unitNo'] . "'>Insert </a></td>
                                                  
                                                 </tr>";
 
@@ -94,17 +88,10 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse')
     }
 
 
-    if(isset($_SESSION['operation'])&&$_SESSION['operation']!=null){
-
-
-        echo $_SESSION['operation'];
-        $_SESSION['operation']=null;
-
-    }
-
-
-
 }
+
+
+
 //no permission to access page
 else{
 

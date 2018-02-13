@@ -26,6 +26,12 @@
          header('location:nurse.php');
 
      }
+     elseif($_SESSION['job']=='NAT'){
+
+         header('location:NAT.php');
+
+     }
+
 
 
  }
