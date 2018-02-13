@@ -26,11 +26,11 @@ include '../controller/user/CheckUser.php';    //session of user and job
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav links">
-            <li class="active"><a href="Home.php"> Home</a> </li>      <!-- create button-->
+            <li class="active"><a href="Home.php"> Home</a> </li>      <!-- Home button-->
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="btn" id="login" href="Login.php">Login</a> </li>       <!-- logout button-->
+            <li><a class="btn" id="login" href="Login.php">Login</a> </li>       <!-- login button-->
           </ul>
         </div>
       </div>

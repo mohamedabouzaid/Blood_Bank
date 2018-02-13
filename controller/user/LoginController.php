@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         }
 
     }
+    //invalid username and password
     else{
         $error='Invalid username or password';
         $_SESSION['error']=$error;
@@ -70,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 
 }
+
 else{
     header('location:../../view/Login.php');
 }
