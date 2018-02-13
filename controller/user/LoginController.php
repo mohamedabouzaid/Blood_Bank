@@ -48,6 +48,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
         }
 
+
+        elseif($_SESSION['job']=='bacterial'){
+
+            header('location:../../view/bacterial.php');
+
+        }
     }
     else{
         $error='Invalid username or password';

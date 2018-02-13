@@ -6,14 +6,14 @@
  * Time: 1:28 AM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
 {
     if(isset($_POST['save']))
     {
-        include "../model/NATmodel.php";
-    $result= NATmodel::insert($_POST['unitNo'],$_POST['HBV'],$_POST['HCV'],$_POST['HIV']);
-     $_SESSION['operation']= $result;
-     header('location:NAT.php');
+        include "../model/bacterial.php";
+        $result= bacterial::insert($_POST['unitNo'],$_POST['test']);
+        $_SESSION['operation']= $result;
+        header('location:NAT.php');
     }
     else {
 
@@ -52,9 +52,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
     </div>
 
     <?php
-// already inserted
-    include "../model/NATmodel.php";
-    $search=NATmodel::search($_GET['unit']);
+    // already inserted
+    include "../model/bacterial.php";
+    $search=bacterial::search($_GET['unit']);
     if($search){
 
         echo "Result already inserted";
@@ -71,17 +71,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
     <h3><?php echo 'Unit NO:  ' . $_GET['unit'] ?> </h3>
     <h5>Enter the Result of Test: </h5>
     <form method="post" action="">
-        HBV:<br>
-        <input type="radio" name="HBV" value="Reactive"> Reactive<br>
-        <input type="radio" name="HBV" value="Non_Reactive">Non Reactive<br><br>
 
-        HCV:<br>
-        <input type="radio" name="HCV" value="Reactive"> Reactive<br>
-        <input type="radio" name="HCV" value="Non_Reactive">Non Reactive<br><br>
-
-        HIV:<br>
-        <input type="radio" name="HIV" value="Reactive"> Reactive<br>
-        <input type="radio" name="HIV" value="Non_Reactive">Non Reactive<br><br>
+        <input type="radio" name="test" value="+"> +<br>
+        <input type="radio" name="test" value="-">-<br><br>
         <input type="hidden" name="unitNo" value="<?php echo $_GET['unit'] ?> ">
 
         <input type="submit" value="Save" name="save">

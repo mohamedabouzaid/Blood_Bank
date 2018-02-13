@@ -31,7 +31,11 @@
          header('location:NAT.php');
 
      }
+     elseif($_SESSION['job']=='bacterial'){
 
+         header('location:bacterial.php');
+
+     }
 
 
  }

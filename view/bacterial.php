@@ -6,7 +6,7 @@
  * Time: 12:58 AM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
 {
     //search
     if(isset($_POST['search'])) {
@@ -19,7 +19,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
         include '../model/NurseModel.php';
         $units=NurseModel::getAllUnit();
     }
-?>
+    ?>
 
 
     <!DOCTYPE html>
@@ -28,7 +28,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <meta charset="UTF-8">
-        <title>NAT Department</title>
+        <title>Bacterial Department</title>
     </head>
 
 
@@ -36,7 +36,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
 
 
 <div class="w3-bar w3-light-grey">
-    <a href="NAT.php" class="w3-bar-item w3-button">NAT Department Home</a>     <!-- NAT Department home button -->
+    <a href="bacterial.php" class="w3-bar-item w3-button">Bacterial Department Home</a>     <!-- Bacterial Department home button -->
     <!--search form-->
     <form action="" method="post">
         <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
@@ -52,7 +52,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
 
 
 </div>
-<?php
+    <?php
 
     if($units!= null)
     {
@@ -66,7 +66,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
 
             echo "   <tr>
                                                 <td>" . $unit['unitNo'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='NAToperation.php ?do=insert& unit=" . $unit['unitNo'] . "'>Insert </a></td>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='bacterialOperation.php ?do=insert& unit=" . $unit['unitNo'] . "'>Insert </a></td>
                                                  
                                                 </tr>";
 
