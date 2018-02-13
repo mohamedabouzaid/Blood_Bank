@@ -12,7 +12,7 @@ include'../../model/User.php';         //model User
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 
-    $username = filter_var($_POST['userName'],FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
     $password = $_POST['password'];
 
     new User();                                              //object of user
