@@ -88,10 +88,10 @@ include'../controller/user/CheckUser.php';    // session check user job
        </div>
 
 <script src="../resource/js/jquery.min.js"></script>
--<script src="../resource/js/bootstrap.min.js"></script>
--
--</body>
--</html>
+<script src="../resource/js/bootstrap.min.js"></script>
+
+</body>
+</html>
 
             <!-- <div class="w3-container w3-gray">
               <!-- home page--
