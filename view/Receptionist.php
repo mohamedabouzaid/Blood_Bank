@@ -17,7 +17,13 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
           new Receptionist();
           $users=Receptionist::search(filter_var($_POST['search'],FILTER_SANITIZE_NUMBER_INT));
           }
+          elseif (isset($_GET['do'])&&$_GET['do']=='friend'){
 
+
+              include '../model/Receptionist.php';
+              $users=Receptionist::getFriend();
+
+          }
 
           //get all use
         else{
@@ -44,8 +50,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
         <div class="w3-bar w3-light-grey">
             <a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist Home</a>     <!-- receptionist home button -->
             <a href="../view/ReceptionistOperation.php" class="w3-bar-item w3-button"> create file</a>    <!-- insert user button -->
-
-                               <!--search form-->
+            <a href="?do=friend" class="w3-bar-item w3-button"> Blood Bank friends </a>
+            <!--search form-->
             <form action="" method="post">
                 <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
                 <input type="submit" value="search"  class="w3-bar-item w3-button w3-blue">

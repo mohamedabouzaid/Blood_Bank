@@ -12,16 +12,16 @@ class Receptionist
 
 
     public function insert($NID,$firstName,$secondName,$thirdName,$familyName,$phone,$age,$birthday,$city,$sex
-                                 ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter)
+                                 ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$place,$signDate)
     {
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("INSERT INTO donars (NID,firstName,secondName,thirdName,familyName,phone,age,birthday,city,sex
-                                 ,profession,nationality,typeDonar,patient,sponsor,district,street,healthCenter)
-                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                 ,profession,nationality,typeDonar,patient,sponsor,district,street,healthCenter,place,signDate)
+                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->execute(array($NID, $firstName, $secondName, $thirdName, $familyName, $phone, $age, $birthday, $city, $sex
-            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter));
+            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter,$place,$signDate));
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
@@ -95,17 +95,18 @@ class Receptionist
 
 
     public function update ($NID,$firstName,$secondName,$thirdName,$familyName,$phone,$age,$birthday,$city,$sex
-        ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$oldNID)
+        ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$place,$signDate,$oldNID)
     {
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("update donars set 
                                   NID=?,firstName=?,secondName=?,thirdName=?,familyName=?,phone=?,age=?,birthday=?,city=?,sex=?
-                                 ,profession=?,nationality=?,typeDonar=?,patient=?,sponsor=?,district=?,street=?,healthCenter=?
+                                 ,profession=?,nationality=?,typeDonar=?,patient=?,sponsor=?,district=?,street=?,healthCenter=?,
+                                 place=?,signDate=?
                                  where NID=?");
             $stmt->execute(array($NID, $firstName, $secondName, $thirdName, $familyName, $phone, $age, $birthday, $city, $sex
-            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter, $oldNID));
+            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter,$place,$signDate, $oldNID));
             //record updated
             return "New record update successfully";
 
@@ -129,11 +130,57 @@ class Receptionist
 
 
 
+    public function getFriend(){
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT * from donars where fiend=? ");
+            $stmt->execute(array(1));
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+    }
 
 
 
 
+    public function updateFriend ($NID)
+    {
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update donars set 
+                                  fiend=? where NID=?");
+            $stmt->execute(array(1,$NID));
+            //record updated
+            return "New record update successfully";
 
+        } catch (PDOException $e) {
+            //record not updated
+            return "sorry record not update try again";
+
+
+        }
+
+
+    }
 
 
 

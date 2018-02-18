@@ -11,6 +11,7 @@ session_start();
 <div>
     <a href="Home.php">Home</a>  <!-- Home button   -->
 
+
 </div>
 
 <?php
@@ -24,8 +25,28 @@ if(isset($_POST['accept'])){
     $quesions=implode('-',$_POST);
     include "../model/donar.php";
     new donar();
-    $result=donar::insert($quesions,$_SESSION['donar_id']);
-    echo $result;
+    $result=donar::insert($quesions,$_SESSION['donar_id'])
+        ?>
+    <button onclick="myFunction()">friend</button>
+
+    <p id="demo"></p>
+
+    <script>
+        function myFunction() {
+            var txt;
+            var r = confirm("هل ترغب فى ان تكون صديق بنك الدم؟(سوف يتم الاتصال بك فى حاله الحاجه اليك للتبرع)");
+            if (r == true) {
+             <?php include '../model/Receptionist.php';
+             new Receptionist();
+             Receptionist::updateFriend($_SESSION['donar_id']);
+             ?>
+            } else {
+                txt = "thanks";
+            }
+            document.getElementById("demo").innerHTML = txt;
+        }
+    </script>
+    <?php echo $result;
 
 }
 //check user and show question
@@ -36,7 +57,10 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
     new donar();
 
     //check if insert data in receptionist
-    if(Receptionist::search(filter_var($_POST['NID'],FILTER_SANITIZE_NUMBER_INT))){
+
+    $search=Receptionist::search(filter_var($_POST['NID'],FILTER_SANITIZE_NUMBER_INT));
+
+    if($search){
         //check if is insert questionnaire
         if (donar::search($_POST['NID'])!=null){
 
@@ -46,7 +70,11 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
             {
 
             $_SESSION['donar_id'] = $_POST['NID'];
+            foreach ($search as $donar){ $_SESSION['donar_name'] = $donar['firstName'];}
+
+            echo  $_SESSION['donar_name'];
             ?>
+
 
               <!--      questionnaire form-->
             <form action="" method="post">
@@ -87,7 +115,10 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
 
                 </p>
                 <input type="submit" value="موافق" name="accept">
+                <p id="demo"></p>
+
             </form>
+
 
             <?php
         }

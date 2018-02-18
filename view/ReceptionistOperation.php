@@ -10,7 +10,7 @@ session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
 
 {
-    $nationality=array("سعودى","مصرى","قطرى");
+    $nationality=array("سعودى","غير سعودى");
     //default create file
     $do=isset($_GET['do']) ? $_GET['do']:'create';
 
@@ -27,7 +27,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
             }
 
             //validate patient
-            if ($_POST['type'] != "طوعى" && strlen(filter_var($_POST['patient'], FILTER_SANITIZE_STRING)) < 3) {
+            if ($_POST['typeDonar'] != "طوعى" && strlen(filter_var($_POST['patient'], FILTER_SANITIZE_STRING)) < 3) {
 
 
                 $error['patient'] = 'Required patient Field More than 2 characters';
@@ -105,21 +105,22 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
 
                     $result = Receptionist::insert($_POST['NID'], $_POST['firstName'], $_POST['secondName'], $_POST['thirdName'],$_POST['familyName'],
                         $_POST['phone'], $_POST['age'], $_POST['birthday'], $_POST['city'], $_POST['sex'], $_POST['profession']
-                        , $_POST['nationality'], $_POST['type'], $_POST['patient'], $_POST['sponsor'], $_POST['district'], $_POST['street'],
-                        $_POST['healthCenter']);
+                        , $_POST['nationality'], $_POST['typeDonar'], $_POST['patient'], $_POST['sponsor'], $_POST['district'], $_POST['street'],
+                        $_POST['healthCenter'],$_POST['place'],$_POST['signDate']);
                                 $result;
                     }
                     //update file
                         else{
 
+
                            $result = Receptionist::update($_POST['NID'], $_POST['firstName'], $_POST['secondName'], $_POST['thirdName'], $_POST['familyName'],
                                 $_POST['phone'], $_POST['age'], $_POST['birthday'], $_POST['city'], $_POST['sex'], $_POST['profession']
-                                , $_POST['nationality'], $_POST['type'], $_POST['patient'], $_POST['sponsor'], $_POST['district'], $_POST['street'],
-                                $_POST['healthCenter'],$_POST['oldNID']);
+                                , $_POST['nationality'], $_POST['typeDonar'], $_POST['patient'], $_POST['sponsor'], $_POST['district'], $_POST['street'],
+                                $_POST['healthCenter'],$_POST['place'],$_POST['signDate'],$_POST['oldNID']);
 
                     }
                     //result of create or update
-                    $_SESSION['receptionistOperation'] = $result;
+                  $_SESSION['receptionistOperation'] = $result;
                     header('location:Receptionist.php');
 
                 }
@@ -137,12 +138,14 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
                     $edit['profession'] = $_POST['profession'];
                     $edit['nationality'] = $_POST['nationality'];
                     $edit['phone'] = $_POST['phone'];
-                    $edit['type'] = $_POST['type'];
+                    $edit['typeDonar'] = $_POST['typeDonar'];
                     $edit['patient'] = $_POST['patient'];
                     $edit['street'] = $_POST['street'];
                     $edit['district'] = $_POST['district'];
                     $edit['sponsor'] = $_POST['sponsor'];
                     $edit['healthCenter'] = $_POST['healthCenter'];
+                    $edit['place'] = $_POST['place'];
+                    $edit['signDate'] = $_POST['signDate'];
                 }
 
 
@@ -180,6 +183,12 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
             </div>
                 <h3>create file</h3>
                 <form method="post" action="" class="w3-container">
+                    مكان التبرع
+                    <input  required type="text" name="place" <?php if(isset($edit['place'])){ echo "value='".$edit['place']."'" ;}?>><br>
+                    التاريخ
+                    <input  required type="text" name="signDate" <?php if(isset($edit['signDate'])){ echo "value='".$edit['signDate']."'" ;}
+                                              else{echo "value='". date("m/d/Y")."'" ;}?>><br>
+
                     الاسم الاول
                     <input  required type="text" name="firstName" <?php if(isset($edit['firstName'])){ echo "value='".$edit['firstName']."'" ;}?>>
                     <?php if((isset($error['firstName']))){echo $error['firstName'];} ?><br>
@@ -226,17 +235,21 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
 
                         <option value="0"><?php echo $nationality[0]?></option>
                         <option value="1"><?php echo $nationality[1]?></option>
-                        <option value="2"><?php echo $nationality[2]?></option>
 
                     </select><br>
 
+                    اسم الكفيل
+
+                    <input type="text" name="sponsor" <?php if(isset($edit['sponsor'])){ echo "value='".$edit['sponsor']."'" ;}?>><br>
+                    <?php if((isset($error['sponsor']))){echo $error['sponsor'];} ?><br>
+
                     رقم الجوال
                     <input required type="number" name="phone" <?php if(isset($edit['phone'])){ echo "value='".$edit['phone']."'" ;}?>>
-                    <?php if((isset($error['phone']))){echo $error['phone'];} ?><br>
+                    <?php if((isset($error['phone']))){echo  $error['phone'];} ?><br>
 
                     نوع التبرع
-                    <select  required name="type" >
-                        <?php if(isset($edit['type'])){ echo'<option value="'.$edit['type'].'">'.$edit['type'].'</option>' ;}?>
+                    <select  required name="typeDonar" >
+                        <?php if(isset($edit['typeDonar'])) {echo '<option value="'.$edit['typeDonar'].'">'.$edit['typeDonar'].'</option>';}?>
                         <option value="طوعى">طوعى</option>
                         <option value="تعويضى">تعويضى</option>
                     </select><br>
@@ -245,10 +258,6 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
                     <input   type="text" name="patient" <?php if(isset($edit['patient'])){ echo "value='".$edit['patient']."'" ;}?>><br>
                     <?php if((isset($error['patient']))){echo $error['patient'];} ?><br>
 
-                    اسم الكفيل
-
-                    <input type="text" name="sponsor" <?php if(isset($edit['sponsor'])){ echo "value='".$edit['sponsor']."'" ;}?>><br>
-                    <?php if((isset($error['sponsor']))){echo $error['sponsor'];} ?><br>
                     الحى
                     <input type="text" name=" district" <?php if(isset($edit['district'])){ echo "value='".$edit['district']."'" ;}?>><br>
                     الشارع
