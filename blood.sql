@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2018 at 04:57 PM
+-- Generation Time: Feb 18, 2018 at 07:08 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -49,13 +49,6 @@ CREATE TABLE `bloodsample` (
   `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `bloodsample`
---
-
-INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`) VALUES
-(1, 1111111111, 22, 33, 'c+', 'Slow bleed- Aspirin');
-
 -- --------------------------------------------------------
 
 --
@@ -73,15 +66,6 @@ CREATE TABLE `clinic` (
   `pluse` int(11) NOT NULL,
   `bp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `clinic`
---
-
-INSERT INTO `clinic` (`id`, `donar_NID`, `weight`, `height`, `temp`, `bloodGroup`, `hp`, `pluse`, `bp`) VALUES
-(1, 1111111111, 86, 110, 35, 'A', 30, 33, 48),
-(4, 3333333333, 100, 120, 35, 'C', 34, 56, 78),
-(5, 2222222222, 99, 160, 40, 'b', 45, 55, 67);
 
 -- --------------------------------------------------------
 
@@ -117,7 +101,7 @@ CREATE TABLE `donars` (
   `secondName` varchar(255) NOT NULL,
   `thirdName` varchar(255) NOT NULL,
   `familyName` varchar(255) NOT NULL,
-  `phone` double NOT NULL,
+  `phone` int(10) UNSIGNED ZEROFILL NOT NULL,
   `age` int(11) NOT NULL,
   `typeDonar` varchar(255) NOT NULL,
   `birthday` date NOT NULL,
@@ -129,17 +113,11 @@ CREATE TABLE `donars` (
   `sex` varchar(255) NOT NULL,
   `healthCenter` varchar(255) NOT NULL,
   `profession` varchar(255) NOT NULL,
-  `nationality` int(11) NOT NULL
+  `nationality` int(11) NOT NULL,
+  `fiend` int(11) NOT NULL DEFAULT '0',
+  `signDate` varchar(255) NOT NULL,
+  `place` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `donars`
---
-
-INSERT INTO `donars` (`NID`, `firstName`, `secondName`, `thirdName`, `familyName`, `phone`, `age`, `typeDonar`, `birthday`, `patient`, `sponsor`, `district`, `city`, `street`, `sex`, `healthCenter`, `profession`, `nationality`) VALUES
-(1111111111, 'محمد', 'ابوزيد', 'ابراهيم', 'عارف', 1212121212, 22, 'طوعى', '1995-11-07', '', 'عبداللطيف', '', 'الاسماعيليه', '', 'male', '', 'مبرمج', 1),
-(2222222222, 'mahmoud', 'samir', 'mosaad', 'mohamed', 2121222222, 22, 'طوعى', '1995-10-04', 'على', '', 'السلام', 'cairo', 'التلاتينى', 'male', 'الجامعه', 'مهندس', 0),
-(3333333333, 'منى', 'السيد', 'احمد', 'على', 3344334434, 18, 'طوعى', '2000-01-01', '', 'بن وليد', 'شيخ زايد', 'دبى', 'ال مكتوم', 'female', 'العالمى', 'دكتور', 2);
 
 -- --------------------------------------------------------
 
@@ -162,10 +140,7 @@ INSERT INTO `employees` (`ID`, `userName`, `password`, `job`) VALUES
 (1, 'mohamed', 111, 'receptionist'),
 (2, 'ahmed', 222, 'labTechnician'),
 (3, 'ali', 333, 'physician'),
-(4, 'mahmoud', 444, 'nurse'),
-(5, 'mona', 555, 'NAT'),
-(6, 'alia', 666, 'bacterial'),
-(7, 'salah', 22, 'malaria');
+(4, 'mahmoud', 444, 'nurse');
 
 -- --------------------------------------------------------
 
@@ -205,15 +180,6 @@ CREATE TABLE `questionnaire` (
   `questions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `questionnaire`
---
-
-INSERT INTO `questionnaire` (`id`, `donar_NID`, `questions`) VALUES
-(1, 1111111111, '0-0-1-0-موافق'),
-(3, 3333333333, '0-1-1-1-موافق'),
-(4, 2222222222, '0-0-1-1-موافق');
-
 -- --------------------------------------------------------
 
 --
@@ -225,15 +191,6 @@ CREATE TABLE `state` (
   `donar_NID` double NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `state`
---
-
-INSERT INTO `state` (`id`, `donar_NID`, `status`) VALUES
-(1, 1111111111, 0),
-(2, 3333333333, 1),
-(3, 2222222222, 0);
 
 --
 -- Indexes for dumped tables
@@ -316,7 +273,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `bacteriallab`
 --
 ALTER TABLE `bacteriallab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `clinic`
@@ -334,19 +291,19 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `malarialab`
 --
 ALTER TABLE `malarialab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `natlab`
 --
 ALTER TABLE `natlab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `state`
