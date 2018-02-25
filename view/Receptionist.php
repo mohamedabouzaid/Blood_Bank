@@ -86,9 +86,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
                                               <th>الاسم الاول</th>
                                               <th>الاسم الثانى</th>
                                               <th>الاسم الثالث </th>
-                                              <th>اسم العائله</th>
-                                              <th> Modify</th>
-                                          </tr>';
+                                              <th>اسم العائله</th>';
+                                               if(isset($_GET['do'])){echo '<th> رقم الهاتف</th>';}
+                                              echo '<th> Modify</th>
+                                          
+                                                        </tr>';
         foreach ($users as $user) {
 
             echo "   <tr>
@@ -96,9 +98,13 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
                                                 <td>" . $user['firstName'] . "</td>
                                                 <td>" . $user['secondName'] . "</td>
                                                 <td>" . $user['thirdName'] . "</td>
-                                                 <td>" . $user['familyName'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='ReceptionistOperation.php ?do=edit& user=" . serialize($user) . "'>edit</a></td>
-                                                </tr>";
+                                                 <td>" . $user['familyName'] . "</td>";
+                                             if(isset($_GET['do'])){echo "<td>". $user['phone']." </td>";}
+            echo  "  <td><a  class=\"w3-btn w3-gray\" href='ReceptionistOperation.php ?do=edit& user=" . serialize($user) . "'>edit</a></td>
+                               
+                                               
+                                               
+                                             </tr>";
 
         }
         echo    "</table>";
