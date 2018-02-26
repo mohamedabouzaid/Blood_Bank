@@ -27,6 +27,32 @@ class malaria
         }
     }
 
+
+    //update
+    public function update($unitNO,$test)
+    {
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update  malarialab set  test=?
+                               WHERE  component_unitNo=?");
+            $stmt->execute(array( $test ,$unitNO,));
+            return "update record  successfully";
+
+        } catch (PDOException $e) {
+            //return "sorry,try again ";
+            return $e->getMessage();
+
+        }
+    }
+
+
+
+
+
+
+
         ///search in malaria
         public function search($unit){
 
@@ -37,7 +63,7 @@ class malaria
             try {
 
                 //SQL
-                $stmt = $con->prepare("SELECT component_unitNo from  malarialab  where  component_unitNo=? ");
+                $stmt = $con->prepare("SELECT * from  malarialab  where  component_unitNo=? ");
                 $stmt->execute(array($unit));
                 $row = $stmt->fetchall();
                 $count = $stmt->rowCount();

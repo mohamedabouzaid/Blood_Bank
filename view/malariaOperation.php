@@ -11,7 +11,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='malaria')
     if(isset($_POST['save']))
     {
         include "../model/malaria.php";
-        $result= malaria::insert($_POST['unitNo'],$_POST['test']);
+        //insert
+        if($_POST['do']=='insert'){
+        $result= malaria::insert($_POST['unitNo'],$_POST['test']);}
+        //update
+        else{ $result= malaria::update($_POST['unitNo'],$_POST['test']);}
         $_SESSION['operation']= $result;
         header('location:NAT.php');
     }
@@ -56,9 +60,26 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='malaria')
     include "../model/malaria.php";
     $search=malaria::search($_GET['unit']);
     if($search){
+        //update
+        if($_GET['do']=='update') {
 
-        echo "Result already inserted";
-        die();
+            $edit = $search[0];
+
+        }
+        //insert
+        else{
+            echo "Result already inserted";
+            die();}
+
+    }
+    else{
+
+        if($_GET['do']=='update'){
+
+            echo "no data entered ";
+            die();}
+
+    }
 
     }
 
@@ -72,8 +93,13 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='malaria')
     <h5>Enter the Result of Test: </h5>
     <form method="post" action="">
 
-        <input type="radio" name="test" value="+"> +<br>
-        <input type="radio" name="test" value="-">-<br><br>
+        <input type="radio" name="test" value="+" <?php if(isset($edit)&&$edit['test']=='+')
+        {echo 'checked';} ?>> +<br>
+        <input type="radio" name="test" value="-" <?php if(isset($edit)&&$edit['test']=='-')
+        {echo 'checked';} ?>>-<br><br>
+
+
+        <input type="hidden" name="do" value="<?php echo $_GET['do']; ?>">
         <input type="hidden" name="unitNo" value="<?php echo $_GET['unit'] ?> ">
 
         <input type="submit" value="Save" name="save">
@@ -86,7 +112,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='malaria')
         <?php
 
 
-    }
+
 }
 
 //no permission to access page

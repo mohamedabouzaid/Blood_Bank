@@ -61,12 +61,14 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='malaria')
                                           <tr class="w3-blue">
                                               <th>Unit NO</th>
                                               <th> Result</th>
+                                               <th>Modife</th>
                                           </tr>';
         foreach ($units as $unit) {
 
             echo "   <tr>
                                                 <td>" . $unit['unitNo'] . "</td>
                                                  <td><a  class=\"w3-btn w3-gray\" href='malariaOperation.php ?do=insert& unit=" . $unit['unitNo'] . "'>Insert </a></td>
+                                                  <td><a  class=\"w3-btn w3-gray\" href='malariaOperation.php ?do=update& unit=" . $unit['unitNo'] . "'>update </a></td>
                                                  
                                                 </tr>";
 
