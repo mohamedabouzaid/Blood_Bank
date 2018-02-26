@@ -46,7 +46,11 @@
          header('location:serology.php');
 
      }
+     elseif($_SESSION['job']=='immuno'){
 
+         header('location:immuno.php');
+
+     }
 
 
  }

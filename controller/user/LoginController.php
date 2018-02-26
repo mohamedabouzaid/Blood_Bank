@@ -65,6 +65,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/serology.php');
 
         }
+        elseif($_SESSION['job']=='immuno'){
+
+            header('location:../../view/immuno.php');
+
+        }
+
 
     }
     //invalid username and password
