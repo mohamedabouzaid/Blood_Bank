@@ -98,7 +98,21 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse') {
                 Sealed by ID<input type="number" name="ID_Blood"><br>
                 Bag Weight <input type="number" name="bagWeight"><br>
                 Time of collections<input type="number" name="time"><br>
-                Confirmed Blood Group <input type="text" name="bloodGroup"><br>
+                Confirmed Blood Group
+
+             <select required name="bloodGroup">
+
+                    <option value="A−">A−</option>
+                    <option value="A+">A+</option>
+                    <option value="B−">B−</option>
+                    <option value="B+">B+</option>
+                    <option value="AB−">AB−</option>
+                    <option value="AB+">AB+</option>
+                    <option value="O−">O−</option>
+                    <option value="O+">O+</option>
+
+                </select><br>
+
 
                 <h5>Comments</h5>
                 <input type="checkbox" name="comments_list[]" value="Slow bleed"> Slow bleed<br>
