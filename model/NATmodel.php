@@ -22,13 +22,36 @@ class NATmodel
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
-            //return "sorry,try again ";
-            return $e->getMessage();
+            return "sorry,try again ";
+            //return $e->getMessage();
 
         }
 
 
     }
+    //update
+
+
+    public function update($unitNO,$HBV,$HCV,$HIV){
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare(" update natlab set HBV=?, HCV=?, HIV=? 
+                               WHERE  component_unitNo=?");
+            $stmt->execute(array($HBV,$HCV,$HIV,$unitNO));
+            return "update record  successfully";
+
+        } catch (PDOException $e) {
+            return "sorry,try again ";
+            //return $e->getMessage();
+
+        }
+
+
+    }
+
+
 
     //search in nat
     public function search($unit){
@@ -40,7 +63,7 @@ class NATmodel
         try {
 
             //SQL
-            $stmt = $con->prepare("SELECT component_unitNo from natlab where  component_unitNo=? ");
+            $stmt = $con->prepare("SELECT * from natlab where  component_unitNo=? ");
             $stmt->execute(array($unit));
             $row = $stmt->fetchall();
             $count = $stmt->rowCount();

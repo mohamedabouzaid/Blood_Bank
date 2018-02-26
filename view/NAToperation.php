@@ -11,7 +11,13 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
     if(isset($_POST['save']))
     {
         include "../model/NATmodel.php";
-    $result= NATmodel::insert($_POST['unitNo'],$_POST['HBV'],$_POST['HCV'],$_POST['HIV']);
+        //insert
+     if($_POST['do']=='insert'){
+    $result= NATmodel::insert($_POST['unitNo'],$_POST['HBV'],$_POST['HCV'],$_POST['HIV']);}
+    //update
+    else{
+        $result= NATmodel::update($_POST['unitNo'],$_POST['HBV'],$_POST['HCV'],$_POST['HIV']);
+    }
      $_SESSION['operation']= $result;
      header('location:NAT.php');
     }
@@ -56,11 +62,28 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
     include "../model/NATmodel.php";
     $search=NATmodel::search($_GET['unit']);
     if($search){
+       //update
+        if($_GET['do']=='update') {
 
-        echo "Result already inserted";
-        die();
+            $edit = $search[0];
+        }
+        //insert
+        else{
+            echo "Result already inserted";
+        die();}
 
     }
+    else{
+
+        if($_GET['do']=='update'){
+
+            echo "no data entered ";
+            die();}
+
+        }
+
+    }
+
 
     ?>
 
@@ -72,16 +95,27 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
     <h5>Enter the Result of Test: </h5>
     <form method="post" action="">
         HBV:<br>
-        <input type="radio" name="HBV" value="Reactive"> Reactive<br>
-        <input type="radio" name="HBV" value="Non_Reactive">Non Reactive<br><br>
+        <input type="radio" name="HBV" value="Reactive" <?php if(isset($edit)&&$edit['HBV']=='Reactive')
+        {echo 'checked';} ?>> Reactive<br>
+
+
+        <input type="radio" name="HBV" value="Non_Reactive"  <?php if(isset($edit)&&$edit['HBV']=='Non_Reactive')
+        {echo 'checked';} ?>>Non Reactive<br><br>
 
         HCV:<br>
-        <input type="radio" name="HCV" value="Reactive"> Reactive<br>
-        <input type="radio" name="HCV" value="Non_Reactive">Non Reactive<br><br>
+        <input type="radio" name="HCV" value="Reactive"  <?php if(isset($edit)&&$edit['HCV']=='Reactive')
+        {echo 'checked';} ?>> Reactive<br>
+
+        <input type="radio" name="HCV" value="Non_Reactive" <?php if(isset($edit)&&$edit['HCV']=='Non_Reactive')
+        {echo 'checked';} ?>>Non Reactive<br><br>
 
         HIV:<br>
-        <input type="radio" name="HIV" value="Reactive"> Reactive<br>
-        <input type="radio" name="HIV" value="Non_Reactive">Non Reactive<br><br>
+        <input type="radio" name="HIV" value="Reactive" <?php if(isset($edit)&&$edit['HIV']=='Reactive')
+        {echo 'checked';} ?>> Reactive<br>
+
+        <input type="radio" name="HIV" value="Non_Reactive" <?php if(isset($edit)&&$edit['HIV']=='Non_Reactive')
+        {echo 'checked';} ?>>Non Reactive<br><br>
+        <input type="hidden" name="do" value="<?php echo $_GET['do']; ?>">
         <input type="hidden" name="unitNo" value="<?php echo $_GET['unit'] ?> ">
 
         <input type="submit" value="Save" name="save">
@@ -94,7 +128,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
         <?php
 
 
-    }
+
 }
 
 //no permission to access page
