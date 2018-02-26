@@ -85,9 +85,25 @@ class labTechnician
         } catch (PDOException $e) {
             return "sorry,try again";
 
+
         }
     }
 
+    public function update($donar_NID,$weight,$height,$temp,$blood,$HB,$pluse,$bp)
+    {
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update clinic set weight=?,height=?,temp=?,bloodGroup=?
+              ,hp=?,pluse=?,bp=? WHERE  donar_NID=? ");
+            $stmt->execute(array($weight,$height,$temp,$blood,$HB,$pluse,$bp,$donar_NID));
+            return "Insert record  successfully";
 
+
+        } catch (PDOException $e) {
+            return "sorry,try again";
+
+        }
+    }
 
 }

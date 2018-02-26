@@ -13,9 +13,18 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
     if(isset($_POST['save'])){
      include "../model/labTechnician.php";
      new labTechnician();
-     $reslt=labTechnician::insert($_POST['NID'],$_POST['weight'],$_POST['height'],$_POST['temp'],
-         $_POST['blood'],$_POST['hp'],$_POST['pluse'],$_POST['bp']);
-        $_SESSION['labOperation']=$reslt;
+     print_r($_POST);
+      if($_POST['do']=='insert'){
+          $result=labTechnician::insert($_POST['NID'],$_POST['weight'],$_POST['height'],$_POST['temp'],
+         $_POST['blood'],$_POST['hp'],$_POST['pluse'],$_POST['bp']);}
+
+         else{
+
+          $result= labTechnician::update($_POST['NID'],$_POST['weight'],$_POST['height'],$_POST['temp'],
+              $_POST['blood'],$_POST['hp'],$_POST['pluse'],$_POST['bp']);
+
+         }
+        $_SESSION['labOperation']=$result;
         header('location:labTechnician.php');
     }
 
@@ -34,7 +43,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
     </head>
     <body>
     <div class="w3-bar w3-light-grey">
-        <a href="labTechnician.php" class="w3-bar-item w3-button">Clinic Home</a>     <!-- clinic home button -->
+        <a href="labTechnician.php" class="w3-bar-item w3-button">Whole blood donation</a>     <!-- clinic home button -->
         <div class="w3-dropdown-hover">
             <!-- user name -->
             <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
@@ -46,9 +55,21 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
 
     <?php
     include '../model/physician.php';
+    //update
+    if($_GET['do']=='update'){
+        if(physician::search($_GET['nid']) !=null){
+        $edits=physician::search($_GET['nid']);
+        $edit=$edits[0];}
+
+        else{echo "The Health information did't inserte";
+        exit();
+        }
+    }
+
+
 
     // is already inserted
-    if(physician::search($_GET['nid']) !=null){
+    if(physician::search($_GET['nid']) !=null && $_GET['do']=='insert'){
 
    echo "The Health information is already inserted";
 
@@ -77,17 +98,30 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
                     <th>Bp(mmHg)</th>
                 </tr>
                 <tr>
-                    <td><input type="number" name="weight" required></td>
-                    <td><input type="number" name="height" required></td>
-                    <td><input type="number" name="temp" required></td>
-                    <td><input type="text" name="blood" required></td>
-                    <td><input type="number" name="hp" required></td>
-                    <td><input type="number" name="pluse" required></td>
-                    <td><input type="number" name="bp" required></td>
+                    <td><input type="number" name="weight" <?php if(isset($edit)){echo "value='".$edit['weight']."'" ;} ?>required></td>
+                    <td><input type="number" name="height" <?php if(isset($edit)){echo "value='".$edit['height']."'" ;} ?> required></td>
+                    <td><input type="number" name="temp"  <?php if(isset($edit)){echo "value='".$edit['temp']."'" ;} ?>required></td>
+                    <td> <select required name="blood">
+                            <?php if(isset($edit)) {echo '<option value="'.$edit['bloodGroup'].'">'.$edit['bloodGroup'].'</option>';}?>
+                            <option value="A−">A−</option>
+                            <option value="A+">A+</option>
+                            <option value="B−">B−</option>
+                            <option value="B+">B+</option>
+                            <option value="AB−">AB−</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O−">O−</option>
+                            <option value="O+">O+</option>
+
+                          </select
+                    </td>
+                    <td><input type="number" name="hp" <?php if(isset($edit)){echo "value='".$edit['hp']."'" ;} ?> required></td>
+                    <td><input type="number" name="pluse" <?php if(isset($edit)){echo "value='".$edit['pluse']."'" ;} ?>  required></td>
+                    <td><input type="number" name="bp"   <?php if(isset($edit)){echo "value='".$edit['bp']."'" ;} ?>required></td>
 
                 </tr>
             </table>
             <input type="hidden" value="<?php echo $_GET['nid']; ?>" name="NID">
+            <input type="hidden" value="<?php echo $_GET['do']; ?>" name="do">
             <input type="submit" value="Save" name="save">
         </form>
         </body>

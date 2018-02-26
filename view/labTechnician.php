@@ -40,7 +40,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
 
 
         <div class="w3-bar w3-light-grey">
-            <a href="labTechnician.php" class="w3-bar-item w3-button">Clinic Home</a>     <!-- clinic home button -->
+            <a href="labTechnician.php" class="w3-bar-item w3-button">Whole blood donation</a>     <!-- clinic home button -->
                                <!--search form-->
             <form action="" method="post">
                 <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
@@ -66,12 +66,14 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
                                           <tr class="w3-blue">
                                               <th>رقم السجل القومى /الاقامه</th>
                                               <th> Health Information</th>
+                                              <th>Modife</th>
                                           </tr>';
         foreach ($users as $user) {
 
             echo "   <tr>
                                                 <td>" . $user['donar_NID'] . "</td>
                                                  <td><a  class=\"w3-btn w3-gray\" href='labTechnicianOperation.php ?do=insert& nid=" . $user['donar_NID'] . "'>insert</a></td>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='labTechnicianOperation.php ?do=update& nid=" . $user['donar_NID'] . "'>update</a></td>
                                                 </tr>";
 
         }
