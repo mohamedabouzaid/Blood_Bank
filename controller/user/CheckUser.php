@@ -41,6 +41,12 @@
          header('location:malaria.php');
 
      }
+     elseif($_SESSION['job']=='serology'){
+
+         header('location:serology.php');
+
+     }
+
 
 
  }

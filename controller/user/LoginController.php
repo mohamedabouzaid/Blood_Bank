@@ -60,6 +60,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/malaria.php');
 
         }
+        elseif($_SESSION['job']=='serology'){
+
+            header('location:../../view/serology.php');
+
+        }
 
     }
     //invalid username and password
