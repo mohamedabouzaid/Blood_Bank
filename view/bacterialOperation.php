@@ -11,7 +11,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
     if(isset($_POST['save']))
     {
         include "../model/bacterial.php";
-        $result= bacterial::insert($_POST['unitNo'],$_POST['test']);
+
+        if($_POST['do']=='insert'){
+        $result= bacterial::insert($_POST['unitNo'],$_POST['test']);}
+
+        else{ $result= bacterial::update($_POST['unitNo'],$_POST['test']);}
         $_SESSION['operation']= $result;
         header('location:NAT.php');
     }
@@ -57,8 +61,26 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
     $search=bacterial::search($_GET['unit']);
     if($search){
 
-        echo "Result already inserted";
-        die();
+        //update
+        if($_GET['do']=='update') {
+
+            $edit = $search[0];
+
+        }
+        //insert
+        else{
+            echo "Result already inserted";
+            die();}
+
+    }
+    else{
+
+        if($_GET['do']=='update'){
+
+            echo "no data entered ";
+            die();}
+
+    }
 
     }
 
@@ -72,8 +94,12 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
     <h5>Enter the Result of Test: </h5>
     <form method="post" action="">
 
-        <input type="radio" name="test" value="+"> +<br>
-        <input type="radio" name="test" value="-">-<br><br>
+        <input type="radio" name="test" value="+" <?php if(isset($edit)&&$edit['test']=='+')
+        {echo 'checked';} ?>> +<br>
+        <input type="radio" name="test" value="-" <?php if(isset($edit)&&$edit['test']=='-')
+        {echo 'checked';} ?>>-<br><br>
+
+        <input type="hidden" name="do" value="<?php echo $_GET['do']; ?>">
         <input type="hidden" name="unitNo" value="<?php echo $_GET['unit'] ?> ">
 
         <input type="submit" value="Save" name="save">
@@ -86,7 +112,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='bacterial')
         <?php
 
 
-    }
+
 }
 
 //no permission to access page
