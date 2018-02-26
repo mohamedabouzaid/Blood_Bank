@@ -177,7 +177,27 @@ class physician
      }
 
  }
+//update accept
+
+    public  function updateStatus($state,$nid){
 
 
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update state set status=? WHERE donar_NID=?");
+            $stmt->execute(array($state,$nid));
+            return "Update checked successfully";
+
+        } catch (PDOException $e) {
+            return "sorry,try again ";
+
+        }
+
+
+
+
+    }
 
 }

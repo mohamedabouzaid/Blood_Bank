@@ -40,13 +40,15 @@ new physician();
 $accept = physician::check($_GET['nid'], 0);
 $reject = physician::check($_GET['nid'], 1);
 
-if ($accept != null){
+if ($accept != null &&$_GET['do']=='check'){
 
     echo "you arleady checked it and Accept";
+
     exit();
-} elseif ($reject != null) {
+} elseif ($reject != null && $_GET['do']=='check') {
 
     echo "you arleady checked it and Reject";
+
     exit();
 
 }
@@ -55,8 +57,11 @@ else{
 
 //accept
 if (isset($_GET['do']) && $_GET['do'] == 'accept'){
-
-    $result = physician::status(0, $_GET['nid']);
+   if($_GET['do']=='check'){
+       //insert
+    $result = physician::status(0, $_GET['nid']);}
+    //update
+    else{$result=physician::updateStatus(0, $_GET['nid']);}
     $_SESSION['operation'] = $result;
     header('location:physician.php');
 
@@ -64,8 +69,12 @@ if (isset($_GET['do']) && $_GET['do'] == 'accept'){
 } //reject
 elseif (isset($_GET['do']) && $_GET['do'] == 'reject') {
 
+    if($_GET['do']=='check'){
+        //insert
+    $result = physician::status(1, $_GET['nid']);}
+    //update
+    else{$result=$result=physician::updateStatus(1, $_GET['nid']);}
 
-    $result = physician::status(1, $_GET['nid']);
     $_SESSION['operation'] = $result;
     header('location:physician.php');
 } // form of questionnaire and health information
@@ -134,8 +143,8 @@ for ($x = 0; $x < count($q); $x++) {
     <?php } ?>
 </table>
 
-<a href="?do=accept&nid=<?php echo $_GET['nid']; ?>"> Accept</a>
-<a href="?do=reject&nid=<?php echo $_GET['nid']; ?>"> Rejecting</a>
+<a href="?do=accept&nid=<?php echo $_GET['nid']; ?>&mod=<?php echo $_GET['do']; ?>"> Accept</a>
+<a href="?do=reject&nid=<?php echo $_GET['nid']; ?>&mod=<?php echo $_GET['do']; ?>"> Rejecting</a>
 
 
 <?php

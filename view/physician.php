@@ -87,15 +87,19 @@ elseif (isset($_GET['do'])&&$_GET['do']=='reject'){
         echo '<table  class="w3-table w3-striped">
                                           <caption >Users</caption>
                                           <tr class="w3-blue">
-                                              <th>رقم السجل القومى /الاقامه</th>
-                                              <th> Result</th>
-                                          </tr>';
+                                              <th>رقم السجل القومى /الاقامه</th>';
+        //reject ,accept modife
+                                             if (isset($_GET['do'])){echo '<th>modife</th>';}
+                                              else{echo '<th> Result</th>';}
+                                          echo '</tr>';
         foreach ($users as $user) {
 
             echo "   <tr>
-                                                <td>" . $user['donar_NID'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='physicianOperation.php ?do=check& nid=" . $user['donar_NID'] . "'>check</a></td>
-                                                </tr>";
+                                                <td>" . $user['donar_NID'] . "</td>";
+                                                if(isset($_GET['do'])){echo " <td><a  class=\"w3-btn w3-gray\" href='physicianOperation.php ?do=update& nid=" . $user['donar_NID'] . "'>update</a></td>";}
+                                                else{echo"  <td><a  class=\"w3-btn w3-gray\" href='physicianOperation.php ?do=check& nid=" . $user['donar_NID'] . "'>check</a></td>";}
+
+                                                echo  "</tr>";
 
         }
         echo    "</table>";
