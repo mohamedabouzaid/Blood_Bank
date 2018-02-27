@@ -51,6 +51,12 @@
          header('location:immuno.php');
 
      }
+     elseif($_SESSION['job']=='medical_supervisor'){
+
+         header('location:medicalSupervisor.php');
+
+     }
+
 
 
  }

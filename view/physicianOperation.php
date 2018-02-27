@@ -57,7 +57,7 @@ else{
 
 //accept
 if (isset($_GET['do']) && $_GET['do'] == 'accept'){
-   if($_GET['do']=='check'){
+   if($_GET['mod']=='check'){
        //insert
     $result = physician::status(0, $_GET['nid']);}
     //update
@@ -69,7 +69,7 @@ if (isset($_GET['do']) && $_GET['do'] == 'accept'){
 } //reject
 elseif (isset($_GET['do']) && $_GET['do'] == 'reject') {
 
-    if($_GET['do']=='check'){
+    if($_GET['mod']=='check'){
         //insert
     $result = physician::status(1, $_GET['nid']);}
     //update
