@@ -75,6 +75,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/medicalSupervisor.php');
 
         }
+        elseif($_SESSION['job']=='medical_director'){
+
+            header('location:../../view/director.php');
+
+        }
 
 
     }
