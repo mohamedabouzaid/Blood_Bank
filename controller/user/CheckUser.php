@@ -56,7 +56,11 @@
          header('location:medicalSupervisor.php');
 
      }
+     elseif($_SESSION['job']=='medical_director'){
 
+         header('location:director.php');
+
+     }
 
 
  }
