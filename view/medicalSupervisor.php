@@ -87,6 +87,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
                                           <tr class="w3-blue">
                                               <th>Unit NO</th>
                                               <th> Approval</th>
+                                              <th> Eddit</th>
                                 
                                           </tr>';
         foreach ($units as $unit) {

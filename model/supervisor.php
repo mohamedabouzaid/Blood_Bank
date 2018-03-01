@@ -42,7 +42,7 @@ class supervisor
             //SQL
             $stmt = $con->prepare("SELECT approval  from component where  unitNo=? ");
             $stmt->execute(array($unit));
-            $row = $stmt->fetch();
+            $row = $stmt->fetchall();
             $count = $stmt->rowCount();
             if ($count > 0) {
                 return $row;

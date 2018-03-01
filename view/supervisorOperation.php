@@ -7,7 +7,45 @@
  */
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
-{
+{?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <meta charset="UTF-8">
+        <title>clinic</title>
+    </head>
+<body>
+    <div class="w3-bar w3-light-grey">
+        <a href="medicalSupervisor.php" class="w3-bar-item w3-button">Medical Supervisor Home</a>     <!-- supervisor home button -->
+        <div class="w3-dropdown-hover">
+            <!-- user name -->
+            <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>
+                <!-- logout button -->
+            </div>
+        </div>
+    </div>
+
+
+    <?php
     include  '../model/supervisor.php';
 
     if (isset($_GET['do']) && $_GET['do'] == 'accept'){
@@ -35,7 +73,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
 
     }
 
-    $test =supervisor::search($_GET['unit']);
+    $tests =supervisor::search($_GET['unit']);
+    $test=$tests[0];
 
     if($test['approval']!=null && $_GET['do']=='insert'){
 
@@ -87,26 +126,6 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
 
 
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <meta charset="UTF-8">
-        <title>clinic</title>
-    </head>
-<body>
-<div class="w3-bar w3-light-grey">
-    <a href="medicalSupervisor.php" class="w3-bar-item w3-button">Medical Supervisor Home</a>     <!-- supervisor home button -->
-    <div class="w3-dropdown-hover">
-        <!-- user name -->
-        <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>
-            <!-- logout button -->
-        </div>
-    </div>
-</div>
 
 
 
