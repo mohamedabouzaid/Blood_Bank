@@ -8,11 +8,43 @@
 
 session_start();
 ?>
-<div>
-    <a href="Home.php">Home</a>  <!-- Home button   -->
+<!DOCTYPE html>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Questionnaire</title>
+  <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resource/css/Questionnaire.css">
+  <link rel="stylesheet" href="../resource/css/header.css">
+</head>
 
-</div>
+<body>
+    
+<header class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav links">
+            <li ><a href="Home.php"> Home</a> </li>      <!-- Home button-->
+            <li class="active"><a href="#"> Questionnaire</a> </li>      <!-- qusetionnaire button-->
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn" id="login" href="Login.php">Login</a> </li>       <!-- login button-->
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<body>
+    <img src="../resource/images/5.jpg" alt="" class="bg-image">
+    <div class="blure-body"></div>
 
 <?php
 //array of Questions
@@ -64,7 +96,7 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
         //check if is insert questionnaire
         if (donar::search($_POST['NID'])!=null){
 
-            echo "You have already entered the questionnaire";
+            echo "<div class='err-msg'>You have already entered the questionnaire</div>";
 
         }else
             {
@@ -72,13 +104,17 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
             $_SESSION['donar_id'] = $_POST['NID'];
             foreach ($search as $donar){ $_SESSION['donar_name'] = $donar['firstName'];}
 
-            echo  $_SESSION['donar_name'];
+            echo   $_SESSION['donar_name'];
             ?>
 
 
+            <div class="col-md-8 col-md-offset-2">
               <!--      questionnaire form-->
+
             <form action="" method="post">
-                <table>
+                <div class="table-container">
+                
+                <table class="table table-hover ">
                     <caption> Questionnaire</caption>
                     <tr>
 
@@ -91,33 +127,39 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
                     <?php
 
                     for ($x = 0; $x < count($q); $x++) {
-
+                        
                         echo "   <tr>
-                  
-                    
-                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"1\" required></td>
-                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\"></td>
-                      <td>" . $q[$x] . "</td>
-                </tr>";
-
+                        
+                            
+                            <td><input type=\"radio\" name=\"q" . $x . "\" value=\"1\" required></td>
+                            <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\"></td>
+                            <td>" . $q[$x] . "</td>
+                        </tr>";
+                        
                     }
-
+                    
 
                     ?>
 
 
                 </table>
-                <h5>اقرار المتبرع</h5>
-                <p>
-                    لقد قرأت وفهمت وأجبت بصدق على الأسئلة السابقة بقدر علمي كما أنني أفوض بنك الدم بسحب وحدة دم مني أو
-                    إجراء عملية فصل مكونات الدم والتصرف بها بالطريقة التي يراها مناسبة
-
-
-                </p>
-                <input type="submit" value="موافق" name="accept">
-                <p id="demo"></p>
+                </div>
+                
+                <div class="report">
+                    <h4> : اقرار المتبرع</h4>
+                    <p>
+                        لقد قرأت وفهمت وأجبت بصدق على الأسئلة السابقة بقدر علمي كما أنني أفوض بنك الدم بسحب وحدة دم مني أو
+                        إجراء عملية فصل مكونات الدم والتصرف بها بالطريقة التي يراها مناسبة
+    
+    
+                        <input class="btn btn-danger" type="submit" value="موافق" name="accept">
+                    </p>
+                    <p id="demo"></p>
+                </div>
 
             </form>
+            </div>
+</body>
 
 
             <?php
