@@ -14,7 +14,7 @@ class User
        //check the username and password from database
        $stmt=$con->prepare("SELECT  
                                        username,password,job
-                                        from employees WHERE username=? AND password=?
+                                        from  empolyees WHERE username=? AND password=?
                                         LIMIT 1");
        $stmt->execute(array($userName,$Password));
        $row=$stmt->fetch();
