@@ -96,7 +96,7 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
         //check if is insert questionnaire
         if (donar::search($_POST['NID'])!=null){
 
-            echo "You have already entered the questionnaire";
+            echo "<div class='err-msg'>You have already entered the questionnaire</div>";
 
         }else
             {

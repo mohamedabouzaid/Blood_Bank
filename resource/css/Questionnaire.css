@@ -63,3 +63,11 @@ div.report> p> .btn{
     position: absolute;
     right: 208px;    
 }
+.err-msg{
+    background: #ce323cd2;
+    color: #fff;
+    padding: 20px 71px;
+    margin-top: 13px;
+    text-align: center;
+    font-weight: bold;
+}
