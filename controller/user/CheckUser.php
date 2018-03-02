@@ -62,5 +62,11 @@
 
      }
 
+     elseif($_SESSION['job']=='admin'){
+
+         header('location:admin.php');
+
+     }
+
 
  }

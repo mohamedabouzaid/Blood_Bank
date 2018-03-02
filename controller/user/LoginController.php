@@ -81,6 +81,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
         }
 
+        elseif($_SESSION['job']=='admin'){
+
+            header('location:../../view/admin.php');
+
+        }
+
 
     }
     //invalid username and password
