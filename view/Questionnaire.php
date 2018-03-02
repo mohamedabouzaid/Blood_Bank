@@ -104,7 +104,7 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
             $_SESSION['donar_id'] = $_POST['NID'];
             foreach ($search as $donar){ $_SESSION['donar_name'] = $donar['firstName'];}
 
-            echo  $_SESSION['donar_name'];
+            echo   $_SESSION['donar_name'];
             ?>
 
 
