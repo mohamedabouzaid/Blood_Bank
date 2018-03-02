@@ -1,0 +1,65 @@
+.blure-body{
+    width: 100%;
+    height: 631px;
+    background: linear-gradient(to left, #ffffff00 ,#822528);
+    position: fixed;
+    z-index: -1;
+}
+
+.bg-image{
+    height: 631px;
+    width: 100%;
+    position: fixed;
+    z-index: -2;
+    display: block;
+}
+
+.table-container{
+    background: #ce323cd2;
+    padding: 15px 75px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+.table{
+    text-align: right;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+}
+.table>tbody>tr>th {
+    color: #fffffff2;    
+    text-align: right
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: #e1b5b651;
+}
+.table caption {
+
+    color: #fffffff2;
+    text-align: center;
+}
+input[type="radio"]{
+    cursor: pointer;
+}
+div.report{
+    color: #fff;
+    background: #ce323cd2;
+    text-align: right;
+    padding: 20px 71px;
+    margin-top: 13px;
+    border-radius: 20px;    
+    font-weight: bold;
+}
+div.report >p{
+    position: relative;
+    line-height: 2;
+    font-size: 15px;
+}
+div.report> h4{
+    font-weight: bold;
+}
+div.report> p> .btn{
+    position: absolute;
+    right: 208px;    
+}
