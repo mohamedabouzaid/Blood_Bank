@@ -64,7 +64,7 @@ if(isset($_POST['accept'])){
     <p id="demo"></p>
 
     <script>
-        function myFunction() {
+       ( function myFunction() {
             var txt;
             var r = confirm("هل ترغب فى ان تكون صديق بنك الدم؟(سوف يتم الاتصال بك فى حاله الحاجه اليك للتبرع)");
             if (r == true) {
@@ -76,7 +76,9 @@ if(isset($_POST['accept'])){
                 txt = "thanks";
             }
             document.getElementById("demo").innerHTML = txt;
-        }
+           
+        })();
+        
     </script>
     <?php echo $result;
 
@@ -103,8 +105,9 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
 
             $_SESSION['donar_id'] = $_POST['NID'];
             foreach ($search as $donar){ $_SESSION['donar_name'] = $donar['firstName'];}
-
-            echo   $_SESSION['donar_name'];
+            
+         echo'   <div>';
+           echo   $_SESSION['donar_name'] .'</div>';
             ?>
 
 
@@ -152,8 +155,52 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
                         إجراء عملية فصل مكونات الدم والتصرف بها بالطريقة التي يراها مناسبة
     
     
-                        <input class="btn btn-danger" type="submit" value="موافق" name="accept">
+                    
+                        <input class="btn btn-danger" type="submit" value="موافق" name="accept"  data-toggle="modal" data-target="#myModal">
+                    
+                    
+                    <!-- Button trigger modal -->
+                
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+      <p id="demo"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="myFunction()">ok</button>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     </p>
+
+
+
+
+
+
+
+
+
                     <p id="demo"></p>
                 </div>
 
