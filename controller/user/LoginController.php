@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/1/2018
- * Time: 12:45 AM
- */
+//login
 session_start();                        //start session
 include'../../model/User.php';         //model User
 
