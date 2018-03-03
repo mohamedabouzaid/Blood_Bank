@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/5/2018
- * Time: 7:29 PM
- */
+
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='Physician'){
 
@@ -97,6 +92,7 @@ $q = array('تتمتع بالصحه و العافيه اليوم؟', 'تناول
 <h3>A list of question answer by yes</h3>
 <?php
 //questionnaire
+
 for ($x = 0; $x < count($q); $x++) {
     echo ' <ul >';
 
