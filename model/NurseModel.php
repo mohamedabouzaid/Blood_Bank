@@ -62,6 +62,40 @@ class NurseModel
     }
 
 
+    //get ll in blood
+    public function getALLBlood(){
+
+
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT * from bloodsample ");
+            $stmt->execute();
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+
+
+
+    }
+
+
 
     public function insertComponent($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
     $cryo,$Fwb,$Fprbc,$Fpc,$bag){
