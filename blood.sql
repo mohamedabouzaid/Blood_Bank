@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2018 at 07:08 PM
+-- Generation Time: Mar 03, 2018 at 01:53 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -49,6 +49,14 @@ CREATE TABLE `bloodsample` (
   `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `bloodsample`
+--
+
+INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`) VALUES
+(456, 2222222222, 567, 9, 'AB+', 'Slow bleed- Aspirin-Other'),
+(12345, 1111111111, 59, 345, 'A−', 'Slow bleed- Aspirin-Relative-Other');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +74,14 @@ CREATE TABLE `clinic` (
   `pluse` int(11) NOT NULL,
   `bp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `clinic`
+--
+
+INSERT INTO `clinic` (`id`, `donar_NID`, `weight`, `height`, `temp`, `bloodGroup`, `hp`, `pluse`, `bp`) VALUES
+(3, 1111111111, 3, 4, 5, 'O−', 6, 7, 8),
+(4, 2222222222, 1, 2, 3, 'AB−', 4, 5, 6);
 
 -- --------------------------------------------------------
 
@@ -86,8 +102,18 @@ CREATE TABLE `component` (
   `Fwb` varchar(255) NOT NULL,
   `Fprbc` varchar(255) NOT NULL,
   `Fpc` varchar(255) NOT NULL,
-  `bagType` varchar(255) NOT NULL
+  `bagType` varchar(255) NOT NULL,
+  `approval` tinyint(1) DEFAULT NULL,
+  `final` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `component`
+--
+
+INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `approval`, `final`) VALUES
+(2222222222, '', 'c1', 0, 0, '', '', '', '', '', '', '', '', 0, 0),
+(1111111111, '', 'c2', 0, 0, '', '', '', '', '', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -119,28 +145,50 @@ CREATE TABLE `donars` (
   `place` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `donars`
+--
+
+INSERT INTO `donars` (`NID`, `firstName`, `secondName`, `thirdName`, `familyName`, `phone`, `age`, `typeDonar`, `birthday`, `patient`, `sponsor`, `district`, `city`, `street`, `sex`, `healthCenter`, `profession`, `nationality`, `fiend`, `signDate`, `place`) VALUES
+(1111111111, 'محمد', 'احمد', 'حسين', 'على', 0120000000, 23, 'طوعى', '1995-01-01', '', '', '', 'الاسماعيليه', '', 'male', '', 'مهندس', 0, 1, '02/19/2018', 'القاهره'),
+(2222222222, 'mona', 'ahmed', 'hosam', 'helmy', 0110000000, 33, 'تعويضى', '1985-01-01', 'سعاد', 'احلام', 'السلام', 'cairo', 'الجامعه', 'female', 'العالمى', 'مدرسه', 1, 1, '02/19/2018', 'portsaid');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employees`
+-- Table structure for table `empolyees`
 --
 
-CREATE TABLE `employees` (
-  `ID` int(11) NOT NULL,
+CREATE TABLE `empolyees` (
+  `NID` double NOT NULL,
   `userName` varchar(255) NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `job` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `employees`
+-- Dumping data for table `empolyees`
 --
 
-INSERT INTO `employees` (`ID`, `userName`, `password`, `job`) VALUES
-(1, 'mohamed', 111, 'receptionist'),
-(2, 'ahmed', 222, 'labTechnician'),
-(3, 'ali', 333, 'physician'),
-(4, 'mahmoud', 444, 'nurse');
+INSERT INTO `empolyees` (`NID`, `userName`, `password`, `job`) VALUES
+(333333, 'samir', '123', 'Receptionist'),
+(1111111111, 'ali', '123', 'admin'),
+(3333333333, 'ahmed', '123', 'lab_Technician');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `immuno`
+--
+
+CREATE TABLE `immuno` (
+  `id` int(11) NOT NULL,
+  `component_unitNo` varchar(255) NOT NULL,
+  `RH` varchar(255) NOT NULL,
+  `ABO` varchar(255) NOT NULL,
+  `anti` varchar(255) NOT NULL,
+  `phenotype` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -180,6 +228,31 @@ CREATE TABLE `questionnaire` (
   `questions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `questionnaire`
+--
+
+INSERT INTO `questionnaire` (`id`, `donar_NID`, `questions`) VALUES
+(19, 2222222222, '1-1-1-1-موافق'),
+(20, 1111111111, '0-1-0-1-موافق');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `serology`
+--
+
+CREATE TABLE `serology` (
+  `id` int(11) NOT NULL,
+  `component_unitNo` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `HIV` varchar(255) NOT NULL,
+  `HBsAg` varchar(255) NOT NULL,
+  `antiHCV` varchar(255) NOT NULL,
+  `syphilis` varchar(255) NOT NULL,
+  `antiHBc` varchar(255) NOT NULL,
+  `HTLV` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- --------------------------------------------------------
 
 --
@@ -191,6 +264,14 @@ CREATE TABLE `state` (
   `donar_NID` double NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `state`
+--
+
+INSERT INTO `state` (`id`, `donar_NID`, `status`) VALUES
+(1, 1111111111, 1),
+(3, 2222222222, 0);
 
 --
 -- Indexes for dumped tables
@@ -232,10 +313,16 @@ ALTER TABLE `donars`
   ADD UNIQUE KEY `phone` (`phone`);
 
 --
--- Indexes for table `employees`
+-- Indexes for table `empolyees`
 --
-ALTER TABLE `employees`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `empolyees`
+  ADD PRIMARY KEY (`NID`);
+
+--
+-- Indexes for table `immuno`
+--
+ALTER TABLE `immuno`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `malarialab`
@@ -259,6 +346,13 @@ ALTER TABLE `questionnaire`
   ADD UNIQUE KEY `donar_NID` (`donar_NID`);
 
 --
+-- Indexes for table `serology`
+--
+ALTER TABLE `serology`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `serology` (`component_unitNo`);
+
+--
 -- Indexes for table `state`
 --
 ALTER TABLE `state`
@@ -279,13 +373,13 @@ ALTER TABLE `bacteriallab`
 -- AUTO_INCREMENT for table `clinic`
 --
 ALTER TABLE `clinic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `employees`
+-- AUTO_INCREMENT for table `immuno`
 --
-ALTER TABLE `employees`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `immuno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `malarialab`
@@ -303,7 +397,13 @@ ALTER TABLE `natlab`
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `serology`
+--
+ALTER TABLE `serology`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `state`
@@ -356,6 +456,12 @@ ALTER TABLE `natlab`
 --
 ALTER TABLE `questionnaire`
   ADD CONSTRAINT `fkey3` FOREIGN KEY (`donar_NID`) REFERENCES `donars` (`NID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `serology`
+--
+ALTER TABLE `serology`
+  ADD CONSTRAINT `serology` FOREIGN KEY (`component_unitNo`) REFERENCES `component` (`unitNo`);
 
 --
 -- Constraints for table `state`
