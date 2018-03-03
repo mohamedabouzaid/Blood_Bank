@@ -1,10 +1,5 @@
 <?php
-/*
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/1/2018
- * Time: 2:46 AM
- */
+
 
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
@@ -172,7 +167,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
         </head>
         <body>
             <div class="w3-bar w3-light-grey">
-                <a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist</a>
+                <a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist Home</a>
                 <div class="w3-dropdown-hover">
                     <!-- user name -->
                     <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
@@ -181,7 +176,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                     </div>
                 </div>
             </div>
-                <h3>create file</h3>
+                <h3>Donar Form</h3>
                 <form method="post" action="" class="w3-container">
                     مكان التبرع
                     <input  required type="text" name="place" <?php if(isset($edit['place'])){ echo "value='".$edit['place']."'" ;}?>><br>
