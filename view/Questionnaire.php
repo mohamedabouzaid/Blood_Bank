@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/5/2018
- * Time: 1:50 AM
- */
+
 
 session_start();
 ?>
@@ -57,34 +52,31 @@ if(isset($_POST['accept'])){
     $quesions=implode('-',$_POST);
     include "../model/donar.php";
     new donar();
-    $result=donar::insert($quesions,$_SESSION['donar_id'])
+    $result=donar::insert($quesions,$_SESSION['donar_id']);
+    $_SESSION['Questionnire']=$result;
+    header('location:Home.php');
+
+
         ?>
-    <button onclick="myFunction()">friend</button>
 
     <p id="demo"></p>
 
-    <script>
-       ( function myFunction() {
-            var txt;
-            var r = confirm("هل ترغب فى ان تكون صديق بنك الدم؟(سوف يتم الاتصال بك فى حاله الحاجه اليك للتبرع)");
-            if (r == true) {
-             <?php include '../model/Receptionist.php';
-             new Receptionist();
-             Receptionist::updateFriend($_SESSION['donar_id']);
-             ?>
-            } else {
-                txt = "thanks";
-            }
-            document.getElementById("demo").innerHTML = txt;
-           
-        })();
-        
-    </script>
-    <?php echo $result;
+    <?php
 
 }
 //check user and show question
 elseif(isset($_POST['NID']) && $_POST['NID'] ){
+
+    //validation
+    if(strlen($_POST['NID'])!=10){
+
+
+        $_SESSION['error']="national id must be 10 number";
+        header('location:Home.php');
+        exit();
+    }
+
+
     include '../model/Receptionist.php';
     new Receptionist();
     include "../model/donar.php";
@@ -98,8 +90,9 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
         //check if is insert questionnaire
         if (donar::search($_POST['NID'])!=null){
 
-            echo "<div class='err-msg'>You have already entered the questionnaire</div>";
-
+            $_SESSION['error']="You have already entered the questionnaire";
+            header('location:Home.php');
+            exit();
         }else
             {
 

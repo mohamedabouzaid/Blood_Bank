@@ -1,11 +1,29 @@
-
 <?php
 session_start();
 include '../controller/user/CheckUser.php';    //session of user and job
+
+if(isset($_SESSION['Questionnire'])){
 ?>
 
+    <script>
+        ( function myFunction() {
+            var txt;
+            var r = confirm("هل ترغب فى ان تكون صديق بنك الدم؟(سوف يتم الاتصال بك فى حاله الحاجه اليك للتبرع)");
+            if (r == true) {
+                <?php include '../model/Receptionist.php';
+                new Receptionist();
+                Receptionist::updateFriend($_SESSION['donar_id']);
 
+                ?>
+            } else {
+                txt = "thanks";
+            }
+            document.getElementById("demo").innerHTML = txt;
 
+        })();
+
+    </script>
+<?php }?>
 <!DOCTYPE html>
 
 <head>
@@ -67,7 +85,20 @@ include '../controller/user/CheckUser.php';    //session of user and job
                 <input class="form-control input-lg" type="number" name="NID" required min="0">
             </div>
             <br>
-            
+            <?php
+            //operation
+            if (isset($_SESSION['Questionnire'])&&$_SESSION['Questionnire']!=Null){
+                echo $_SESSION['Questionnire'];
+                $_SESSION['Questionnire']=Null;
+            }?>
+            <?php
+            //error
+            if (isset($_SESSION['error'])&&$_SESSION['error']!=Null){
+                echo $_SESSION['error'];
+                $_SESSION['error']=Null;
+            }?>
+
+
             <button class="btn col-xs-12" type="submit" value="دخول">دخول</button>
         </form>
    </div>
