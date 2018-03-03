@@ -52,11 +52,18 @@ include'../controller/user/CheckUser.php';    // session check user job
                  </span>
                                       <input type="password" required name="password" class="form-control input-lg" placeholder="Password" aria-describedby="basic-addon1">
                                   </div>
-                              <br>
-                              <button class="btn" type="submit" value="login"> Login </button>
-                         </form>
-                    </div>
 
+                  <?php
+                  //invalid username or password
+                  if (isset($_SESSION['error'])&&$_SESSION['error']!=Null){
+                      echo $_SESSION['error'];
+                      $_SESSION['error']=Null;
+                  }?><br>
+
+                              <button class="btn" type="submit" value="login"> Login </button>
+               </form>
+
+       </div>
             <div class="title col-md-7">
                   <img src="../resource/images/blood_logo.png" alt="logo" >
                   <h1>Central blood bank management system</h1>
@@ -118,13 +125,3 @@ include'../controller/user/CheckUser.php';    // session check user job
 
     </body>
 </html> -->
-
-
-<?php
-
-   //invalid username or password
-if (isset($_SESSION['error'])&&$_SESSION['error']!=Null){
-    echo
-    $_SESSION['error'];
-    $_SESSION['error']=Null;
-}
