@@ -53,12 +53,17 @@ if(isset($_POST['accept'])){
     new donar();
     $result=donar::insert($quesions,$_SESSION['donar_id']);
     $_SESSION['Questionnire']=$result;
+    if(isset($_POST['friend'])){
+        include '../model/Receptionist.php';
+        new Receptionist();
+        Receptionist::updateFriend($_SESSION['donar_id']);
+    }
     header('location:Home.php');
 
 
         ?>
 
-    <p id="demo"></p>
+
 
     <?php
 
@@ -110,13 +115,13 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
                 <div class="table-container">
                 
                 <table class="table table-hover ">
-                    <caption> Questionnaire</caption>
+                    <caption>الاستبيان</caption>
                     <tr>
 
 
-                        <th>No</th>
-                        <th>Yes</th>
-                        <th>Question</th>
+                        <th>لا</th>
+                        <th>نعم</th>
+                        <th>السؤال</th>
                     </tr>
 
                     <?php
@@ -139,19 +144,36 @@ elseif(isset($_POST['NID']) && $_POST['NID'] ){
 
                 </table>
                 </div>
-                
+
+
+
+                <div class="report">
+                    <h4>هل تريد ان تكون صديق بنك الدم:</h4>
+                    <p>
+                        <?php echo '<input type="checkbox" name="friend"  value="1" >';?>
+                        فى حاله الحاجه الى دم ,سوف يتم الاتصال بك
+
+
+                    </p>
+
+                </div>
+
+
+
                 <div class="report">
                     <h4> : اقرار المتبرع</h4>
                     <p>
                         لقد قرأت وفهمت وأجبت بصدق على الأسئلة السابقة بقدر علمي كما أنني أفوض بنك الدم بسحب وحدة دم مني أو
                         إجراء عملية فصل مكونات الدم والتصرف بها بالطريقة التي يراها مناسبة
-    
-    
-                    
-                        <input class="btn btn-danger" type="submit" value="موافق" name="accept"  data-toggle="modal" data-target="#myModal">
+                        <input class="btn btn-danger" type="submit" value="موافق" name="accept" >
+
+                    </p>
+
+                </div>
 
 
-            <?php
+
+                <?php
         }
     }
 

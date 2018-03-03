@@ -1,29 +1,8 @@
 <?php
 session_start();
-include '../controller/user/CheckUser.php';    //session of user and job
-
-if(isset($_SESSION['Questionnire'])){
+include '../controller/user/CheckUser.php';
 ?>
 
-    <script>
-        ( function myFunction() {
-            var txt;
-            var r = confirm("هل ترغب فى ان تكون صديق بنك الدم؟(سوف يتم الاتصال بك فى حاله الحاجه اليك للتبرع)");
-            if (r == true) {
-                <?php include '../model/Receptionist.php';
-                new Receptionist();
-                Receptionist::updateFriend($_SESSION['donar_id']);
-
-                ?>
-            } else {
-                txt = "thanks";
-            }
-            document.getElementById("demo").innerHTML = txt;
-
-        })();
-
-    </script>
-<?php }?>
 <!DOCTYPE html>
 
 <head>
