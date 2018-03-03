@@ -164,6 +164,28 @@ class User
     }
 
 
+//update
+
+    public function update($NID,$userName,$password,$job,$oldNID){
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update empolyees set NID=?,userName=?,password=?,
+                                                      job=?
+                                          WHERE NID=?  ");
+            $stmt->execute(array($NID,$userName,$password,$job,$oldNID));
+            return "update record  successfully";
+
+        } catch (PDOException $e) {
+            //return "sorry,try again ";
+            return $e->getMessage();
+
+        }
+
+
+    }
+
 
 
 }

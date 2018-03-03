@@ -44,7 +44,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
 
 <div class="w3-bar w3-light-grey">
     <a href="adminManageEmployee.php" class="w3-bar-item w3-button">Admin Manage Employees</a>     <!-- Admin Manage Employees Department home button -->
-    <a href="adminEmployeeOperation.php" class="w3-bar-item w3-button">Create Empolyee</a>
+    <a href="adminEmployeeOperation.php?do=create" class="w3-bar-item w3-button">Create Empolyee</a>
 
         <!--    search    -->
         <form action="" method="post">
@@ -81,7 +81,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
                                                 <td>" . $employee['NID'] . "</td>
                                                 <td>" .  $employee['userName'] . "</td>
                                                  <td>" . $employee['job'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href=''>Update </a></td>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='adminEmployeeOperation.php?do=edit&employee=" . serialize($employee) . "'>Update </a></td>
                                                   <td><a  class=\"w3-btn w3-gray\" href='?do=delete& nid=".$employee['NID']."'>Delete </a></td>
                                                  
                                                 </tr>";

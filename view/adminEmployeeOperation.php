@@ -3,14 +3,29 @@
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
 include '../model/User.php';
-if(isset($_POST['save'])){
+
+if(isset($_POST['create'])){
 
         $result=User::insert($_POST['NID'],$_POST['userName'],$_POST['password'],
             $_POST['job']);
         $_SESSION['operation']=$result;
         header('location:adminManageEmployee.php');
+
+}
+    if(isset($_POST['edit'])){
+
+    $result=User::update($_POST['NID'],$_POST['userName'],$_POST['password'],
+        $_POST['job'],$_POST['oldNID']);
+    $_SESSION['operation']=$result;
+    header('location:adminManageEmployee.php');
+
 }
 
+
+    if($_GET['do']=='edit') {
+        $edit=unserialize($_GET["employee"]);
+
+    }
 
 
 ?>
@@ -52,10 +67,16 @@ if(isset($_POST['save'])){
 
 
     <form action="" method="post">
-        رقم السجل المدنى<input type="number" name="NID"><br>
-        اسم الموظف<input type="text" name="userName"><br>
-        كلمه السر<input type="password" name="password" ><br>
-       الوظيفه <select required name="job">
+        <?php if(isset($edit)){
+
+        echo'    <input type="hidden" name="oldNID" value="'.$edit['NID'].'">';
+
+        } ?>
+        رقم السجل المدنى<input type="number" name="NID" <?php if(isset($edit)){ echo "value='".$edit['NID']."'" ;}?>><br>
+        اسم الموظف<input type="text" name="userName" <?php if(isset($edit)){ echo "value='".$edit['userName']."'" ;}?>><br>
+        كلمه السر<input type="password" name="password" <?php if(isset($edit)){ echo "value='".$edit['password']."'" ;}?>><br>
+       الوظيفه <select required name="job" >
+            <?php if(isset($edit)) {echo '<option value="'.$edit['job'].'">'.$edit['job'].'</option>';}?>
                     <option value="Receptionist">Receptionist</option>
                     <option value="lab_Technician">lab_Technician</option>
                     <option value="Physician">Physician</option>
@@ -68,7 +89,7 @@ if(isset($_POST['save'])){
                     <option value="medical_supervisor">medical_supervisor</option>
                     <option value="medical_director">medical_director</option>
              </select><br><br>
-        <input type="submit" value="save" name="save">
+        <input type="submit" value="save" name="<?php echo $_GET['do'] ?>">
     </form>
 
 
