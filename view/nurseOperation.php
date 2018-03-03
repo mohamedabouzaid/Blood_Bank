@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/7/2018
- * Time: 6:33 PM
- */
+
 
 session_start();
 
@@ -21,7 +16,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
 //insert data of blood
         include '../model/NurseModel.php';
-        $result = NurseModel::insert($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'], $_POST['bloodGroup'], $_POST['time'], $comment);
+        $result = NurseModel::insert($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'],
+            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['performed'],
+            $_POST['approved'],$_POST['signature']);
 
         $_SESSION['operation']=$result;
         header("location:nurse.php");
@@ -88,7 +85,10 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
                 Stop time <i class="glyphicon glyphicon-time" id="time"></i><br>
                 Sealed by ID<input type="number" name="ID_Blood"><br>
                 Bag Weight <input type="number" name="bagWeight"><br>
-                Time of collections<input type="number" name="time"><br>
+                Time of collections<input type="time" name="time"><br>
+                Performed By<input type="text" name="performed"><br>
+                Approved By<input type="text" name="approved"><br>
+                Signature<input type="text" name="signature"><br>
                 Confirmed Blood Group
 
              <select required name="bloodGroup">
