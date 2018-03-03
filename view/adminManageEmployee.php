@@ -21,7 +21,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
     if(isset($_GET['do'] )&& $_GET['do']=='delete'){
 
         $_SESSION['operation']=User::delete($_GET['nid']);
-
+        header('location:adminManageEmployee.php');
 
     }
 
@@ -35,7 +35,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <meta charset="UTF-8">
-        <title>Admin</title>
+        <title>Admin Manage Employees</title>
     </head>
 
 
@@ -43,8 +43,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
 
 
 <div class="w3-bar w3-light-grey">
-    <a href="admin.php" class="w3-bar-item w3-button">Admin Home</a>     <!-- Admin Department home button -->
-    <a href="" class="w3-bar-item w3-button">Create Empolyee</a>
+    <a href="adminManageEmployee.php" class="w3-bar-item w3-button">Admin Manage Employees</a>     <!-- Admin Manage Employees Department home button -->
+    <a href="adminEmployeeOperation.php" class="w3-bar-item w3-button">Create Empolyee</a>
 
         <!--    search    -->
         <form action="" method="post">

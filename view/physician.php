@@ -6,7 +6,7 @@
  * Time: 6:54 PM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='physician')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Physician')
 {
     //search
     if(isset($_POST['search'])) {

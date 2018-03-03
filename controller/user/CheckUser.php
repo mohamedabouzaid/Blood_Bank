@@ -7,21 +7,21 @@
  if(isset($_SESSION['userName']))
  {
 
-     if ($_SESSION['job']=='receptionist'){
+     if ($_SESSION['job']=='Receptionist'){
 
          header('location:Receptionist.php');
     }
-     elseif($_SESSION['job']=='labTechnician'){
+     elseif($_SESSION['job']=='lab_Technician'){
 
          header('location:labTechnician.php');
 
      }
-     elseif($_SESSION['job']=='physician'){
+     elseif($_SESSION['job']=='Physician'){
 
          header('location:physician.php');
 
      }
-     elseif($_SESSION['job']=='nurse'){
+     elseif($_SESSION['job']=='Nurse'){
 
          header('location:nurse.php');
 
@@ -31,7 +31,7 @@
          header('location:NAT.php');
 
      }
-     elseif($_SESSION['job']=='bacterial'){
+     elseif($_SESSION['job']=='Bacterial'){
 
          header('location:bacterial.php');
 
@@ -46,7 +46,7 @@
          header('location:serology.php');
 
      }
-     elseif($_SESSION['job']=='immuno'){
+     elseif($_SESSION['job']=='Immuno'){
 
          header('location:immuno.php');
 

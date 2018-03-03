@@ -6,7 +6,7 @@
  * Time: 7:29 PM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='physician'){
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Physician'){
 
 
     ?>

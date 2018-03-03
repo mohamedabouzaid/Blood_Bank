@@ -7,7 +7,7 @@
  */
 //echo $_GET['nid'];
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
+if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician'){
 
     //insert data
     if(isset($_POST['save'])){

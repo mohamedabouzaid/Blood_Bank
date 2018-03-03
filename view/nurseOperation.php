@@ -8,7 +8,7 @@
 
 session_start();
 
-if(isset($_SESSION['userName']) && $_SESSION['job']=='nurse') {
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
 
     if (isset($_POST['insert'])) {

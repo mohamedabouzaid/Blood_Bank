@@ -6,7 +6,7 @@
  * Time: 1:28 AM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='immuno')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Immuno')
 {
     if(isset($_POST['save']))
     {

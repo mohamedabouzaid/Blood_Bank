@@ -8,7 +8,7 @@
 
 session_start();
 
-if(isset($_SESSION['userName']) && $_SESSION['job']=='receptionist')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
 
 {
         //search

@@ -23,21 +23,21 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         $_SESSION['userName']=$username;//session of username
         $_SESSION['job']=$job;//session of job
 
-        if ($_SESSION['job']=='receptionist'){       //receptionist
+        if ($_SESSION['job']=='Receptionist'){       //receptionist
 
             header('location:../../view/Receptionist.php');
         }
-        elseif($_SESSION['job']=='labTechnician'){
+        elseif($_SESSION['job']=='lab_Technician'){
 
             header('location:../../view/labTechnician.php');
 
         }
-        elseif($_SESSION['job']=='physician'){
+        elseif($_SESSION['job']=='Physician'){
 
             header('location:../../view/physician.php');
 
         }
-        elseif($_SESSION['job']=='nurse'){
+        elseif($_SESSION['job']=='Nurse'){
 
             header('location:../../view/nurse.php');
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         }
 
 
-        elseif($_SESSION['job']=='bacterial'){
+        elseif($_SESSION['job']=='Bacterial'){
 
             header('location:../../view/bacterial.php');
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/serology.php');
 
         }
-        elseif($_SESSION['job']=='immuno') {
+        elseif($_SESSION['job']=='Immuno') {
 
             header('location:../../view/immuno.php');
 

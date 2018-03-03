@@ -6,7 +6,7 @@
  * Time: 2:47 PM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='labTechnician'){
+if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician'){
     //search
     if(isset($_POST['search'])) {
         include '../model/labTechnician.php';

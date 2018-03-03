@@ -8,7 +8,7 @@
 
 class User
 {
-
+//login
    public function Login($userName,$Password){
         include'vars.php';
        //check the username and password from database
@@ -40,16 +40,16 @@ class User
 
 
 
-//insert Bacterial RESULT
-    public function insert($unitNO,$test)
+//insert emplotee
+    public function insert($NID,$userName,$password,$job)
     {
 
         include 'vars.php';
         try {
             //sql statment
-            $stmt = $con->prepare("INSERT INTO  bacteriallab(component_unitNo, test)
-                               VALUES (?,?)");
-            $stmt->execute(array($unitNO, $test));
+            $stmt = $con->prepare("INSERT INTO  empolyees(NID,userName,password,job)
+                               VALUES (?,?,?,?)");
+            $stmt->execute(array($NID,$userName,$password,$job));
 
             return "Insert record  successfully";
 
@@ -101,7 +101,7 @@ class User
 
 
 
-    //search in bactrial
+    //search in employees
     public function search($nid){
 
 
