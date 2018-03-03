@@ -6,9 +6,28 @@ include'../../model/User.php';         //model User
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 
-
     $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
     $password = $_POST['password'];
+
+
+    //validation
+    if(strlen($username)<3){
+
+        $_SESSION['error']="User name at least 3 characters";
+        header('location:../../view/Login.php');
+        exit();
+     }
+
+    if(strlen($password)<6){
+
+    $_SESSION['error']="Password at least 6 characters and numbers";
+    header('location:../../view/Login.php');
+     exit();
+   }
+
+
+
+
 
     new User();                                              //object of user
     $job=User::Login($username,$password);
