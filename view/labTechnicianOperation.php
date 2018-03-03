@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/5/2018
- * Time: 4:06 PM
- */
-//echo $_GET['nid'];
+
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician'){
 

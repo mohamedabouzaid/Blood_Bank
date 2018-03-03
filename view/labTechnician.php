@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/5/2018
- * Time: 2:47 PM
- */
+
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician'){
     //search

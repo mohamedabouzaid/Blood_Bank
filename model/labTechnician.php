@@ -97,7 +97,7 @@ class labTechnician
             $stmt = $con->prepare("update clinic set weight=?,height=?,temp=?,bloodGroup=?
               ,hp=?,pluse=?,bp=? WHERE  donar_NID=? ");
             $stmt->execute(array($weight,$height,$temp,$blood,$HB,$pluse,$bp,$donar_NID));
-            return "Insert record  successfully";
+            return "update record  successfully";
 
 
         } catch (PDOException $e) {
