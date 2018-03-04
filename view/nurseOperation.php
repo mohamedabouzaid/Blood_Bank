@@ -95,10 +95,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
            die();
 
         }}
-
+   //edit
         else {
             include '../model/NurseModel.php';
             $edits = NurseModel::search($_GET['nid']);
+            if ($edits==Null) {
+                echo "You should enter blood first ";
+                die();
+
+            }
             $edit=$edits[0];
 
 
@@ -138,10 +143,23 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
                  <?php if (isset($edit)){$comments= explode('-', $edit['comment']);
                  } ?>
                 <h5>Comments</h5>
-                <input type="checkbox" name="comments_list[]" value="Slow bleed"> Slow bleed<br>
-                <input type="checkbox" name="comments_list[]" value=" Aspirin"> Aspirin<br>
-                <input type="checkbox" name="comments_list[]" value="Relative"> Relative<br>
-                <input type="checkbox" name="comments_list[]" value="Other" > Other<br>
+                <input type="checkbox" name="comments_list[]" value="Slow bleed"
+                    <?php if(isset($edit)){foreach ($comments as $comment){if($comment=="Slow bleed"){echo"checked";}}} ?>
+                > Slow bleed<br>
+
+
+
+                <input type="checkbox" name="comments_list[]" value=" Aspirin"
+                    <?php if(isset($edit)){foreach ($comments as $comment){if($comment==" Aspirin"){echo"checked";}}} ?>
+                > Aspirin<br>
+
+                <input type="checkbox" name="comments_list[]" value="Relative"
+                    <?php if(isset($edit)){ foreach ($comments as $comment){if($comment=="Relative"){echo"checked";}}} ?>
+                > Relative<br>
+
+                <input type="checkbox" name="comments_list[]" value="Other"
+                    <?php if(isset($edit)){ foreach ($comments as $comment){if($comment=="Other"){echo"checked";}}} ?>
+                > Other<br>
                 <input type="hidden" name="NID" value="<?php echo $_GET['nid']; ?>">
                 <input type="submit" value="Save" <?php if(isset($edit)){ echo "name='edit'" ;}
                 else{echo "name='insert'" ;}?>>
