@@ -25,6 +25,33 @@ class NurseModel
 
 
     }
+    //update
+    public function update ($id,$donar_id,$wieght,$bloodGroup,$time,$comment
+        ,$performed,$approved,$signature)
+    {
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update bloodsample set 
+                                 ID=?,timeCollection=?,
+                                    bagWeight=?,bloodGroup=?,comment=?,performed=?,approved=?,signature=?
+                                 where donar_nid=?");
+            $stmt->execute(array($id,$time,$wieght,
+                $bloodGroup,$comment,$performed,$approved,$signature,$donar_id));
+            //record updated
+            return "New record update successfully";
+
+        } catch (PDOException $e) {
+            //record not updated
+            return $e->getMessage();
+
+
+        }
+
+
+    }
+
+
 
 //search blood
     public function search($NID){
@@ -36,7 +63,7 @@ class NurseModel
         try {
 
             //SQL
-            $stmt = $con->prepare("SELECT donar_NID from bloodsample where  donar_NID=? ");
+            $stmt = $con->prepare("SELECT * from bloodsample where  donar_NID=? ");
             $stmt->execute(array($NID));
             $row = $stmt->fetchall();
             $count = $stmt->rowCount();
@@ -92,6 +119,7 @@ class NurseModel
 
 
     }
+
 
 
 

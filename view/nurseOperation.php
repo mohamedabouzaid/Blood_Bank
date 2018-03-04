@@ -8,6 +8,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
     if (isset($_POST['insert'])) {
 //the comment
+
+
         if (!empty($_POST['comments_list'])) {
             $comment = implode('-', $_POST['comments_list']);
         } else {
@@ -28,6 +30,24 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
 
 
+    elseif (isset($_POST['edit'])) {
+//the comment
+        if (!empty($_POST['comments_list'])) {
+            $comment = implode('-', $_POST['comments_list']);
+        } else {
+            $comment = "other";
+        }
+
+//update data of blood
+        include '../model/NurseModel.php';
+        $result = NurseModel::update($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'],
+            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['performed'],
+            $_POST['approved'],$_POST['signature']);
+
+        $_SESSION['operation']=$result;
+        header("location:nurse.php");
+
+    }
 
 
 
@@ -72,28 +92,39 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
         $check = NurseModel::search($_GET['nid']);
         if ($check) {
         echo "Blood is already inserted";
+           die();
 
-        } else {
+        }}
+
+        else {
+            include '../model/NurseModel.php';
+            $edits = NurseModel::search($_GET['nid']);
+            $edit=$edits[0];
+
+
+
+            }
 
             ?>
+
             <h3>Blood sample of <?php echo $_GET['nid']; ?></h3>
             <!--form of blood information-->
             <form action="" method="post">
 
-                <input type="radio" name="NID" required>Checked ID<br>
+                <input type="radio" name="NID" required <?php if(isset($edit)){ echo"checked" ;}?>>Checked ID<br>
                 Start time <i class="glyphicon glyphicon-time" id="start"></i> &nbsp; &nbsp; &nbsp;
                 Stop time <i class="glyphicon glyphicon-time" id="time"></i><br>
-                Sealed by ID<input type="number" name="ID_Blood"><br>
-                Bag Weight <input type="number" name="bagWeight"><br>
-                Time of collections<input type="time" name="time"><br>
-                Performed By<input type="text" name="performed"><br>
-                Approved By<input type="text" name="approved"><br>
-                Signature<input type="text" name="signature"><br>
+                Sealed by ID<input type="number" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
+                Bag Weight <input type="number" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>><br>
+                Time of collections<input type="time" name="time"<?php if(isset($edit)){ echo "value='".$edit['timeCollection']."'" ;}?>><br>
+                Performed By<input type="text" name="performed"<?php if(isset($edit)){ echo "value='".$edit['performed']."'" ;}?>><br>
+                Approved By<input type="text" name="approved"<?php if(isset($edit)){ echo "value='".$edit['approved']."'" ;}?>><br>
+                Signature<input type="text" name="signature"<?php if(isset($edit)){ echo "value='".$edit['signature']."'" ;}?>><br>
                 Confirmed Blood Group
 
              <select required name="bloodGroup">
-
-                    <option value="A−">A−</option>
+                 <?php if(isset($edit)) {echo '<option value="'.$edit['bloodGroup'].'">'.$edit['bloodGroup'].'</option>';}?>
+                    <option value="A−"> A−</option>
                     <option value="A+">A+</option>
                     <option value="B−">B−</option>
                     <option value="B+">B+</option>
@@ -104,14 +135,16 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
                 </select><br>
 
-
+                 <?php if (isset($edit)){$comments= explode('-', $edit['comment']);
+                 } ?>
                 <h5>Comments</h5>
                 <input type="checkbox" name="comments_list[]" value="Slow bleed"> Slow bleed<br>
                 <input type="checkbox" name="comments_list[]" value=" Aspirin"> Aspirin<br>
                 <input type="checkbox" name="comments_list[]" value="Relative"> Relative<br>
                 <input type="checkbox" name="comments_list[]" value="Other" > Other<br>
                 <input type="hidden" name="NID" value="<?php echo $_GET['nid']; ?>">
-                <input type="submit" value="Save" name="insert">
+                <input type="submit" value="Save" <?php if(isset($edit)){ echo "name='edit'" ;}
+                else{echo "name='insert'" ;}?>>
 
             </form>
 
@@ -168,8 +201,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
         }
 
-    }
-}
+
+
 
 
 //no permission to access page
