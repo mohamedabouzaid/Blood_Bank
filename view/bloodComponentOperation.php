@@ -7,14 +7,31 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
 
     if (isset($_POST['save'])) {
         include '../model/NurseModel.php';
-
         $result = NurseModel::insertComponent($_POST['NID'], $_POST['centrifuge'], $_POST['unit'], $_POST['timeCollected'],
             $_POST['timeSeparated'], $_POST['prbc'], $_POST['pc'], $_POST['ffp'], $_POST['cryo'], $_POST['wb'],
             $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note']);
+
         $_SESSION['operation'] = $result;
         header('location:nurse.php');
 
-    } else {
+    }elseif(isset($_POST['edit'])){
+
+
+        include '../model/NurseModel.php';
+        $result = NurseModel::updateComponent($_POST['NID'], $_POST['centrifuge'], $_POST['unit'], $_POST['timeCollected'],
+            $_POST['timeSeparated'], $_POST['prbc'], $_POST['pc'], $_POST['ffp'], $_POST['cryo'], $_POST['wb'],
+            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note']);
+
+        $_SESSION['operation'] = $result;
+        header('location:nurse.php');
+
+    }
+
+
+
+
+
+    else {
 
 
         ?>
@@ -51,10 +68,26 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
         //is already inserted
     include '../model/NurseModel.php';
     $check = NurseModel::searchComponent($_GET['nid']);
-    if ($check) {
-    echo "Blood Component is already inserted";
-      exit();
+    //insert
+    if($_GET['do']=='insert'){
+
+        if ($check) {
+        echo "Blood Component is already inserted";
+        exit();
+    }}
+    else{
+        if($check==null){
+
+
+            echo"Insert Blood component first";
+            exit();
+        }
+        $edit=$check[0];
+
     }
+
+
+
     $times=NurseModel::search($_GET['nid']);
     $time_Collected=$times[0];
 
@@ -93,28 +126,29 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                 </tr>
                 </thead>
                 <tr>
-                    <td><input type="text" name="centrifuge">
-                    <td><input type="text" name="unit">
+                    <td><input type="text" name="centrifuge" <?php if(isset($edit)){ echo "value='".$edit['centerNo']."'" ;}?>>
+                    <td><input type="text" name="unit" <?php if(isset($edit)){ echo "value='".$edit['unitNo']."'" ;}?>>
                     <td><input type="time" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
-                    <td><input type="time" name="timeSeparated">
+                    <td><input type="time" name="timeSeparated" <?php if(isset($edit)){ echo "value='".$edit['timeSeparated']."'" ;}?>>
 
-                    <td><input type="text" name="prbc">
-                    <td><input type="text" name="pc">
-                    <td><input type="text" name="ffp">
-                    <td><input type="text" name="cryo">
+                    <td><input type="text" name="prbc" <?php if(isset($edit)){ echo "value='".$edit['prbc']."'" ;}?>>
+                    <td><input type="text" name="pc" <?php if(isset($edit)){ echo "value='".$edit['pc']."'" ;}?>>
+                    <td><input type="text" name="ffp" <?php if(isset($edit)){ echo "value='".$edit['ffp']."'" ;}?>>
+                    <td><input type="text" name="cryo" <?php if(isset($edit)){ echo "value='".$edit['cryo']."'" ;}?>>
 
-                    <td><input type="text" name="wb">
-                    <td><input type="text" name="Fprbc">
-                    <td><input type="text" name="Fpc">
+                    <td><input type="text" name="wb" <?php if(isset($edit)){ echo "value='".$edit['Fwb']."'" ;}?>>
+                    <td><input type="text" name="Fprbc" <?php if(isset($edit)){ echo "value='".$edit['Fprbc']."'" ;}?>>
+                    <td><input type="text" name="Fpc" <?php if(isset($edit)){ echo "value='".$edit['Fpc']."'" ;}?>>
 
-                    <td><input type="text" name="bag">
-                    <td><input type="text" name="ABO">
-                    <td><input type="text" name="note">
+                    <td><input type="text" name="bag" <?php if(isset($edit)){ echo "value='".$edit['bagType']."'" ;}?>>
+                    <td><input type="text" name="ABO" <?php if(isset($edit)){ echo "value='".$edit['ABO']."'" ;}?>>
+                    <td><input type="text" name="note" <?php if(isset($edit)){ echo "value='".$edit['note']."'" ;}?>>
 
                 </tr>
             </table>
             <input type="hidden" value="<?php echo $_GET['nid']; ?>" name="NID">
-            <input type="submit" value="Save" name="save">
+            <input type="submit" value="Save" <?php if(isset($edit)){ echo "name='edit'" ;}
+            else{echo "name='save'" ;}?>>
         </form>
     </div>
         <?php

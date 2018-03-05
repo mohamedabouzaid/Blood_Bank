@@ -65,12 +65,14 @@ if($users!= null)
                                           <tr class="w3-blue">
                                               <th>رقم السجل القومى /الاقامه</th>
                                               <th> Blood Information</th>
+                                              <th>Edit</th>
                                           </tr>';
     foreach ($users as $user) {
 
         echo "   <tr>
                                                 <td>" . $user['donar_NID'] . "</td>
-                                                <td> <a  class=\"w3-btn w3-gray\" href='bloodComponentOperation.php ?do=component& nid=" . $user['donar_NID'] . "'> blood  component</a></td>
+                                                <td> <a  class=\"w3-btn w3-gray\" href='bloodComponentOperation.php ?do=insert& nid=" . $user['donar_NID'] . "'> Insert</a></td>
+                                                <td> <a  class=\"w3-btn w3-gray\" href='bloodComponentOperation.php ?do=edit& nid=" . $user['donar_NID'] . "'> Update</a></td>
 
                                                 </tr>";
 

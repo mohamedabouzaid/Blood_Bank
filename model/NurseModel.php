@@ -144,6 +144,29 @@ class NurseModel
 
 
     }
+    //update
+
+    public function updateComponent($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
+                                    $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note){
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update component set centerNo=? ,unitNo=?,timeCollected=?,timeSeparated=?,
+                                      prbc=?,pc=?,ffp=?,cryo=?,Fwb=?,Fprbc=?,Fpc=?,bagType=?,ABO=?,note=? WHERE donar_nid=?");
+            $stmt->execute(array($centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
+                $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note,$donar_id));
+            return "Update record  successfully";
+
+        } catch (PDOException $e) {
+            //return "sorry,try again ";
+            return $e->getMessage();
+
+        }
+
+
+    }
+
 
 //in component
     public function searchComponent($NID){
@@ -155,7 +178,7 @@ class NurseModel
         try {
 
             //SQL
-            $stmt = $con->prepare("SELECT donar_NID from component where  donar_NID=? ");
+            $stmt = $con->prepare("SELECT * from component where  donar_NID=? ");
             $stmt->execute(array($NID));
             $row = $stmt->fetchall();
             $count = $stmt->rowCount();
