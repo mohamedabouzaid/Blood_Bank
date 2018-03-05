@@ -56,6 +56,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/nurse.php');
 
         }
+        elseif($_SESSION['job']=='Nurse_2'){
+
+            header('location:../../view/bloodComponent.php');
+
+        }
         elseif($_SESSION['job']=='NAT'){
 
             header('location:../../view/NAT.php');

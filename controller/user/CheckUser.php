@@ -26,6 +26,11 @@
          header('location:nurse.php');
 
      }
+     elseif($_SESSION['job']=='Nurse_2'){
+
+         header('location:bloodComponent.php');
+
+     }
      elseif($_SESSION['job']=='NAT'){
 
          header('location:NAT.php');
