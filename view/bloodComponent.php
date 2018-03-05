@@ -70,7 +70,7 @@ if($users!= null)
 
         echo "   <tr>
                                                 <td>" . $user['donar_NID'] . "</td>
-                                                <td> <a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=component& nid=" . $user['donar_NID'] . "'> blood  component</a></td>
+                                                <td> <a  class=\"w3-btn w3-gray\" href='bloodComponentOperation.php ?do=component& nid=" . $user['donar_NID'] . "'> blood  component</a></td>
 
                                                 </tr>";
 
