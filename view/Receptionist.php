@@ -28,45 +28,72 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
 
         }
 
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <meta charset="UTF-8">
-        <title>Receptionist</title>
+ 
+ 
+ <!DOCTYPE html>
+ 
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Receptionist</title>
+    <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resource/css/Questionnaire.css">
+    <link rel="stylesheet" href="../resource/css/header.css">
+    <link rel="stylesheet" href="../resource/css/Recieptionist.css">
     </head>
 
-
     <body>
-
-
-        <div class="w3-bar w3-light-grey">
-            <a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist Home</a>     <!-- receptionist home button -->
-            <a href="../view/ReceptionistOperation.php" class="w3-bar-item w3-button"> create file</a>    <!-- insert user button -->
-            <a href="?do=friend" class="w3-bar-item w3-button"> Blood Bank friends </a>
-            <!--search form-->
-            <form action="" method="post">
-                <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
-                <input type="submit" value="search"  class="w3-bar-item w3-button w3-blue">
-            </form>
-            <div class="w3-dropdown-hover">
-                                              <!-- user name -->
-                <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>   <!-- logout button -->
-                </div>
+        
+    <header class="container">
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
             </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav links">
+                    <li class="active"><a href="Receptionist.php" >Receptionist Home</a></li>
+                  
+                </ul>
+                <ul class="nav navbar-nav" style="margin: 9px 112px 0;">
+                            <li>
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                        <input class="form-control " type="text" name="search" placeholder="Search" style="width: 296px">                                     
+                                    </div>
+                                    <button class="btn btn-danger" type="submit" value="search" style="margin-left: -4px"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </form>
+                                
+                            </li>
 
 
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                   <span class="name"> <?php echo $_SESSION['userName'] ?></span>
+                </li>
+                <li><a class="btn" id="login" href="../controller/user/Logoutcontroller.php">Logout</a> </li>       <!-- login button-->
+            </ul>
+            </div>
         </div>
+        </nav>
+    </header>
 
-
-
-
-
-
+        <img src="../resource/images/5.jpg" alt="" class="bg-image">
+        <div class="blure-body"></div>
+        <div class="col-md-2" id="frame">
+            <ul>
+                 <li><a href="Receptionist.php" >Receptionist Home</a></li>
+                 <li><a href="../view/ReceptionistOperation.php" >Create File</a></li>
+                 <li><a href="?do=friend" > Blood Bank friends </a></li>
+            </ul>
+        </div>
 
     </body>
 </html>
@@ -74,9 +101,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
     //table of user
     if($users!= null)
     {
-        echo '<table  class="w3-table w3-striped">
-                                          <caption >Users</caption>
-                                          <tr class="w3-blue">
+        echo '
+            <div class="col-md-10" id="container-table">
+               <table  class="table table-hover">
+                         <caption >Users</caption>
+                                          <tr>
                                               <th>رقم السجل القومى /الاقامه</th>
                                               <th>الاسم الاول</th>
                                               <th>الاسم الثانى</th>
@@ -85,24 +114,23 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                                                if(isset($_GET['do'])){echo '<th> رقم الهاتف</th>';}
                                               echo '<th> Modify</th>
                                           
-                                                        </tr>';
+                                        </tr> 
+                        <tbody>';
         foreach ($users as $user) {
-
-            echo "   <tr>
+ 
+            echo "                      <tr>
                                                 <td>" . $user['NID'] . "</td>
                                                 <td>" . $user['firstName'] . "</td>
                                                 <td>" . $user['secondName'] . "</td>
                                                 <td>" . $user['thirdName'] . "</td>
-                                                 <td>" . $user['familyName'] . "</td>";
+                                                <td>" . $user['familyName'] . "</td>";
                                              if(isset($_GET['do'])){echo "<td>". $user['phone']." </td>";}
-            echo  "  <td><a  class=\"w3-btn w3-gray\" href='ReceptionistOperation.php ?do=edit& user=" . serialize($user) . "'>edit</a></td>
-                               
-                                               
-                                               
-                                             </tr>";
-
+            echo  "                            <td><a  class=\"btn btn-default\" href='ReceptionistOperation.php ?do=edit& user=" . serialize($user) . "'>Edit <span class='glyphicon glyphicon-edit'></span></a></td>
+                                                      
+                                     </tr>";
         }
-        echo    "</table>";
+           
+        echo    "       </tbody> </table> </div>";
 
 
     }

@@ -33,3 +33,31 @@ span.name{
 span.help-block{
     color: #ffa0a0
 }
+
+
+/* reciptioniist.php */
+#container-table{
+    background: #833233a6;
+    margin-top: 7px;
+    margin-top: 7px;
+    padding: 20px 49px;
+    
+}
+
+#frame{
+    height: 633px;
+    background: #ffffff3b;
+}
+#frame ul{
+    color: #FFF;
+    margin-top: 55px;
+}
+#frame ul li {
+    margin-top: 12px;
+    font-weight: bold;
+}
+#frame ul li a{
+    color: #FFF
+}
+
+ 

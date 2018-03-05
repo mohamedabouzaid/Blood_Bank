@@ -181,7 +181,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav links">
-                <li><a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist Home</a></li>
+                <li><a href="Receptionist.php" >Receptionist Home</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
