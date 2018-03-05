@@ -155,129 +155,206 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
         $edit=unserialize($_GET["user"]);
 
     }
-
+// 
     ?>
+
     <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <meta charset="UTF-8">
-            <title>Receptionist Operations</title>
-        </head>
-        <body>
-            <div class="w3-bar w3-light-grey">
-                <a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist Home</a>
-                <div class="w3-dropdown-hover">
-                    <!-- user name -->
-                    <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
-                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                        <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>   <!-- logout button -->
-                    </div>
-                </div>
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Receptionist Operations</title>
+    <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resource/css/Questionnaire.css">
+    <link rel="stylesheet" href="../resource/css/Recieptionist.css">
+    <link rel="stylesheet" href="../resource/css/header.css">
+    </head>
+
+    <body>
+        
+    <header class="container">
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
             </div>
-                <h3>Donar Form</h3>
-                <form method="post" action="" class="w3-container">
-                    مكان التبرع
-                    <input  required type="text" name="place" <?php if(isset($edit['place'])){ echo "value='".$edit['place']."'" ;}?>><br>
-                    التاريخ
-                    <input  required type="text" name="signDate" <?php if(isset($edit['signDate'])){ echo "value='".$edit['signDate']."'" ;}
-                                              else{echo "value='". date("m/d/Y")."'" ;}?>><br>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav links">
+                <li><a href="Receptionist.php" class="w3-bar-item w3-button">Receptionist Home</a></li>
+            </ul>
 
-                    الاسم الاول
-                    <input  required type="text" name="firstName" <?php if(isset($edit['firstName'])){ echo "value='".$edit['firstName']."'" ;}?>>
-                    <?php if((isset($error['firstName']))){echo $error['firstName'];} ?><br>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                   <span class="name"> <?php echo $_SESSION['userName'] ?></span>
+                </li>
+                <li><a class="btn" id="login" href="../controller/user/Logoutcontroller.php">Logout</a> </li>       <!-- login button-->
+            </ul>
+            </div>
+        </div>
+        </nav>
+    </header>
 
-                    الاسم الثانى
-                    <input required type="text" name="secondName" <?php if(isset($edit['secondName'])){ echo "value='".$edit['secondName']."'" ;}?>>
-                    <?php if((isset($error['secondName']))){echo $error['secondName'];} ?><br>
+        <img src="../resource/images/5.jpg" alt="" class="bg-image">
+        <div class="blure-body"></div>
+            <div class="form-body col-md-6 col-md-offset-3">
+                <h3>Donor Form</h3>
+                <form method="post" action="" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                             <input class="form-control"  placeholder=" مكان التبرع" required type="text" name="place" <?php if(isset($edit['place'])){ echo "value='".$edit['place']."'" ;}?> />
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label"> مكان التبرع</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="التاريخ" required type="text" name="signDate" <?php if(isset($edit['signDate'])){ echo "value='".$edit['signDate']."'" ;} else{echo "value='". date("m/d/Y")."'" ;}?> />
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">التاريخ</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="الاسم الاول" required type="text" name="firstName" <?php if(isset($edit['firstName'])){ echo "value='".$edit['firstName']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['firstName']))){echo $error['firstName'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">الاسم الاول</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="الاسم الثانى" required type="text" name="secondName" <?php if(isset($edit['secondName'])){ echo "value='".$edit['secondName']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['secondName']))){echo $error['secondName'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">الاسم الثانى</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="الاسم الثالث" required type="text" name="thirdName" <?php if(isset($edit['thirdName'])){ echo "value='".$edit['thirdName']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['thirdName']))){echo $error['thirdName'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">  الاسم الثالث</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="الاسم الثالث" required type="text" name="familyName" <?php if(isset($edit['familyName'])){ echo "value='".$edit['familyName']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['familyName']))){echo $error['familyName'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label"> اسم العائله</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder=" رقم السجل المدنى/الاقامه"  required type="number" name="NID"<?php if(isset($edit['NID'])){ echo "value='".$edit['NID']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['NID']))){echo $error['NID'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">  رقم السجل المدنى/الاقامه</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="المدينه" required type="text" name="city"<?php if(isset($edit['city'])){ echo "value='".$edit['city']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['city']))){echo $error['city'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">المدينه</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <select required name="sex" class="form-control">
+                                <?php if(isset($edit['sex'])) {echo '<option value="'.$edit['sex'].'">'.$edit['sex'].'</option>';}?>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                            </select>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">الجنس</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                             <input class="form-control"  placeholder=" تاريخ الميلاد" required type="date" name="birthday" <?php if(isset($edit['birthday'])){ echo "value='".$edit['birthday']."'" ;}?> />
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label"> تاريخ الميلاد</label>
+                    </div>
+                  
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="العمر" required type="number" name="age" <?php if(isset($edit['age'])){ echo "value='".$edit['age']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['age']))){echo $error['age'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">العمر</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="المهنه" required type="text" name="profession" <?php if(isset($edit['profession'])){ echo "value='".$edit['profession']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['profession']))){echo $error['profession'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">المهنه</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <select  required name="nationality" class="form-control">
+                                <?php if(isset($edit['nationality'])){ echo'<option value="'.$edit['nationality'].'">'.$nationality[$edit['nationality']].'</option>' ;}?>
 
-                    الاسم الثالث
-                    <input required type="text" name="thirdName" <?php if(isset($edit['thirdName'])){ echo "value='".$edit['thirdName']."'" ;}?>>
-                    <?php if((isset($error['thirdName']))){echo $error['thirdName'];} ?><br>
+                                <option value="0"><?php echo $nationality[0]?></option>
+                                <option value="1"><?php echo $nationality[1]?></option>
 
-                    اسم العائله
-                    <input required type="text" name="familyName"<?php if(isset($edit['familyName'])){ echo "value='".$edit['familyName']."'" ;}?>>
-                    <?php if((isset($error['familyName']))){echo $error['familyName'];} ?><br>
-
-                    رقم السجل المدنى/الاقامه
-                    <input required type="number" name="NID"<?php if(isset($edit['NID'])){ echo "value='".$edit['NID']."'" ;}?>>
-                    <?php if((isset($error['NID']))){echo $error['NID'];} ?><br>
-                    المدينه
-                    <input required type="text" name="city"<?php if(isset($edit['city'])){ echo "value='".$edit['city']."'" ;}?>>
-                    <?php if((isset($error['city']))){echo $error['city'];} ?><br>
-                    الجنس
-                    <select required name="sex">
-                        <?php if(isset($edit['sex'])) {echo '<option value="'.$edit['sex'].'">'.$edit['sex'].'</option>';}?>
-                        <option value="male">male</option>
-                        <option value="female">female</option>
-                    </select><br>
-
-                    تاريخ الميلاد
-                    <input required type="date" name="birthday" <?php if(isset($edit['birthday'])){ echo "value='".$edit['birthday']."'" ;}?>><br>
-                    العمر
-                    <input required type="number" name="age" <?php if(isset($edit['age'])){ echo "value='".$edit['age']."'" ;}?>>
-                    <?php if((isset($error['age']))){echo $error['age'];} ?><br>
-
-                    المهنه
-                    <input required type="text" name="profession" <?php if(isset($edit['profession'])){ echo "value='".$edit['profession']."'" ;}?>>
-                    <?php if((isset($error['profession']))){echo $error['profession'];} ?><br>
-
-                    الجنسيه
-
-                    <select  required name="nationality" >
-                        <?php if(isset($edit['nationality'])){ echo'<option value="'.$edit['nationality'].'">'.$nationality[$edit['nationality']].'</option>' ;}?>
-
-                        <option value="0"><?php echo $nationality[0]?></option>
-                        <option value="1"><?php echo $nationality[1]?></option>
-
-                    </select><br>
-
-                    اسم الكفيل
-
-                    <input type="text" name="sponsor" <?php if(isset($edit['sponsor'])){ echo "value='".$edit['sponsor']."'" ;}?>><br>
-                    <?php if((isset($error['sponsor']))){echo $error['sponsor'];} ?><br>
-
-                    رقم الجوال
-                    <input required type="number" name="phone" <?php if(isset($edit['phone'])){ echo "value='".$edit['phone']."'" ;}?>>
-                    <?php if((isset($error['phone']))){echo  $error['phone'];} ?><br>
-
-                    نوع التبرع
-                    <select  required name="typeDonar" >
-                        <?php if(isset($edit['typeDonar'])) {echo '<option value="'.$edit['typeDonar'].'">'.$edit['typeDonar'].'</option>';}?>
-                        <option value="طوعى">طوعى</option>
-                        <option value="تعويضى">تعويضى</option>
-                    </select><br>
-
-                    ادخل اسم المريض
-                    <input   type="text" name="patient" <?php if(isset($edit['patient'])){ echo "value='".$edit['patient']."'" ;}?>><br>
-                    <?php if((isset($error['patient']))){echo $error['patient'];} ?><br>
-
-                    الحى
-                    <input type="text" name=" district" <?php if(isset($edit['district'])){ echo "value='".$edit['district']."'" ;}?>><br>
-                    الشارع
-                    <input type="text" name='street' <?php if(isset($edit['street'])){ echo "value='".$edit['street']."'" ;}?>><br>
-                    المركز الصحى
-
-                    <input type="text" name="healthCenter" <?php if(isset($edit['healthCenter'])){ echo "value='".$edit['healthCenter']."'" ;}?>><br>
+                            </select>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">الجنسيه</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="اسم الكفيل" type="text" name="sponsor" <?php if(isset($edit['sponsor'])){ echo "value='".$edit['sponsor']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['sponsor']))){echo $error['sponsor'];} ?>  </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">اسم الكفيل</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="رقم الجوال"  required type="number" name="phone" <?php if(isset($edit['phone'])){ echo "value='".$edit['phone']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['phone']))){echo  $error['phone'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">رقم الجوال</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <select  class="form-control" required name="typeDonar" >
+                                <?php if(isset($edit['typeDonar'])) {echo '<option value="'.$edit['typeDonar'].'">'.$edit['typeDonar'].'</option>';}?>
+                                <option value="طوعى">طوعى</option>
+                                <option value="تعويضى">تعويضى</option>
+                            </select><br>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">نوع التبرع</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="ادخل اسم المريض"  type="text" name="patient" <?php if(isset($edit['patient'])){ echo "value='".$edit['patient']."'" ;}?> />
+                            <span id="helpBlock" class="help-block"> <?php if((isset($error['patient']))){echo $error['patient'];} ?> </span>
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">ادخل اسم المريض</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="الحى"  type="text" name=" district" <?php if(isset($edit['district'])){ echo "value='".$edit['district']."'" ;}?> />
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">الحى</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="الشارع"  type="text" name='street' <?php if(isset($edit['street'])){ echo "value='".$edit['street']."'" ;}?> />
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">الشارع</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input class="form-control"  placeholder="المركز الصحى"  type="text" name="healthCenter" <?php if(isset($edit['healthCenter'])){ echo "value='".$edit['healthCenter']."'" ;}?> />
+                        </div>
+                        <label for="inputEmail3" class="col-sm-3 control-label">المركز الصحى</label>
+                    </div>
 
                     <input type="hidden" name="oldNID" <?php if(isset($edit['NID'])){ echo "value='".$edit['NID']."'" ;}?> ><br>
                     <input type="hidden" name "operation" <?php  echo "value='".$do."'" ;?> >
 
-
-                    <input type="submit" value="Insert" name="Insert">
+                        
+                    <button type="submit" class="btn btn-danger col-xs-9" value="Insert" name="Insert">Submit</button>
 
                 </form>
-
-
-
-
-
-
-
-
-
-
+            </div>
         </body>
     </html>
 

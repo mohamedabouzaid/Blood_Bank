@@ -1,0 +1,35 @@
+.form-control{
+    text-align: right;
+}
+.blure-body{
+    margin-top: 7px;
+}
+.form-body{
+    background: #853535c4;
+    padding: 0 77px 40px;
+    margin-top: 7px;
+}
+
+.form-body> form{
+    display: block;
+    height: 531px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.form-body> form label.control-label{
+    color: #FFF;
+    text-align: center;
+} 
+
+.form-body> h3{
+    color: #FFF;
+    text-align: center;
+}
+span.name{
+    font-size: 18px;
+    margin: 13px 10px;
+    display: inline-block;
+}
+span.help-block{
+    color: #ffa0a0
+}
