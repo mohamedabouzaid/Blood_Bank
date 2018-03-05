@@ -81,6 +81,7 @@ if(isset($_POST['create'])){
                     <option value="lab_Technician">lab_Technician</option>
                     <option value="Physician">Physician</option>
                     <option value="Nurse">Nurse</option>
+                    <option value="Nurse_2">Nurse_2</option>
                     <option value="Bacterial">Bacterial</option>
                     <option value="Immuno">Immuno</option>
                      <option value="malaria">malaria</option>
