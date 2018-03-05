@@ -10,7 +10,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
 
         $result = NurseModel::insertComponent($_POST['NID'], $_POST['centrifuge'], $_POST['unit'], $_POST['timeCollected'],
             $_POST['timeSeparated'], $_POST['prbc'], $_POST['pc'], $_POST['ffp'], $_POST['cryo'], $_POST['wb'],
-            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag']);
+            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note']);
         $_SESSION['operation'] = $result;
         header('location:nurse.php');
 
@@ -73,7 +73,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                     <th rowspan="3">Unit no</th>
                     <th rowspan="3">Time Blood Collected</th>
                     <th rowspan="3"> Time Blood separated</th>
-                    <th colspan="9"> Type of component</th>
+                    <th colspan="10"> Type of component</th>
                 </tr>
                 <tr class="w3-blue">
                     <th rowspan="2"> PRBC'S</th>
@@ -82,6 +82,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                     <th rowspan="2">Cryo</th>
                     <th colspan="3">Filt</th>
                     <th rowspan="2">Bag Type</th>
+                    <th rowspan="2">ABO RH</th>
+                    <th rowspan="2">Note</th>
                 </tr>
                 <tr class="w3-blue">
                     <th>WB</th>
@@ -93,8 +95,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                 <tr>
                     <td><input type="text" name="centrifuge">
                     <td><input type="text" name="unit">
-                    <td><input type="text" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
-                    <td><input type="text" name="timeSeparated">
+                    <td><input type="time" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
+                    <td><input type="time" name="timeSeparated">
 
                     <td><input type="text" name="prbc">
                     <td><input type="text" name="pc">
@@ -106,6 +108,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                     <td><input type="text" name="Fpc">
 
                     <td><input type="text" name="bag">
+                    <td><input type="text" name="ABO">
+                    <td><input type="text" name="note">
 
                 </tr>
             </table>

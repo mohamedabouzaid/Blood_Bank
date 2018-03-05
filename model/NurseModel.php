@@ -124,16 +124,16 @@ class NurseModel
 
 
     public function insertComponent($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
-    $cryo,$Fwb,$Fprbc,$Fpc,$bag){
+    $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note){
 
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("INSERT INTO component (donar_nid,centerNo,unitNo,timeCollected,timeSeparated,
-                                      prbc,pc,ffp,cryo,Fwb,Fprbc,Fpc,bagType)
-                               VALUES (?,?,? ,?,?,?,?,? ,?,?,?,?,?)");
+                                      prbc,pc,ffp,cryo,Fwb,Fprbc,Fpc,bagType,ABO,note)
+                               VALUES (?,?,? ,?,?,?,?,? ,?,?,?,?,?,?,?)");
             $stmt->execute(array($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
-                $cryo,$Fwb,$Fprbc,$Fpc,$bag));
+                $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note));
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
