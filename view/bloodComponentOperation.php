@@ -53,8 +53,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
     $check = NurseModel::searchComponent($_GET['nid']);
     if ($check) {
     echo "Blood Component is already inserted";
-
+      exit();
     }
+    $times=NurseModel::search($_GET['nid']);
+    $time_Collected=$times[0];
+
 
 
     ?>
@@ -90,7 +93,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                 <tr>
                     <td><input type="text" name="centrifuge">
                     <td><input type="text" name="unit">
-                    <td><input type="text" name="timeCollected">
+                    <td><input type="text" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
                     <td><input type="text" name="timeSeparated">
 
                     <td><input type="text" name="prbc">
