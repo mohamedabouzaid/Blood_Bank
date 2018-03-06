@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2018 at 03:46 PM
+-- Generation Time: Mar 06, 2018 at 06:53 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -57,7 +57,8 @@ CREATE TABLE `bloodsample` (
 --
 
 INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `performed`, `approved`, `signature`) VALUES
-(123, 1111111111, 150, '12:00:00', 'B+', 'Slow bleed-Relative', 'ali', 'hosam', 'nkjk');
+(21, 3333333333, 123, '02:58:00', 'B+', 'Slow bleed- Aspirin', 'ali', 'hosam', ',mq,'),
+(123, 1111111111, 50, '05:58:00', 'O−', 'Slow bleed-Other', 'ali', 'hossam', 'hosamteck');
 
 -- --------------------------------------------------------
 
@@ -96,8 +97,8 @@ CREATE TABLE `component` (
   `donar_NID` double NOT NULL,
   `centerNo` varchar(255) NOT NULL,
   `unitNo` varchar(255) NOT NULL,
-  `timeCollected` int(11) NOT NULL,
-  `timeSeparated` int(11) NOT NULL,
+  `timeCollected` time NOT NULL,
+  `timeSeparated` time NOT NULL,
   `prbc` varchar(255) NOT NULL,
   `pc` varchar(255) NOT NULL,
   `ffp` varchar(255) NOT NULL,
@@ -106,9 +107,19 @@ CREATE TABLE `component` (
   `Fprbc` varchar(255) NOT NULL,
   `Fpc` varchar(255) NOT NULL,
   `bagType` varchar(255) NOT NULL,
+  `ABO` varchar(255) NOT NULL,
+  `note` text NOT NULL,
   `approval` tinyint(1) DEFAULT NULL,
   `final` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `component`
+--
+
+INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `ABO`, `note`, `approval`, `final`) VALUES
+(3333333333, '123', 'c1', '02:58:00', '14:01:00', 'PRBC', 'PC', 'FFP', 'Cryo', 'WB', 'PRBC', 'PC', 'Bag Type', 'ABO RH', 'Note', NULL, NULL),
+(1111111111, '234', 'c2', '05:58:00', '03:58:00', 'bn', 'df', 'dff', 'gd', 'g', 'dg', 'dg', 'gd', 'dg', 'dg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +182,8 @@ INSERT INTO `empolyees` (`NID`, `userName`, `password`, `job`) VALUES
 (2222222222, 'mohamed', '123456', 'Receptionist'),
 (3333333333, 'ahmed', '123456', 'lab_Technician'),
 (4444444444, 'mahmoud', '123456', 'Physician'),
-(5555555555, 'samir', '123456', 'Nurse');
+(5555555555, 'samir', '123456', 'Nurse'),
+(6666666666, 'amal', '123456', 'Nurse_2');
 
 -- --------------------------------------------------------
 
@@ -233,7 +245,7 @@ CREATE TABLE `questionnaire` (
 INSERT INTO `questionnaire` (`id`, `donar_NID`, `questions`) VALUES
 (53, 3333333333, '1-1-0-0-1-موافق'),
 (54, 2222222222, '1-1-1-1-موافق'),
-(55, 1111111111, '0-0-1-1-موافق');
+(56, 1111111111, '0-1-0-1-1-موافق');
 
 -- --------------------------------------------------------
 
@@ -398,7 +410,7 @@ ALTER TABLE `natlab`
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `serology`
