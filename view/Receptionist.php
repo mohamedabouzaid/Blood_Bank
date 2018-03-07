@@ -60,10 +60,10 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                 </ul>
                 <ul class="nav navbar-nav" style="margin: 9px 112px 0;">
                             <li>
-                                <form class="form-inline">
+                                <form class="form-inline" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
-                                        <input class="form-control " type="text" name="search" placeholder="Search" style="width: 296px">                                     
+                                        <input class="form-control " type="text" name="search" placeholder="Search" style="width: 296px">
                                     </div>
                                     <button class="btn btn-danger" type="submit" value="search" style="margin-left: -4px"><span class="glyphicon glyphicon-search"></span></button>
                                     </div>
