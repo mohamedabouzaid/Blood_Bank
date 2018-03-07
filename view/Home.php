@@ -1,6 +1,51 @@
 <?php
 session_start();
 include '../controller/user/CheckUser.php';
+
+if(isset($_POST['NID']) && $_POST['NID'] ){
+
+
+    if(strlen($_POST['NID'])!=10){
+
+
+        $_SESSION['error']="national id must be 10 number";
+        header('location:Home.php');
+        exit();
+    }
+
+    include '../model/Receptionist.php';
+    new Receptionist();
+    include "../model/donar.php";
+    new donar();
+    $search=Receptionist::search(filter_var($_POST['NID'],FILTER_SANITIZE_NUMBER_INT));
+
+if($search){
+
+
+
+        $_SESSION['donar_id'] = $_POST['NID'];
+        foreach ($search as $donar) {
+            $_SESSION['donar_name'] = $donar['firstName'];
+        }
+
+        header('location:Questionnaire.php');
+
+
+
+
+}
+ else{
+
+        $_SESSION['error']="You shoud insert your data in receptionist ";
+        header('location:Home.php');
+        exit();
+    }
+}
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +101,7 @@ include '../controller/user/CheckUser.php';
 
   <div class="blure col-xs-4 col-md-offset-4">
         <h1>Questionnaire</h1>
-        <form action="Questionnaire.php" method="post">
+        <form action="" method="post">
             <div class="input-group">
                 <label>
                 : ادخل رقم السجل المدنى /الاقامه للاجابه على الاسئله

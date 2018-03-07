@@ -28,9 +28,29 @@ class donar
 
 
      }
+     //update question
+    //insert questions
+    public function update($question,$donar_id){
+
+        include 'vars.php';
+        try {
+            //sql statment
+            $stmt = $con->prepare("update questionnaire set questions=? WHERE  donar_nid=? ");
+            $stmt->execute(array($question,$donar_id));
+            return "update record  successfully";
+
+        } catch (PDOException $e) {
+            return "sorry,try again ";
+
+        }
 
 
-     public function search($donar_id){
+
+    }
+
+
+
+    public function search($donar_id){
 
          include'vars.php';
          //check the username and password from database
