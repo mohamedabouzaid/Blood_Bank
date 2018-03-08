@@ -19,8 +19,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 //insert data of blood
         include '../model/NurseModel.php';
         $result = NurseModel::insert($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'],
-            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['performed'],
-            $_POST['approved'],$_POST['signature']);
+            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['arm'],$_POST['visual']);
 
         $_SESSION['operation']=$result;
         header("location:nurse.php");
@@ -41,8 +40,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 //update data of blood
         include '../model/NurseModel.php';
         $result = NurseModel::update($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'],
-            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['performed'],
-            $_POST['approved'],$_POST['signature']);
+            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['arm'],$_POST['visual']);
 
         $_SESSION['operation']=$result;
         header("location:nurse.php");
@@ -117,14 +115,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
             <form action="" method="post">
 
                 <input type="radio" name="NID" required <?php if(isset($edit)){ echo"checked" ;}?>>Checked ID<br>
-                Start time <i class="glyphicon glyphicon-time" id="start"></i> &nbsp; &nbsp; &nbsp;
-                Stop time <i class="glyphicon glyphicon-time" id="time"></i><br>
                 Sealed by ID<input type="number" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
                 Bag Weight <input type="number" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>><br>
                 Time of collections<input type="time" name="time"<?php if(isset($edit)){ echo "value='".$edit['timeCollection']."'" ;}?>><br>
-                Performed By<input type="text" name="performed"<?php if(isset($edit)){ echo "value='".$edit['performed']."'" ;}?>><br>
-                Approved By<input type="text" name="approved"<?php if(isset($edit)){ echo "value='".$edit['approved']."'" ;}?>><br>
-                Signature<input type="text" name="signature"<?php if(isset($edit)){ echo "value='".$edit['signature']."'" ;}?>><br>
+                Arm Inspection<input type="radio" name="arm" value="Left" <?php if(isset($edit )&&$edit['arm']=='Left'){ echo "checked" ;}?>>Left
+                                     <input type="radio" name="arm" value="Right" <?php if(isset($edit )&&$edit['arm']=='Right'){ echo "checked" ;}?>>Right<br>
+
+                Visual inspection of bag<input type="radio" name="visual" value="Yes" <?php if(isset($edit )&&$edit['visual']=='Yes'){ echo "checked" ;}?>>Yes
+                                         <input type="radio" name="visual" value="No"  <?php if(isset($edit )&&$edit['visual']=='No'){ echo "checked" ;}?>>No<br>
+
                 Confirmed Blood Group
 
              <select required name="bloodGroup">
@@ -167,49 +166,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
             </form>
 
 
-            <script>
-
-                //timer
-                function checkTime(i) {
-                    if (i < 10) {
-                        i = "0" + i;
-                    }
-                    return i;
-                }
-
-                function endTime() {
-                    var today = new Date();
-                    var h = today.getHours();
-                    var m = today.getMinutes();
-                    var s = today.getSeconds();
-                    // add a zero in front of numbers<10
-                    m = checkTime(m);
-                    s = checkTime(s);
-                    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-                    t = setTimeout(function () {
-                        endTime()
-                    }, 500);
-                }
-
-                endTime();
 
 
-                function startTime() {
-                    var today = new Date();
-                    var h = today.getHours();
-                    var m = today.getMinutes();
-                    var s = today.getSeconds();
-                    // add a zero in front of numbers<10
-                    m = checkTime(m);
-                    s = checkTime(s);
-                    document.getElementById('start').innerHTML = h + ":" + m + ":" + s;
 
-                }
-
-                startTime();
-
-
-            </script>
 
 
             <?php

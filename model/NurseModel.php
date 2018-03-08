@@ -4,17 +4,16 @@
 class NurseModel
 {
 //insert blood
-    public function insert($id,$donar_id,$wieght,$bloodGroup,$time,$comment
-        ,$performed,$approved,$signature){
+    public function insert($id,$donar_id,$wieght,$bloodGroup,$time,$comment,$arm,$visual){
 
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("INSERT INTO bloodsample (ID,donar_nid,timeCollection,
-                                    bagWeight,bloodGroup,comment,performed,approved,signature)
-                               VALUES (?,?,?,?,?,?,?,?,?)");
+                                    bagWeight,bloodGroup,comment,arm,visual)
+                               VALUES (?,?,?,?,?,?,?,?)");
             $stmt->execute(array($id,$donar_id,$time,$wieght,
-                $bloodGroup,$comment,$performed,$approved,$signature));
+                $bloodGroup,$comment,$arm,$visual));
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
@@ -26,18 +25,17 @@ class NurseModel
 
     }
     //update
-    public function update ($id,$donar_id,$wieght,$bloodGroup,$time,$comment
-        ,$performed,$approved,$signature)
+    public function update ($id,$donar_id,$wieght,$bloodGroup,$time,$comment,$arm,$visual)
     {
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("update bloodsample set 
                                  ID=?,timeCollection=?,
-                                    bagWeight=?,bloodGroup=?,comment=?,performed=?,approved=?,signature=?
+                                    bagWeight=?,bloodGroup=?,comment=?,arm=?,visual=?
                                  where donar_nid=?");
             $stmt->execute(array($id,$time,$wieght,
-                $bloodGroup,$comment,$performed,$approved,$signature,$donar_id));
+                $bloodGroup,$comment,$arm,$visual,$donar_id));
             //record updated
             return "New record update successfully";
 
