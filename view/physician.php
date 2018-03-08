@@ -84,8 +84,8 @@ elseif (isset($_GET['do'])&&$_GET['do']=='reject'){
                                           <tr class="w3-blue">
                                               <th>رقم السجل القومى /الاقامه</th>';
         //reject ,accept modife
-                                              echo '<th> Insert</th>';
-                                              echo '<th> Update</th>';
+                                              echo '<th> Show Result</th>';
+                                              echo '<th> Edit</th>';
                                           echo '</tr>';
         foreach ($users as $user) {
 

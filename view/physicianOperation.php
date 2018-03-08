@@ -34,6 +34,7 @@ include '../model/physician.php';
 new physician();
 $accept = physician::check($_GET['nid'], 0);
 $reject = physician::check($_GET['nid'], 1);
+$updateCkeck=physician::checkUpdate(($_GET['nid']));
 
 if ($accept != null &&$_GET['do']=='check'){
 
@@ -47,7 +48,18 @@ if ($accept != null &&$_GET['do']=='check'){
     exit();
 
 }
+
 else{
+
+
+    //check update
+   if( $_GET['do']=='update'&&$updateCkeck ==null){
+
+         echo "you must insert first";
+         exit();
+
+
+   }
 
 
 //accept

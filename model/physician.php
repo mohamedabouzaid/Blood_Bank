@@ -199,5 +199,33 @@ class physician
 
 
     }
+    //search
+    public  function checkUpdate($NID){
+
+
+        include 'vars.php';
+        try {
+
+            //SQL
+            $stmt = $con->prepare("SELECT donar_NID from state where  donar_NID=? ");
+            $stmt->execute(array($NID));
+            $row = $stmt->fetchall();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                return $row;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        catch(PDOException $e)
+        {
+            return null;
+
+        }
+
+    }
 
 }
