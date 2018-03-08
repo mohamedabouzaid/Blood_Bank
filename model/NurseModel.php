@@ -122,16 +122,17 @@ class NurseModel
 
 
     public function insertComponent($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
-    $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note){
+    $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note,$day,$date,$performed,$approved,$sign){
 
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("INSERT INTO component (donar_nid,centerNo,unitNo,timeCollected,timeSeparated,
-                                      prbc,pc,ffp,cryo,Fwb,Fprbc,Fpc,bagType,ABO,note)
-                               VALUES (?,?,? ,?,?,?,?,? ,?,?,?,?,?,?,?)");
+                                      prbc,pc,ffp,cryo,Fwb,Fprbc,Fpc,bagType,ABO,note,daySelect,dateSelect,performed
+                                      ,approved,sign)
+                               VALUES (?,?,? ,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->execute(array($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
-                $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note));
+                $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note,$day,$date,$performed,$approved,$sign));
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
@@ -145,15 +146,17 @@ class NurseModel
     //update
 
     public function updateComponent($donar_id,$centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
-                                    $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note){
+                                    $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note,$day,$date,$performed,$approved,$sign){
 
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("update component set centerNo=? ,unitNo=?,timeCollected=?,timeSeparated=?,
-                                      prbc=?,pc=?,ffp=?,cryo=?,Fwb=?,Fprbc=?,Fpc=?,bagType=?,ABO=?,note=? WHERE donar_nid=?");
+                                      prbc=?,pc=?,ffp=?,cryo=?,Fwb=?,Fprbc=?,Fpc=?,bagType=?,ABO=?,note=?
+                                       ,daySelect=?,dateSelect=?,performed=?
+                                      ,approved=?,sign=? WHERE donar_nid=?");
             $stmt->execute(array($centerNo,$unitNo,$timeCollected,$timeSeparated,$prbc,$pc,$ffp,
-                $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note,$donar_id));
+                $cryo,$Fwb,$Fprbc,$Fpc,$bag,$ABO,$note,$day,$date,$performed,$approved,$sign,$donar_id));
             return "Update record  successfully";
 
         } catch (PDOException $e) {

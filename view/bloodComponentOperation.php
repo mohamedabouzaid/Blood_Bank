@@ -9,7 +9,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
         include '../model/NurseModel.php';
         $result = NurseModel::insertComponent($_POST['NID'], $_POST['centrifuge'], $_POST['unit'], $_POST['timeCollected'],
             $_POST['timeSeparated'], $_POST['prbc'], $_POST['pc'], $_POST['ffp'], $_POST['cryo'], $_POST['wb'],
-            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note']);
+            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note'],$_POST['daySelect'],$_POST['dateSelect']
+        ,$_POST['performed'],$_POST['approved'],$_POST['sign']);
 
         $_SESSION['operation'] = $result;
         header('location:nurse.php');
@@ -20,7 +21,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
         include '../model/NurseModel.php';
         $result = NurseModel::updateComponent($_POST['NID'], $_POST['centrifuge'], $_POST['unit'], $_POST['timeCollected'],
             $_POST['timeSeparated'], $_POST['prbc'], $_POST['pc'], $_POST['ffp'], $_POST['cryo'], $_POST['wb'],
-            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note']);
+            $_POST['Fprbc'], $_POST['Fpc'], $_POST['bag'],$_POST['ABO'],$_POST['note'],$_POST['daySelect'],$_POST['dateSelect']
+            ,$_POST['performed'],$_POST['approved'],$_POST['sign']);
 
         $_SESSION['operation'] = $result;
         header('location:nurse.php');
@@ -98,7 +100,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
     </h3>
     <div class="w3-responsive">
         <form action="" method="post">
-
+            Day:<input type="text" name="daySelect" <?php if(isset($edit)){ echo "value='".$edit['daySelect']."'" ;} else{echo "value='". date("l")."'" ;}?> readonly>
+            Date:<input  type="text" name="dateSelect"   <?php if(isset($edi)){ echo "value='".$edit['dateSelect']."'" ;} else{echo "value='". date("m/d/Y")."'" ;}?> readonly>
             <table class="w3-table-all w3-small">
                 <thead>
                 <tr class="w3-blue">
@@ -131,9 +134,39 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
                     <td><input type="time" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
                     <td><input type="time" name="timeSeparated" <?php if(isset($edit)){ echo "value='".$edit['timeSeparated']."'" ;}?>>
 
-                    <td><input type="text" name="prbc" <?php if(isset($edit)){ echo "value='".$edit['prbc']."'" ;}?>>
-                    <td><input type="text" name="pc" <?php if(isset($edit)){ echo "value='".$edit['pc']."'" ;}?>>
-                    <td><input type="text" name="ffp" <?php if(isset($edit)){ echo "value='".$edit['ffp']."'" ;}?>>
+                    <td><select name="prbc">
+                            <?php if(isset($edit)){ echo'<option value="'.$edit['prbc'].'">'.$edit['prbc'].'</option> ';}?>
+                        <option value="less collection">less collection</option>
+                        <option value="high collection">high collection</option>
+                        <option value="open system">open system</option>
+                        <option value="hanging">hanging</option>
+                        <option value="none">none</option>
+                        </select></td>
+
+
+                    <td><select name="pc">
+                            <?php if(isset($edit)){ echo'<option value="'.$edit['pc'].'">'.$edit['pc'].'</option> ';}?>
+                            <option value="open system">open system</option>
+                            <option value="bloody">bloody</option>
+                            <option value="lipemic">lipemic</option>
+                            <option value="no space">no space</option>
+                            <option value="none">none</option>
+                        </select></td>
+
+
+
+
+                    <td><select name="ffp">
+                            <?php if(isset($edit)){ echo'<option value="'.$edit['ffp'].'">'.$edit['ffp'].'</option> ';}?>
+                            <option value="open system">open system</option>
+                            <option value="bloody">bloody</option>
+                            <option value="lipemic">lipemic</option>
+                            <option value="no space">no space</option>
+                            <option value="none">none</option>
+                        </select></td>
+
+
+
                     <td><input type="text" name="cryo" <?php if(isset($edit)){ echo "value='".$edit['cryo']."'" ;}?>>
 
                     <td><input type="text" name="wb" <?php if(isset($edit)){ echo "value='".$edit['Fwb']."'" ;}?>>
@@ -146,6 +179,12 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
 
                 </tr>
             </table>
+
+            Performed By<input type="text" name="performed" <?php if(isset($edit)){ echo "value='".$edit['performed']."'" ;}?>>
+            Approved By<input type="text" name="approved" <?php if(isset($edit)){ echo "value='".$edit['approved']."'" ;}?> >
+            Signature <input type="text" name="sign"  <?php if(isset($edit)){ echo "value='".$edit['sign']."'" ;}?>>
+
+
             <input type="hidden" value="<?php echo $_GET['nid']; ?>" name="NID">
             <input type="submit" value="Save" <?php if(isset($edit)){ echo "name='edit'" ;}
             else{echo "name='save'" ;}?>>
