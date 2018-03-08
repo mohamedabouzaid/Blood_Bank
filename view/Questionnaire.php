@@ -205,6 +205,7 @@ if(isset($_POST['accept'])) {
                         if ($x == 2 || $x==9 || $x==12 || $x==16 || $x==18 || $x==34 || $x==37 || $x==39 || $x==42 || $x==45) {
                             echo "   <tr>
                             <td colspan='3'>" . $q[$x] . "</td>
+                            <td><input type=\"hidden\" name=\"q" . $x . "\" value=\"3\" ></td>
                         </tr>";
 
                         } else {
