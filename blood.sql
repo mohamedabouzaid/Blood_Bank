@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2018 at 06:53 PM
+-- Generation Time: Mar 09, 2018 at 12:41 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -47,18 +47,16 @@ CREATE TABLE `bloodsample` (
   `timeCollection` time NOT NULL,
   `bloodGroup` varchar(255) NOT NULL,
   `comment` text NOT NULL,
-  `performed` varchar(255) NOT NULL,
-  `approved` varchar(255) NOT NULL,
-  `signature` varchar(255) NOT NULL
+  `arm` varchar(255) NOT NULL,
+  `visual` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bloodsample`
 --
 
-INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `performed`, `approved`, `signature`) VALUES
-(21, 3333333333, 123, '02:58:00', 'B+', 'Slow bleed- Aspirin', 'ali', 'hosam', ',mq,'),
-(123, 1111111111, 50, '05:58:00', 'O−', 'Slow bleed-Other', 'ali', 'hossam', 'hosamteck');
+INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `arm`, `visual`) VALUES
+(124, 2222222222, 150, '01:58:00', 'A−', ' Aspirin-Relative', 'Left', 'No');
 
 -- --------------------------------------------------------
 
@@ -110,16 +108,20 @@ CREATE TABLE `component` (
   `ABO` varchar(255) NOT NULL,
   `note` text NOT NULL,
   `approval` tinyint(1) DEFAULT NULL,
-  `final` tinyint(1) DEFAULT NULL
+  `final` tinyint(1) DEFAULT NULL,
+  `daySelect` varchar(255) NOT NULL,
+  `dateSelect` date NOT NULL,
+  `approved` varchar(255) NOT NULL,
+  `sign` varchar(255) NOT NULL,
+  `performed` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `component`
 --
 
-INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `ABO`, `note`, `approval`, `final`) VALUES
-(3333333333, '123', 'c1', '02:58:00', '14:01:00', 'PRBC', 'PC', 'FFP', 'Cryo', 'WB', 'PRBC', 'PC', 'Bag Type', 'ABO RH', 'Note', NULL, NULL),
-(1111111111, '234', 'c2', '05:58:00', '03:58:00', 'bn', 'df', 'dff', 'gd', 'g', 'dg', 'dg', 'gd', 'dg', 'dg', NULL, NULL);
+INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `ABO`, `note`, `approval`, `final`, `daySelect`, `dateSelect`, `approved`, `sign`, `performed`) VALUES
+(2222222222, '123', 'c1', '01:58:00', '23:01:00', 'open system', 'no space', 'none', 'cr', 'web', 'pr', 'pc', 'bag', 'abo', 'dddd', NULL, NULL, 'Friday', '0000-00-00', 'hosam', 'hhhhsam', 'ali');
 
 -- --------------------------------------------------------
 
@@ -179,11 +181,18 @@ CREATE TABLE `empolyees` (
 
 INSERT INTO `empolyees` (`NID`, `userName`, `password`, `job`) VALUES
 (1111111111, 'ali', '123456', 'admin'),
+(1231231232, 'abdo', '123456', 'Bacterial'),
+(1233213212, 'akram', '123456', 'Immuno'),
 (2222222222, 'mohamed', '123456', 'Receptionist'),
+(2345678765, 'hisham', '123456', 'medical_director'),
 (3333333333, 'ahmed', '123456', 'lab_Technician'),
 (4444444444, 'mahmoud', '123456', 'Physician'),
+(4545454545, 'said', '123456', 'NAT'),
 (5555555555, 'samir', '123456', 'Nurse'),
-(6666666666, 'amal', '123456', 'Nurse_2');
+(5656565656, 'said', '123456', 'serology'),
+(6666666666, 'amal', '123456', 'Nurse_2'),
+(7676787897, 'karim', '123456', 'medical_supervisor'),
+(323232323232, 'shimaa', '123456', 'malaria');
 
 -- --------------------------------------------------------
 
@@ -235,7 +244,7 @@ CREATE TABLE `natlab` (
 CREATE TABLE `questionnaire` (
   `id` int(11) NOT NULL,
   `donar_NID` double NOT NULL,
-  `questions` text NOT NULL
+  `questions` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -243,9 +252,9 @@ CREATE TABLE `questionnaire` (
 --
 
 INSERT INTO `questionnaire` (`id`, `donar_NID`, `questions`) VALUES
-(53, 3333333333, '1-1-0-0-1-موافق'),
-(54, 2222222222, '1-1-1-1-موافق'),
-(56, 1111111111, '0-1-0-1-1-موافق');
+(54, 2222222222, '3-1-1-1-1-1-1-3-1-1-3-1-1-1-3-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-3-1-1-3-1-3-1-1-3-1-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-موافق'),
+(56, 1111111111, '3-0-0-0-0-0-0-3-0-0-3-0-0-0-3-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-3-0-3-0-0-3-0-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-موافق'),
+(59, 3333333333, '3-0-1-0-1-0-1-3-0-1-3-0-1-0-3-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-3-1-0-3-1-3-0-1-3-0-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-موافق');
 
 -- --------------------------------------------------------
 
@@ -281,9 +290,9 @@ CREATE TABLE `state` (
 --
 
 INSERT INTO `state` (`id`, `donar_NID`, `status`) VALUES
-(4, 1111111111, 0),
-(5, 2222222222, 1),
-(6, 3333333333, 0);
+(1, 1111111111, 0),
+(2, 2222222222, 0),
+(3, 3333333333, 0);
 
 --
 -- Indexes for dumped tables
@@ -410,7 +419,7 @@ ALTER TABLE `natlab`
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `serology`
@@ -422,7 +431,7 @@ ALTER TABLE `serology`
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
