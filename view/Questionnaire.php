@@ -55,11 +55,11 @@ if(isset($_GET['language'])){
 //convert Arabic to English
 if($do=='arabic'){
 
-    echo'<a href="?language=en">English</a>';
+    echo'<a style="margin-top: 13px; margin-bottom: 27px;" class="col-md-2 col-md-offset-2 btn btn-default " href="?language=en">English</a>';
 }
 else{
 
-    echo'<a href="?language=arabic">arabic</a>';
+    echo'<a style="margin-top: 13px; margin-bottom: 27px;" class="col-md-2 col-md-offset-2 btn btn-default " href="?language=arabic">Arabic</a>';
 }
 
 
@@ -177,13 +177,13 @@ if(isset($_POST['accept'])) {
            echo   $_SESSION['donar_name'] .'</div>';
             ?>
             <!--ملاحظه-->
-             <div class="report">
+             <div class="report col-md-8 col-md-offset-2    ">
                  <h3 <?php if($do!='arabic'){echo"style='text-align:left'"; } ?>><?php  echo $q[0]?> </h3>
              <p <?php if($do!='arabic'){echo"style='text-align:left'"; } ?>>  <?php echo $q[1] ?></p>
 
              </div>
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2 contain">
               <!--      questionnaire form-->
 
             <form action="" method="post">
@@ -196,73 +196,113 @@ if(isset($_POST['accept'])) {
 
                         <?php if($do!='arabic')
                         {
-                        echo"
-                        <th>". $q[72]."</th>
-                        <th>". $q[70] ."</th>
-                        <th>". $q[71] ."</th>
-                    
-                        ";
+                            echo"
+                            <th style='text-align:left'>". $q[72]."</th>
+                            <th>". $q[70] ."</th>
+                            <th>". $q[71] ."</th>
                         
+                            ";
+                            for ($x = 2; $x < 65; $x++) {
+                                if ($x == 2 || $x==9 || $x==12 || $x==16 || $x==18 || $x==34 || $x==37 || $x==39 || $x==42 || $x==45) {
+                                    echo "   <tr>
+                                    <td colspan='3'>" . $q[$x] . "</td>
+                                    <td><input type=\"hidden\" name=\"q" . $x . "\" value=\"3\" ></td>
+                                </tr>";
+        
+                                } else {
+        
+                                    echo "   <tr>
+                                
+                                    
+                                    <td style='text-align:left'>" . $q[$x] . "</td>
+                                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\"></td>
+                                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"1\" ></td>
+                                </tr>";
+        
+                                }
+                             }
                         
                         }
-                        else{ echo"
-                        <th>".$q[71] ."</th>
-                        <th>".  $q[70]."</th>
-                        <th>".  $q[72] ."</th>
-                    </tr>";}?>
+                        else{ 
+                            echo"
+                            <th>".$q[71] ."</th> 
+                            <th>".  $q[70]."</th>
+                            <th>".  $q[72] ."</th>
+                            </tr>";
 
-                    <?php
-
-                    for ($x = 2; $x < 65; $x++) {
-                        if ($x == 2 || $x==9 || $x==12 || $x==16 || $x==18 || $x==34 || $x==37 || $x==39 || $x==42 || $x==45) {
-                            echo "   <tr>
-                            <td colspan='3'>" . $q[$x] . "</td>
-                            <td><input type=\"hidden\" name=\"q" . $x . "\" value=\"3\" ></td>
-                        </tr>";
-
-                        } else {
-
-                            echo "   <tr>
-                        
-                            
-                            <td><input type=\"radio\" name=\"q" . $x . "\" value=\"1\" ></td>
-                            <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\"></td>
-                            <td>" . $q[$x] . "</td>
-                        </tr>";
-
-                        }
-                    }
-
-                    ?>
-
-
+                            for ($x = 2; $x < 65; $x++) {
+                                if ($x == 2 || $x==9 || $x==12 || $x==16 || $x==18 || $x==34 || $x==37 || $x==39 || $x==42 || $x==45) {
+                                    echo "   <tr>
+                                    <td colspan='3'>" . $q[$x] . "</td>
+                                    <td><input type=\"hidden\" name=\"q" . $x . "\" value=\"3\" ></td>
+                                </tr>";
+        
+                                } else {
+        
+                                    echo "   <tr>
+                                
+                                    
+                                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"1\" ></td>
+                                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\"></td>
+                                    <td>" . $q[$x] . "</td>
+                                </tr>";
+        
+                                }
+                             }
+                    }?>
                 </table>
                 </div>
 
-
+                <?php if($do!='arabic'){ // english
+                echo '
 <!--صديق بنك الدم-->
-                <div class="report">
-                    <h4><?php echo $q[67];?></h4>
+                <div class="report" style="text-align:left">
+
+                    <h4 >'. $q[67]. '</h4>
                     <p>
-                        <?php echo  '<input type="checkbox" name="friend"  value="1" >'.$q[68];?>
-
-
-
+                       '.$q[68].' <input type="checkbox" name="friend"  value="1" >
                     </p>
 
                 </div>
 
 <!--الفرار-->
 
-                <div class="report">
-                    <h4>  <?php echo $q[65];?></h4>
+                <div class="report" style="text-align:left">
+                    <h4>'. $q[65] .'</h4>
                     <p>
-                       <?php echo$q[66];?>
-                        <input class="btn btn-danger" type="submit" value="موافق" name="accept" >
+                        '. $q[66] .'
+                        <button style="right: 316px;" class="btn btn-danger" type="submit" value="موافق" name="accept" >Accept</button>
 
                     </p>
 
                 </div>
+                ';
+                } else { // arabic
+                    echo '
+                    <!--صديق بنك الدم-->
+                                    <div class="report">
+                    
+                                        <h4 >'. $q[67] . '</h4>
+                                        <p>
+                                            <input type="checkbox" name="friend"  value="1" >'.$q[68].'
+                                        </p>
+                    
+                                    </div>
+                    
+                    <!--الفرار-->
+                    
+                                    <div class="report">
+                                        <h4>'. $q[65] .'</h4>
+                                        <p>
+                                            '. $q[66] .'
+                                            <input class="btn btn-danger" type="submit" value="موافق" name="accept" >
+                    
+                                        </p>
+                    
+                                    </div>
+                                    ';
+                }
+                ?>
 
 
 

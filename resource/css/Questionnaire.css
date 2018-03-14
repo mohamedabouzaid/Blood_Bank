@@ -47,7 +47,7 @@ div.report{
     background: #ce323cd2;
     text-align: right;
     padding: 20px 71px;
-    margin-top: 13px;
+    margin-top: -15px;
     border-radius: 20px;    
     font-weight: bold;
 }
@@ -71,3 +71,12 @@ div.report> p> .btn{
     text-align: center;
     font-weight: bold;
 }
+
+.contain{
+    display: block;
+    height: 345px;
+    overflow-y: auto;
+    background: #c84649;
+    margin-top: 14px;
+}
+
