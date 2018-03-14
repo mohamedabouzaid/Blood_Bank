@@ -67,8 +67,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse')
 
             echo "   <tr>
                                                 <td>" . $user['donar_NID'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=insert& nid=" . $user['donar_NID'] . "'>Insert blood</a>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php ?do=edit& nid=" . $user['donar_NID'] . "'>Update</a>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php?do=insert&nid=" . $user['donar_NID'] . "'>Insert blood</a>
+                                                 <td><a  class=\"w3-btn w3-gray\" href='nurseOperation.php?do=edit&nid=" . $user['donar_NID'] . "'>Update</a>
                                             
                                                  
                                                 </tr>";

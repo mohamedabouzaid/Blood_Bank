@@ -178,8 +178,8 @@ if(isset($_POST['accept'])) {
             ?>
             <!--ملاحظه-->
              <div class="report">
-                 <h3><?php  echo $q[0]?> </h3>
-                 <?php echo $q[1] ?>
+                 <h3 <?php if($do!='arabic'){echo"style='text-align:left'"; } ?>><?php  echo $q[0]?> </h3>
+             <p <?php if($do!='arabic'){echo"style='text-align:left'"; } ?>>  <?php echo $q[1] ?></p>
 
              </div>
 
@@ -192,12 +192,24 @@ if(isset($_POST['accept'])) {
                 <table class="table table-hover ">
                     <caption><?php echo $q[69] ;?></caption>
                     <tr>
+                    <!-- table -->
 
-
-                        <th><?php echo $q[71] ;?></th>
-                        <th><?php echo $q[70] ;?></th>
-                        <th><?php echo $q[72] ;?></th>
-                    </tr>
+                        <?php if($do!='arabic')
+                        {
+                        echo"
+                        <th>". $q[72]."</th>
+                        <th>". $q[70] ."</th>
+                        <th>". $q[71] ."</th>
+                    
+                        ";
+                        
+                        
+                        }
+                        else{ echo"
+                        <th>".$q[71] ."</th>
+                        <th>".  $q[70]."</th>
+                        <th>".  $q[72] ."</th>
+                    </tr>";}?>
 
                     <?php
 

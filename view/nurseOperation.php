@@ -85,6 +85,7 @@ die();
         </div>
 
         <?php
+        
         if($_GET['do']=='insert'){
         //is already inserted
         include '../model/NurseModel.php';
@@ -112,6 +113,7 @@ die();
             ?>
 
             <h3>Blood sample of <?php echo $_GET['nid']; ?></h3>
+            <?php $x=null;echo $x; ?>
             <!--form of blood information-->
             <form action="" method="post">
 <!--      stop watch          -->
@@ -123,7 +125,7 @@ die();
 
                 </nav>
                 Time of process:<ul class="results"></ul>
-                <input type="hidden" value="" name="test">
+                <input id="getwatch" type="text" name="x" value="">
                 <input type="radio" name="NID" required <?php if(isset($edit)){ echo"checked" ;}?>>Checked ID<br>
                 Sealed by ID<input type="number" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
                 Bag Weight <input type="number" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>><br>
@@ -206,8 +208,11 @@ die();
                 lap() {
                     let times = this.times;
                     let li = document.createElement('li');
+
                     li.innerText = this.format(times);
                     this.results.appendChild(li);
+
+                    document.querySelector('#getwatch').setAttribute("value", this.format(times));
                 }
 
                 stop() {
@@ -257,10 +262,7 @@ die();
                 }
 
                 format(times) {
-                    return `\
-        ${pad0(times[0], 2)}:\
-        ${pad0(times[1], 2)}:\
-        ${pad0(Math.floor(times[2]), 2)}`;
+                    return `${pad0(times[0], 2)}:${pad0(times[1], 2)}:${pad0(Math.floor(times[2]), 2)}`;
                 }
             }
 
@@ -268,7 +270,8 @@ die();
                 var result = value.toString();
                 for (; result.length < count; --count)
                     result = '0' + result;
-                return result;
+                  
+                return  result;
             }
 
             function clearChildren(node) {
