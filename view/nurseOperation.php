@@ -8,8 +8,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
 
     if (isset($_POST['insert'])) {
 //the comment
-print_r($_POST);
-die();
+
 
         if (!empty($_POST['comments_list'])) {
             $comment = implode('-', $_POST['comments_list']);
@@ -20,7 +19,7 @@ die();
 //insert data of blood
         include '../model/NurseModel.php';
         $result = NurseModel::insert($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'],
-            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['arm'],$_POST['visual']);
+            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['arm'],$_POST['visual'],$_POST['x']);
 
         $_SESSION['operation']=$result;
         header("location:nurse.php");
@@ -41,7 +40,7 @@ die();
 //update data of blood
         include '../model/NurseModel.php';
         $result = NurseModel::update($_POST['ID_Blood'], $_POST['NID'], $_POST['bagWeight'],
-            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['arm'],$_POST['visual']);
+            $_POST['bloodGroup'], $_POST['time'], $comment,$_POST['arm'],$_POST['visual'],$_POST['x']);
 
         $_SESSION['operation']=$result;
         header("location:nurse.php");
@@ -125,7 +124,7 @@ die();
 
                 </nav>
                 Time of process:<ul class="results"></ul>
-                <input id="getwatch" type="text" name="x" value="">
+                <input id="getwatch" type="hidden" name="x" value="">
                 <input type="radio" name="NID" required <?php if(isset($edit)){ echo"checked" ;}?>>Checked ID<br>
                 Sealed by ID<input type="number" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
                 Bag Weight <input type="number" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>><br>
