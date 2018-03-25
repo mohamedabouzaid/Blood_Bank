@@ -68,11 +68,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         }
 
 
-        elseif($_SESSION['job']=='Bacterial'){
 
-            header('location:../../view/bacterial.php');
-
-        }
 
         elseif($_SESSION['job']=='malaria'){
 
@@ -84,11 +80,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/serology.php');
 
         }
-        elseif($_SESSION['job']=='Immuno') {
 
-            header('location:../../view/immuno.php');
-
-        }
         elseif($_SESSION['job']=='medical_supervisor'){
 
             header('location:../../view/medicalSupervisor.php');

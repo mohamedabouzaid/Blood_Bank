@@ -36,11 +36,7 @@
          header('location:NAT.php');
 
      }
-     elseif($_SESSION['job']=='Bacterial'){
 
-         header('location:bacterial.php');
-
-     }
      elseif($_SESSION['job']=='malaria'){
 
          header('location:malaria.php');
@@ -51,11 +47,7 @@
          header('location:serology.php');
 
      }
-     elseif($_SESSION['job']=='Immuno'){
 
-         header('location:immuno.php');
-
-     }
      elseif($_SESSION['job']=='medical_supervisor'){
 
          header('location:medicalSupervisor.php');
