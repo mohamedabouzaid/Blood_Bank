@@ -215,7 +215,7 @@ if(isset($_POST['accept'])) {
                                 
                                     
                                     <td style='text-align:left'>" . $q[$x] . "</td>
-                                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\"></td>
+                                    <td><input type=\"radio\" name=\"q" . $x . "\" value=\"0\" required></td>
                                     <td><input type=\"radio\" name=\"q" . $x . "\" value=\"1\" ></td>
                                 </tr>";
         
