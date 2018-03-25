@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2018 at 12:41 AM
+-- Generation Time: Mar 16, 2018 at 04:56 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -48,15 +48,16 @@ CREATE TABLE `bloodsample` (
   `bloodGroup` varchar(255) NOT NULL,
   `comment` text NOT NULL,
   `arm` varchar(255) NOT NULL,
-  `visual` varchar(255) NOT NULL
+  `visual` varchar(255) NOT NULL,
+  `timeprocess` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bloodsample`
 --
 
-INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `arm`, `visual`) VALUES
-(124, 2222222222, 150, '01:58:00', 'A−', ' Aspirin-Relative', 'Left', 'No');
+INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `arm`, `visual`, `timeprocess`) VALUES
+(1231234, 1111111111, 343, '19:03:00', 'B+', 'Slow bleed-Relative', 'Right', 'Yes', '00:01:73');
 
 -- --------------------------------------------------------
 
