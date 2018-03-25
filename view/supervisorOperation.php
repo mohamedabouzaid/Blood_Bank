@@ -6,7 +6,7 @@
  * Time: 11:18 PM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor' || $_SESSION['job']=='admin')
 {?>
 
 
@@ -107,15 +107,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
     $serology=serology::search($_GET['unit']);
     $ser=$serology[0];
 
-    //immuno Department
-    include "../model/immuno.php";
-    $immuno=immuno::search($_GET['unit']);
-     $imm=$immuno[0];
 
-     //bacterial Department
-    include "../model/bacterial.php";
-    $bacterial=bacterial::search($_GET['unit']);
-    $bac=$bacterial[0];
 
    //malaria department
     include "../model/malaria.php";
@@ -204,17 +196,10 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor')
     HTLV: '. $ser['HTLV']. '<br>';}?>
 
 
-    <h3>the Result of Immuno Test</h3><?php  if ($ser==null) {echo "NOT FINISED";}
-else{
-    echo 'RH:'. $imm['RH'].'<br>
-    ABO:' .$imm['ABO']. '<br>
-    antibody Screnning:'. $imm['anti'].' <br>
-    phenotype:'. $imm['phenotype'].'  <br>';}?>
 
 
-    <h3>the Result of Bacterial Test</h3><?php  if ($ser==null) {echo "NOT FINISED";}
-else{
-    echo 'Result:'. $bac['test'].'<br>';}?>
+
+
 
     <h3>the Result of Malaria Test</h3><?php  if ($ser==null) {echo "NOT FINISED";}
 else{
