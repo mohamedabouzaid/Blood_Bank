@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='Physician'){
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Physician' || $_SESSION['job']=='admin'){
 
 
     ?>
