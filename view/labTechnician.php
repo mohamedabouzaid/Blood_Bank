@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician'){
+if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician' || $_SESSION['job']=='admin'){
     //search
     if(isset($_POST['search'])) {
         include '../model/labTechnician.php';

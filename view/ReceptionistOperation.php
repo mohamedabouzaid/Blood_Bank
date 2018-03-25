@@ -2,7 +2,7 @@
 
 
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist' || $_SESSION['job']=='admin')
 
 {
     $nationality=array("سعودى","غير سعودى");
