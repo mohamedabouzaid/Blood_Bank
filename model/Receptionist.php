@@ -12,16 +12,17 @@ class Receptionist
 
 
     public function insert($NID,$firstName,$secondName,$thirdName,$familyName,$phone,$age,$birthday,$city,$sex
-                                 ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$place,$signDate)
+                                 ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$place
+        ,$signDate,$bloodNo)
     {
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("INSERT INTO donars (NID,firstName,secondName,thirdName,familyName,phone,age,birthday,city,sex
-                                 ,profession,nationality,typeDonar,patient,sponsor,district,street,healthCenter,place,signDate)
-                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                 ,profession,nationality,typeDonar,patient,sponsor,district,street,healthCenter,place,signDate,bloodNo)
+                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->execute(array($NID, $firstName, $secondName, $thirdName, $familyName, $phone, $age, $birthday, $city, $sex
-            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter,$place,$signDate));
+            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter,$place,$signDate,$bloodNo));
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
@@ -95,7 +96,7 @@ class Receptionist
 
 
     public function update ($NID,$firstName,$secondName,$thirdName,$familyName,$phone,$age,$birthday,$city,$sex
-        ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$place,$signDate,$oldNID)
+        ,$profession,$nationality,$type,$patient,$sponsor,$district,$street,$healthCenter,$place,$signDate,$bloodNo,$oldNID)
     {
         include 'vars.php';
         try {
@@ -103,10 +104,10 @@ class Receptionist
             $stmt = $con->prepare("update donars set 
                                   NID=?,firstName=?,secondName=?,thirdName=?,familyName=?,phone=?,age=?,birthday=?,city=?,sex=?
                                  ,profession=?,nationality=?,typeDonar=?,patient=?,sponsor=?,district=?,street=?,healthCenter=?,
-                                 place=?,signDate=?
+                                 place=?,signDate=?,bloodNo=?
                                  where NID=?");
             $stmt->execute(array($NID, $firstName, $secondName, $thirdName, $familyName, $phone, $age, $birthday, $city, $sex
-            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter,$place,$signDate, $oldNID));
+            , $profession, $nationality, $type, $patient, $sponsor, $district, $street, $healthCenter,$place,$signDate,$bloodNo, $oldNID));
             //record updated
             return "New record update successfully";
 

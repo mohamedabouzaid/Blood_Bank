@@ -3,7 +3,7 @@
 
 session_start();
 
-if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist' || $_SESSION['job']=='admin' )
 
 {
         //search
@@ -107,6 +107,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                          <caption >Users</caption>
                                           <tr>
                                               <th>رقم السجل القومى /الاقامه</th>
+                                               <th>رقم وحده الدم</th>
                                               <th>الاسم الاول</th>
                                               <th>الاسم الثانى</th>
                                               <th>الاسم الثالث </th>
@@ -120,6 +121,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
  
             echo "                      <tr>
                                                 <td>" . $user['NID'] . "</td>
+                                                 <td>" . $user['bloodNo'] . "</td>
                                                 <td>" . $user['firstName'] . "</td>
                                                 <td>" . $user['secondName'] . "</td>
                                                 <td>" . $user['thirdName'] . "</td>

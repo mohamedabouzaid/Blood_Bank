@@ -101,7 +101,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                     $result = Receptionist::insert($_POST['NID'], $_POST['firstName'], $_POST['secondName'], $_POST['thirdName'],$_POST['familyName'],
                         $_POST['phone'], $_POST['age'], $_POST['birthday'], $_POST['city'], $_POST['sex'], $_POST['profession']
                         , $_POST['nationality'], $_POST['typeDonar'], $_POST['patient'], $_POST['sponsor'], $_POST['district'], $_POST['street'],
-                        $_POST['healthCenter'],$_POST['place'],$_POST['signDate']);
+                        $_POST['healthCenter'],$_POST['place'],$_POST['signDate'],$_POST['bloodNo']);
                                 $result;
                     }
                     //update file
@@ -111,7 +111,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                            $result = Receptionist::update($_POST['NID'], $_POST['firstName'], $_POST['secondName'], $_POST['thirdName'], $_POST['familyName'],
                                 $_POST['phone'], $_POST['age'], $_POST['birthday'], $_POST['city'], $_POST['sex'], $_POST['profession']
                                 , $_POST['nationality'], $_POST['typeDonar'], $_POST['patient'], $_POST['sponsor'], $_POST['district'], $_POST['street'],
-                                $_POST['healthCenter'],$_POST['place'],$_POST['signDate'],$_POST['oldNID']);
+                                $_POST['healthCenter'],$_POST['place'],$_POST['signDate'],$_POST['bloodNo'],$_POST['oldNID']);
 
                     }
                     //result of create or update
@@ -206,6 +206,13 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist')
                         </div>
                         <label for="inputEmail3" class="col-sm-3 control-label"> مكان التبرع</label>
                     </div>
+                    <div class="form-group">
+                    <div class="col-sm-9">
+                        <input class="form-control"  placeholder="رقم وحده الدم" required type="number" name="bloodNo" <?php if(isset($edit['bloodNo'])){ echo "value='".$edit['bloodNo']."'" ;}?> />
+                    </div>
+                    <label for="inputEmail3" class="col-sm-3 control-label">رقم وحده الدم</label>
+                   </div>
+
                     <div class="form-group">
                         <div class="col-sm-9">
                             <input class="form-control"  placeholder="التاريخ" required type="text" name="signDate" <?php if(isset($edit['signDate'])){ echo "value='".$edit['signDate']."'" ;} else{echo "value='". date("m/d/Y")."'" ;}?> />
