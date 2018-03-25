@@ -6,7 +6,7 @@
  * Time: 1:28 AM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='NAT' || $_SESSION['job']=='admin')
 {
     if(isset($_POST['save']))
     {
