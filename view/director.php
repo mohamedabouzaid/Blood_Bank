@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abouzaid
- * Date: 2/27/2018
- * Time: 11:00 PM
- */
+
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SESSION['job']=='admin')
 {
