@@ -6,7 +6,7 @@
  * Time: 1:28 AM
  */
 session_start();
-if(isset($_SESSION['userName']) && $_SESSION['job']=='serology')
+if(isset($_SESSION['userName']) && $_SESSION['job']=='serology' || $_SESSION['job']=='admin')
 {
     if(isset($_POST['save']))
     {
@@ -44,7 +44,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='serology')
 
 
         <div class="w3-bar w3-light-grey">
-            <a href="bacterial.php" class="w3-bar-item w3-button">Serology Department Home</a>     <!-- Bacterial Department home button -->
+            <a href="serology.php" class="w3-bar-item w3-button">Serology Department Home</a>     <!-- Bacterial Department home button -->
 
             <div class="w3-dropdown-hover">
                 <!-- user name -->
