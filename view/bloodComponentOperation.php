@@ -2,7 +2,7 @@
 
 session_start();
 
-if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2') {
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2' || $_SESSION['job']=='admin') {
 
 
     if (isset($_POST['save'])) {
