@@ -3,7 +3,7 @@
 
 session_start();
 
-if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse') {
+if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']=='admin') {
 
 
     if (isset($_POST['insert'])) {
