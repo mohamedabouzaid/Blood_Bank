@@ -19,7 +19,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
 
         }
         $_SESSION['operation']= $result;
-        header('location:NAT.php');
+        header('location:lab.php');
     }
     else {
 

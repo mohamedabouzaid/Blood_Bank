@@ -20,7 +20,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='serology' || $_SESSION['jo
         else{ $result= serology::update($_POST['unitNo'],$_POST['HIV'],$_POST['HBsAg'],$_POST['antiHCV'],
                 $_POST['syphilis'],$_POST['antiHBc'],$_POST['HTLV']);}
         $_SESSION['operation']= $result;
-        header('location:NAT.php');
+        header('location:lab.php');
     }
     else {
 
