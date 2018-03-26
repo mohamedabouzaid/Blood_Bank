@@ -1,16 +1,23 @@
 <?php
-
+include "../model/malaria.php";
+include "../model/NATmodel.php";
 session_start();
 if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']=='admin')
 {
     if(isset($_POST['save']))
     {
-        include "../model/malaria.php";
         //insert
         if($_POST['do']=='insert'){
-            $result= malaria::insert($_POST['unitNo'],$_POST['test'],$_POST['confirmation']);}
+            $result= malaria::insert($_POST['unitNo'],$_POST['test'],$_POST['confirmation']);
+            $result.= NATmodel::insert($_POST['unitNo'],$_POST['HBV'],$_POST['HCV'],$_POST['HIV']);
+        }
+
         //update
-        else{ $result= malaria::update($_POST['unitNo'],$_POST['test'],$_POST['confirmation']);}
+        else{
+            $result= malaria::update($_POST['unitNo'],$_POST['test'],$_POST['confirmation']);
+            $result.=NATmodel::update($_POST['unitNo'],$_POST['HBV'],$_POST['HCV'],$_POST['HIV']);
+
+        }
         $_SESSION['operation']= $result;
         header('location:NAT.php');
     }
@@ -52,14 +59,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
 
         <?php
         // already inserted
-        include "../model/malaria.php";
-        $search=malaria::search($_GET['unit']);
-        if($search){
+
+        $searchMalaria=malaria::search($_GET['unit']);
+        $searchNat=NATmodel::search($_GET['unit']);
+        if($searchMalaria){
             //update
             if($_GET['do']=='update') {
 
-                $edit = $search[0];
-
+                $edit=array_merge($searchMalaria[0],$searchNat[0]);
+                print_r($edit);
             }
             //insert
             else{
@@ -98,6 +106,49 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
         {echo 'checked';} ?>> Seen<br>
         <input type="radio" name="confirmation" value="Not Seen" <?php if(isset($edit)&&$edit['confirmation']=='Not Seen')
         {echo 'checked';} ?>>Not seen<br><br>
+
+
+
+
+<!--nat-->
+
+        <h5>Nat: </h5>
+
+        HBV:<br>
+        <input type="radio" name="HBV" value="Reactive" <?php if(isset($edit)&&$edit['HBV']=='Reactive')
+        {echo 'checked';} ?>> Reactive<br>
+
+
+        <input type="radio" name="HBV" value="Non Reactive"  <?php if(isset($edit)&&$edit['HBV']=='Non Reactive')
+        {echo 'checked';} ?>>Non Reactive<br>
+
+        <input type="radio" name="HBV" value="invalid"  <?php if(isset($edit)&&$edit['HBV']=='invalid')
+        {echo 'checked';} ?>>invalid<br><br>
+
+        HCV:<br>
+        <input type="radio" name="HCV" value="Reactive"  <?php if(isset($edit)&&$edit['HCV']=='Reactive')
+        {echo 'checked';} ?>> Reactive<br>
+
+        <input type="radio" name="HCV" value="Non Reactive" <?php if(isset($edit)&&$edit['HCV']=='Non Reactive')
+        {echo 'checked';} ?>>Non Reactive<br>
+
+        <input type="radio" name="HCV" value="invalid"  <?php if(isset($edit)&&$edit['HCV']=='invalid')
+        {echo 'checked';} ?>>invalid<br><br>
+
+        HIV:<br>
+        <input type="radio" name="HIV" value="Reactive" <?php if(isset($edit)&&$edit['HIV']=='Reactive')
+        {echo 'checked';} ?>> Reactive<br>
+
+        <input type="radio" name="HIV" value="Non Reactive" <?php if(isset($edit)&&$edit['HIV']=='Non Reactive')
+        {echo 'checked';} ?>>Non Reactive<br>
+
+        <input type="radio" name="HIV" value="invalid"  <?php if(isset($edit)&&$edit['HIV']=='invalid')
+        {echo 'checked';} ?>>invalid<br><br>
+
+
+
+
+
 
 
 
