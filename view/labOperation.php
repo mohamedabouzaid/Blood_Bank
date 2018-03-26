@@ -8,9 +8,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
         include "../model/malaria.php";
         //insert
         if($_POST['do']=='insert'){
-            $result= malaria::insert($_POST['unitNo'],$_POST['test']);}
+            $result= malaria::insert($_POST['unitNo'],$_POST['test'],$_POST['confirmation']);}
         //update
-        else{ $result= malaria::update($_POST['unitNo'],$_POST['test']);}
+        else{ $result= malaria::update($_POST['unitNo'],$_POST['test'],$_POST['confirmation']);}
         $_SESSION['operation']= $result;
         header('location:NAT.php');
     }
@@ -28,7 +28,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
             <meta charset="UTF-8">
-            <title>Malaria Department</title>
+            <title>lab Department</title>
         </head>
 
 
@@ -36,7 +36,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
 
 
         <div class="w3-bar w3-light-grey">
-            <a href="malaria.php" class="w3-bar-item w3-button">Malaria Department Home</a>     <!-- Malaria Department home button -->
+            <a href="lab.php" class="w3-bar-item w3-button">lab Department Home</a>     <!-- lab Department home button -->
 
             <div class="w3-dropdown-hover">
                 <!-- user name -->
@@ -83,15 +83,26 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
 
 
 
-
+<!--malaria-->
     <h3><?php echo 'Unit NO:  ' . $_GET['unit'] ?> </h3>
-    <h5>Enter the Result of Test: </h5>
+    <h5> Malaria: </h5>
     <form method="post" action="">
+        test<br>
+        Positive<input type="radio" name="test" value="Positive" <?php if(isset($edit)&&$edit['test']=='Positive')
+        {echo 'checked';} ?>> <br>
+        Negative<input type="radio" name="test" value="Negative" <?php if(isset($edit)&&$edit['test']=='Negative')
+        {echo 'checked';} ?>><br>
+        Confirmation<br>
+        Think film<br>
+        <input type="radio" name="confirmation" value="Seen" <?php if(isset($edit)&&$edit['confirmation']=='Seen')
+        {echo 'checked';} ?>> Seen<br>
+        <input type="radio" name="confirmation" value="Not Seen" <?php if(isset($edit)&&$edit['confirmation']=='Not Seen')
+        {echo 'checked';} ?>>Not seen<br><br>
 
-        <input type="radio" name="test" value="+" <?php if(isset($edit)&&$edit['test']=='+')
-        {echo 'checked';} ?>> +<br>
-        <input type="radio" name="test" value="-" <?php if(isset($edit)&&$edit['test']=='-')
-        {echo 'checked';} ?>>-<br><br>
+
+
+
+
 
 
         <input type="hidden" name="do" value="<?php echo $_GET['do']; ?>">

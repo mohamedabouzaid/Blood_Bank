@@ -9,15 +9,15 @@
 class malaria
 {
     //insert in malaria
-    public function insert($unitNO,$test)
+    public function insert($unitNO,$test,$confirmation)
     {
 
         include 'vars.php';
         try {
             //sql statment
-            $stmt = $con->prepare("INSERT INTO  malarialab(component_unitNo, test)
-                               VALUES (?,?)");
-            $stmt->execute(array($unitNO, $test));
+            $stmt = $con->prepare("INSERT INTO  malarialab(component_unitNo, test,confirmation)
+                               VALUES (?,?,?)");
+            $stmt->execute(array($unitNO, $test,$confirmation));
             return "Insert record  successfully";
 
         } catch (PDOException $e) {
@@ -29,15 +29,15 @@ class malaria
 
 
     //update
-    public function update($unitNO,$test)
+    public function update($unitNO,$test,$confirmation)
     {
 
         include 'vars.php';
         try {
             //sql statment
-            $stmt = $con->prepare("update  malarialab set  test=?
+            $stmt = $con->prepare("update  malarialab set  test=?,confirmation=?
                                WHERE  component_unitNo=?");
-            $stmt->execute(array( $test ,$unitNO,));
+            $stmt->execute(array( $test ,$confirmation,$unitNO));
             return "update record  successfully";
 
         } catch (PDOException $e) {
