@@ -9,16 +9,20 @@
 class serology
 {
 //insert serology RESULT
-    public function insert($unitNO,$HIV,$HIBsAg,$antiHCV,$syphilis,$antiHBc,$HTLV)
+    public function insert($unitNo,$HBsAg,$neut,$HCVab,
+                $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
+                $HBs,$HBc,$s)
     {
-
         include 'vars.php';
         try {
             //sql statment
-            $stmt = $con->prepare("INSERT INTO  serology (component_unitNo,HIV,HBsAg,antiHCV,
-                                   syphilis,antiHBc,HTLV)
-                               VALUES (?,?,?,?,?,?,?)");
-            $stmt->execute(array($unitNO,$HIV,$HIBsAg,$antiHCV,$syphilis,$antiHBc,$HTLV));
+            $stmt = $con->prepare("INSERT INTO  serology (component_unitNo,HBsAg,neut,HCVab,
+                lia,HIVag,lia2,HTLV,lia3,syphilis,tb,
+                HBs,HBc,s)
+                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->execute(array($unitNo,$HBsAg,$neut,$HCVab,
+                $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
+                $HBs,$HBc,$s));
 
             return "Insert record  successfully";
 
@@ -34,15 +38,20 @@ class serology
     //update
 
     //insert Bacterial RESULT
-    public function update($unitNO,$HIV,$HIBsAg,$antiHCV,$syphilis,$antiHBc,$HTLV){
+    public function update($unitNo,$HBsAg,$neut,$HCVab,
+                           $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
+                           $HBs,$HBc,$s){
 
         include 'vars.php';
         try {
             //sql statment
-            $stmt = $con->prepare("update serology set HIV=?,HBsAg=?,antiHCV=?,
-                                     syphilis=?,antiHBc=?,HTLV=?
+            $stmt = $con->prepare("update serology set HBsAg=?,neut=?,HCVab=?,
+                lia=?,HIVag=?,lia2=?,HTLV=?,lia3=?,syphilis=?,tb=?,
+                HBs=?,HBc=?,s=?
                                           WHERE component_unitNo=?      ");
-            $stmt->execute(array($HIV,$HIBsAg,$antiHCV,$syphilis,$antiHBc,$HTLV,$unitNO));
+            $stmt->execute(array($HBsAg,$neut,$HCVab,
+                $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
+                $HBs,$HBc,$s,$unitNo));
             return "update record  successfully";
 
         } catch (PDOException $e) {

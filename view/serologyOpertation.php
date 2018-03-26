@@ -102,12 +102,12 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='serology' || $_SESSION['jo
                 <input type="radio" name="HIV" value="Non_Reactive"
                    <?php if(isset($edit)&&$edit['HIV']=='Non_Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
 
-        HBsAg <input type="radio" name="HBsAg" value="Reactive"
+        *HBsAg <input type="radio" name="HBsAg" value="Reactive"
             <?php if(isset($edit)&&$edit['HBsAg']=='Reactive'){echo 'checked';} ?>> Reactive<br>
         <input type="radio" name="HBsAg" value="Non_Reactive"
             <?php if(isset($edit)&&$edit['HBsAg']=='Non_Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
 
-        anti HCV <input type="radio" name="antiHCV" value="Reactive"
+        *anti HCV <input type="radio" name="antiHCV" value="Reactive"
             <?php if(isset($edit)&&$edit['antiHCV']=='Reactive'){echo 'checked';} ?>> Reactive<br>
         <input type="radio" name="antiHCV" value="Non_Reactive"
             <?php if(isset($edit)&&$edit['antiHCV']=='Non_Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
