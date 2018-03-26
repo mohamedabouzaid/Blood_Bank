@@ -61,11 +61,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/bloodComponent.php');
 
         }
-        elseif($_SESSION['job']=='NAT'){
 
-            header('location:../../view/NAT.php');
-
-        }
         elseif($_SESSION['job']=='lab'){
 
             header('location:../../view/lab.php');
@@ -73,18 +69,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         }
 
 
-
-
-        elseif($_SESSION['job']=='malaria'){
-
-            header('location:../../view/malaria.php');
-
-        }
-        elseif($_SESSION['job']=='serology'){
-
-            header('location:../../view/serology.php');
-
-        }
 
         elseif($_SESSION['job']=='medical_supervisor'){
 

@@ -31,22 +31,9 @@
          header('location:bloodComponent.php');
 
      }
-     elseif($_SESSION['job']=='NAT'){
 
-         header('location:NAT.php');
 
-     }
 
-     elseif($_SESSION['job']=='malaria'){
-
-         header('location:malaria.php');
-
-     }
-     elseif($_SESSION['job']=='serology'){
-
-         header('location:serology.php');
-
-     }
 
      elseif($_SESSION['job']=='medical_supervisor'){
 
