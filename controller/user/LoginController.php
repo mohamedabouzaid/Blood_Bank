@@ -66,6 +66,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/NAT.php');
 
         }
+        elseif($_SESSION['job']=='lab'){
+
+            header('location:../../view/lab.php');
+
+        }
 
 
 

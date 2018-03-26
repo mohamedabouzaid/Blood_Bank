@@ -58,6 +58,11 @@
          header('location:director.php');
 
      }
+     elseif($_SESSION['job']=='lab'){
+
+         header('location:lab.php');
+
+     }
 
      elseif($_SESSION['job']=='admin'){
 
