@@ -100,7 +100,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
     //serology Department
     include "../model/serology.php";
     $serology=serology::search($_GET['unit']);
-    $ser=$serology[0];
+    $edit=$serology[0];
+    $edits=explode('-',$edit['s']);
+
 
 
 
@@ -127,7 +129,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
             <th rowspan="3">Unit no</th>
             <th rowspan="3">Time Blood Collected</th>
             <th rowspan="3"> Time Blood separated</th>
-            <th colspan="9"> Type of component</th>
+            <th colspan="10"> Type of component</th>
         </tr>
         <tr class="w3-blue">
             <th rowspan="2"> PRBC'S</th>
@@ -136,6 +138,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
             <th rowspan="2">Cryo</th>
             <th colspan="3">Filt</th>
             <th rowspan="2">Bag Type</th>
+            <th rowspan="2">ABO RH</th>
+            <th rowspan="2">Note</th>
         </tr >
         <tr class="w3-blue">
             <th>WB</th>
@@ -160,35 +164,105 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
             <td><?php echo $unit['Fpc']; ?>
 
             <td><?php echo $unit['bagType']; ?>
+            <td><?php echo $unit['ABO']; ?>
+            <td><?php echo $unit['note']; ?>
+
 
 
         </tr>
     </table>
 
+    <?php echo "performed: ".$unit['performed']; ?><br>
+    <?php echo"approved: " . $unit['approved']; ?><br>
+    <?php echo"sign: ". $unit['sign']; ?><br>
 
-    <h3>the Result of NAT Test</h3><?php  if ($NAT==null) {echo "NOT FINISED";}
-    else{
-        echo 'HBV: '.$NAT['HBV'].'<br>   
+
+    <h3>the Result of NAT Test</h3>
+    <?php
+    echo 'HBV: '.$NAT['HBV'].'<br>   
     HCV:'. $NAT['HCV'].' <br>
-    HIV: '. $NAT['HIV'].'  <br>';}?>
-
-
-
-    <h3>the Result of Serology Test</h3><?php  if ($ser==null) {echo "NOT FINISED";}
-    else{
-        echo 'HIV I/II:'. $ser['HIV'].'<br>
-    HBsAg:' .$ser['HBsAg']. '<br>
-    anti HCV:'. $ser['antiHCV'].' <br>
-    syphilis:'. $ser['syphilis'].'  <br>
-    anti HBc:' . $ser['antiHBc'].' <br>
-    HTLV: '. $ser['HTLV']. '<br>';}?>
+    HIV: '. $NAT['HIV'].'  <br>';
+    ?>
 
 
 
 
-    <h3>the Result of Malaria Test</h3><?php  if ($ser==null) {echo "NOT FINISED";}
-    else{
-        echo 'Result:'. $mal['test'].'<br>';}?>
+    <h3>the Result of Serology Test</h3>
+
+    HBsAg <input type="radio"<?php if(isset($edit)&&$edit['HBsAg']=='Reactive'){echo 'checked';} ?>> Reactive<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['HBsAg']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
+    Confirmation<br>
+    s/co1<input type="text"  <?php if(isset($edits)){echo "value=".$edits[0]; }?>><br>
+    s/co2<input type="text"  <?php if(isset($edits)){echo "value=".$edits[1]; }?>><br>
+    s/c03 <input type="text" <?php if(isset($edits)){echo "value=".$edits[2]; }?>><br><br>
+    Neutraliation<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['neut']=='Reactive-confirmed'){echo 'checked';} ?>>Reactive-confirmed<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['neut']=='Non confirmed'){echo 'checked';} ?>>Non confirmed<br><br>
+
+
+    HCV Ab <input type="radio" <?php if(isset($edit)&&$edit['HCVab']=='Reactive'){echo 'checked';} ?>> Reactive<br>
+    <input type="radio"<?php if(isset($edit)&&$edit['HCVab']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
+    Confirmation<br>
+    s/co1<input type="text" <?php if(isset($edits)){echo "value=".$edits[3]; }?> ><br>
+    s/co2<input type="text" <?php if(isset($edits)){echo "value=".$edits[4]; }?>><br>
+    s/c03 <input type="text" <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br><br>
+    LIA<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia']=='negative'){echo 'checked';} ?>>negative<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia']=='positive'){echo 'checked';} ?>>positive<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia']=='indeterminate'){echo 'checked';} ?>>indeterminate<br><br>
+
+
+    HIV Ag/Ab <input type="radio" <?php if(isset($edit)&&$edit['HIVag']=='Reactive'){echo 'checked';} ?>> Reactive<br>
+    <input type="radio"<?php if(isset($edit)&&$edit['HIVag']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
+    Confirmation<br>
+    s/co1<input type="text" <?php if(isset($edits)){echo "value=".$edits[6]; }?> ><br>
+    s/co2<input type="text"  <?php if(isset($edits)){echo "value=".$edits[7]; }?>><br>
+    s/c03 <input type="text"   <?php if(isset($edits)){echo "value=".$edits[8]; }?>><br><br>
+
+    <input type="radio" <?php if(isset($edit)&&$edit['lia2']=='negative'){echo 'checked';} ?>>negative<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia2']=='positive'){echo 'checked';} ?>>positive<br><br>
+
+
+
+    HTLV-1/11 <input type="radio" <?php if(isset($edit)&&$edit['HTLV']=='Reactive'){echo 'checked';} ?>> Reactive<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['HTLV']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
+    Confirmation<br>
+    s/co1<input type="text"    <?php if(isset($edits)){echo "value=".$edits[9]; }?>><br>
+    s/co2<input type="text"   <?php if(isset($edits)){echo "value=".$edits[10]; }?>><br>
+    s/c03 <input type="text"   <?php if(isset($edits)){echo "value=".$edits[11]; }?>><br><br>
+    LIA<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia3']=='negative'){echo 'checked';} ?>>negative<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia3']=='positive'){echo 'checked';} ?>>positive<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['lia3']=='indeterminate'){echo 'checked';} ?>>indeterminate<br><br>
+
+
+
+
+    syphilis <input type="radio" <?php if(isset($edit)&&$edit['syphilis']=='Reactive'){echo 'checked';} ?>> Reactive<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['syphilis']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
+    TBHA<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['tb']=='1/80'){echo 'checked';} ?>>1/80<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['tb']=='1/160'){echo 'checked';} ?>>1/160<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['tb']=='1/320'){echo 'checked';} ?>>1/320<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['tb']=='1/640'){echo 'checked';} ?>>1/640<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['tb']=='1/1280'){echo 'checked';} ?>>1/1280<br><br>
+
+
+    HBs Ab <input type="radio" <?php if(isset($edit)&&$edit['HBs']=='0>10'){echo 'checked';} ?>> 0>10<br><br>
+
+    <input type="radio" <?php if(isset($edit)&&$edit['HBs']=='10>100'){echo 'checked';} ?>>10>100<br><br>
+    <input type="radio" <?php if(isset($edit)&&$edit['HBs']=='<100'){echo 'checked';} ?>><100<br><br>
+
+    HBc <input type="radio" <?php if(isset($edit)&&$edit['HBc']=='Reactive'){echo 'checked';} ?>> Reactive<br>
+    <input type="radio" <?php if(isset($edit)&&$edit['HBc']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
+
+
+
+
+    <h3>the Result of Malaria Test</h3>
+    <?php
+        echo 'Result:'. $mal['test'].'<br>';
+    echo 'confirmation:'. $mal['confirmation'].'<br>';?>
 
 
     <a href="?do=accept&unit=<?php echo $_GET['unit']; ?>&mod=<?php echo $_GET['do']; ?>"> Accept</a>
