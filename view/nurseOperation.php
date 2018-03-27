@@ -54,7 +54,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
 
         ?>
 
-
+<!-- 
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -70,18 +70,86 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
 
 
         <div class="w3-bar w3-light-grey">
-            <a href="nurse.php" class="w3-bar-item w3-button">Nurse Home</a>     <!-- nurse home button -->
+            <a href="nurse.php" class="w3-bar-item w3-button">Nurse Home</a>     <!-- nurse home button --
             <div class="w3-dropdown-hover">
-                <!-- user name -->
+                <!-- user name --
                 <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>
-                    <!-- logout button -->
+                    <!-- logout button --
                 </div>
             </div>
 
 
+        </div> -->
+
+        <!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clinic</title>
+    <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resource/css/Questionnaire.css">
+    <link rel="stylesheet" href="../resource/css/header.css">
+    <link rel="stylesheet" href="../resource/css/Recieptionist.css">
+    <style>
+        .col-md-10{
+            background: #ffffffa6;
+            padding: 17px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 1px #000;
+         
+        }
+        .left{
+            margin-top: -32px;
+        }
+        .results{
+            margin-top: -19px;
+            margin-bottom: 10px;
+            margin-left: 72px;
+            list-style: none;
+            font-weight: bold;
+            color: #5a5858;
+        }
+        .stopwatch{
+            margin-top: 8px;
+            color: #5a5858;
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <header class="container" >
+        <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav links">
+                    <li >
+                         <a href="nurse.php" >Nurse Home</a>     <!-- Nurse Homebutton -->
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                   <span class="name"> <?php echo $_SESSION['userName'] ?></span>
+                </li>
+                <li><a class="btn" id="login" href="../controller/user/Logoutcontroller.php">Logout</a> </li>       <!-- login button-->
+            </ul>
+            </div>
         </div>
+        </nav>
+    </header>
+
+        <img src="../resource/images/4.jpg" alt="" class="bg-image" style="margin-top:7px">
+        <div class="blure-body" style="background: linear-gradient(to left, #ffffff00 ,#f85f65b8);"></div>
+
 
         <?php
         
@@ -90,7 +158,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
         include '../model/NurseModel.php';
         $check = NurseModel::search($_GET['nid']);
         if ($check) {
-        echo "Blood is already inserted";
+        echo '<h3 class="col-md-10 col-md-offset-1">Blood is already inserted</h3>';
            die();
 
         }}
@@ -111,71 +179,151 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
 
             ?>
 
-            <h3>Blood sample of <?php echo $_GET['nid']; ?></h3>
+            <h4 class="col-md-10 col-md-offset-1" style="margin-top: 15px;">Blood sample of <?php echo $_GET['nid']; ?></h4>
             <?php $x=null;echo $x; ?>
             <!--form of blood information-->
-            <form action="" method="post">
+            <div class="col-md-10 col-md-offset-1">
+            <form action="" method="post" class="">
 <!--      stop watch          -->
-                <nav class="controls">
-                    <a href="#" class="button" onClick="stopwatch.start();">Start</a>
-                    <a href="#" class="button" onClick="stopwatch.lap();">Get Time</a>
-                    <a href="#" class="button" onClick="stopwatch.stop();">Stop</a>
-                    <div class="stopwatch"></div>
+                <dav class="form-group col-xs-12 " style="margin-bottom: 25px;">
+                        
+                        <a  class="btn btn-default" onClick="stopwatch.start();">Start <span class="glyphicon glyphicon-play"></span></a>
+                        <a  class="btn btn-default" onClick="stopwatch.stop();">Stop <span class="glyphicon glyphicon-pause"></span></a>
+                        <a  class="btn btn-default" onClick="stopwatch.lap();">Get Time <span class="glyphicon glyphicon-time"></span></a>
+                        
+                        <div class="stopwatch ">  </div>
+                            Time of process:<ul class="results" ></ul>
+                            <input id="getwatch" type="hidden" name="x" value="">
+                       
+                   
+                </dav>
+                
+                
+                
 
-                </nav>
-                Time of process:<ul class="results"></ul>
-                <input id="getwatch" type="hidden" name="x" value="">
-                <input type="radio" name="NID" required <?php if(isset($edit)){ echo"checked" ;}?>>Checked ID<br>
-                Sealed by ID<input type="number" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
-                Bag Weight <input type="number" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>><br>
-                Time of collections<input type="time" name="time"<?php if(isset($edit)){ echo "value='".$edit['timeCollection']."'" ;}?>><br>
-                Arm Inspection<input type="radio" name="arm" value="Left" <?php if(isset($edit )&&$edit['arm']=='Left'){ echo "checked" ;}?>>Left
-                                     <input type="radio" name="arm" value="Right" <?php if(isset($edit )&&$edit['arm']=='Right'){ echo "checked" ;}?>>Right<br>
+                <div class="form-group col-xs-6 left" style="margin-top:0">
+                    <label >Sealed by ID</label>
+                    <input  class="form-control" type="number" placeholder="Blood ID" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
+                </div>
 
-                Visual inspection of bag<input type="radio" name="visual" value="Yes" <?php if(isset($edit )&&$edit['visual']=='Yes'){ echo "checked" ;}?>>Yes
-                                         <input type="radio" name="visual" value="No"  <?php if(isset($edit )&&$edit['visual']=='No'){ echo "checked" ;}?>>No<br>
+                <div class="form-group col-xs-6 " >
+                    
+                    <div class="radio">
+                        <label> 
+                            <input  type="radio" name="NID" required <?php if(isset($edit)){ echo"checked" ;}?>>
+                            Checked ID 
+                        </label>
+                        </div>
+                </div>
 
-                Confirmed Blood Group
+                <div class="form-group col-xs-6 ">
+                    <label > Visual inspection of bag  </label>
+                    <div class="radio">
+                        <label>
+                           <input type="radio" name="visual" value="Yes" <?php if(isset($edit )&&$edit['visual']=='Yes'){ echo "checked" ;}?>>Yes
+                        </label>
+                     </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="visual" value="No"  <?php if(isset($edit )&&$edit['visual']=='No'){ echo "checked" ;}?>>No
+                        </label>
+                     </div>
+                   
+                </div>
+               
 
-             <select required name="bloodGroup">
-                 <?php if(isset($edit)) {echo '<option value="'.$edit['bloodGroup'].'">'.$edit['bloodGroup'].'</option>';}?>
-                    <option value="A−"> A−</option>
-                    <option value="A+">A+</option>
-                    <option value="B−">B−</option>
-                    <option value="B+">B+</option>
-                    <option value="AB−">AB−</option>
-                    <option value="AB+">AB+</option>
-                    <option value="O−">O−</option>
-                    <option value="O+">O+</option>
+                <div class="form-group col-xs-6 left" style="margin-top: -53px;">
+                    <label >Time of collections</label>
+                    <input class="form-control" placeholder="Time of collections" type="time" name="time"<?php if(isset($edit)){ echo "value='".$edit['timeCollection']."'" ;}?>><br>
+                </div>
 
-                </select><br>
+                <div class="form-group col-xs-6 left">
+                    <label class="checkbox">Arm Inspection </label>
+                    <div class="radio">
+                        <label>
+                            <input  type="radio" name="arm" value="Left" <?php if(isset($edit )&&$edit['arm']=='Left'){ echo "checked" ;}?>>Left
+                        </label>
+                     </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="arm" value="Right" <?php if(isset($edit )&&$edit['arm']=='Right'){ echo "checked" ;}?>>Right
+                        </label>
+                     </div>
+                   
+                </div>
+
+
+                <div class="form-group col-xs-6 left" style="margin-top: -38px;">
+                    <label >Bag Weight</label>
+                     <input class="form-control"  type="number" placeholder="Bag Weight" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>>
+                </div>
+               
 
                  <?php if (isset($edit)){$comments= explode('-', $edit['comment']);
                  } ?>
-                <h5>Comments</h5>
-                <input type="checkbox" name="comments_list[]" value="Slow bleed"
-                    <?php if(isset($edit)){foreach ($comments as $comment){if($comment=="Slow bleed"){echo"checked";}}} ?>
-                > Slow bleed<br>
+
+                
+                
+                <div class="form-group col-xs-6 ">
+                    <label >Comments </label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="comments_list[]" value="Slow bleed"
+                                <?php if(isset($edit)){foreach ($comments as $comment){if($comment=="Slow bleed"){echo"checked";}}} ?>
+                            > Slow bleed
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label> 
+                            <input type="checkbox" name="comments_list[]" value=" Aspirin"
+                                <?php if(isset($edit)){foreach ($comments as $comment){if($comment==" Aspirin"){echo"checked";}}} ?>
+                            > Aspirin
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label> 
+                            <input type="checkbox" name="comments_list[]" value="Relative"
+                                <?php if(isset($edit)){ foreach ($comments as $comment){if($comment=="Relative"){echo"checked";}}} ?>
+                            > Relative
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label> 
+                            <input type="checkbox" name="comments_list[]" value="Other"
+                                <?php if(isset($edit)){ foreach ($comments as $comment){if($comment=="Other"){echo"checked";}}} ?>
+                            > Other
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-6 left" style="margin-top: -117px;">
+                    <label class="checkbox">Confirmed Blood Group</label>
+                    <select class="form-control" required name="bloodGroup">
+                        <?php if(isset($edit)) {echo '<option value="'.$edit['bloodGroup'].'">'.$edit['bloodGroup'].'</option>';}?>
+                            <option value="A−"> A−</option>
+                            <option value="A+">A+</option>
+                            <option value="B−">B−</option>
+                            <option value="B+">B+</option>
+                            <option value="AB−">AB−</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O−">O−</option>
+                            <option value="O+">O+</option>
+
+                        </select>
+                </div>
 
 
-
-                <input type="checkbox" name="comments_list[]" value=" Aspirin"
-                    <?php if(isset($edit)){foreach ($comments as $comment){if($comment==" Aspirin"){echo"checked";}}} ?>
-                > Aspirin<br>
-
-                <input type="checkbox" name="comments_list[]" value="Relative"
-                    <?php if(isset($edit)){ foreach ($comments as $comment){if($comment=="Relative"){echo"checked";}}} ?>
-                > Relative<br>
-
-                <input type="checkbox" name="comments_list[]" value="Other"
-                    <?php if(isset($edit)){ foreach ($comments as $comment){if($comment=="Other"){echo"checked";}}} ?>
-                > Other<br>
-                <input type="hidden" name="NID" value="<?php echo $_GET['nid']; ?>">
-                <input type="submit" value="Save" <?php if(isset($edit)){ echo "name='edit'" ;}
-                else{echo "name='insert'" ;}?>>
+                <input  type="hidden" name="NID" value="<?php echo $_GET['nid']; ?>">
+                <div class="col-md-12" style="margin-top: -10px;">
+                    <input class="btn btn-default col-md-4 col-md-offset-4" type="submit" value="Save" <?php if(isset($edit)){ echo "name='edit'" ;}
+                    else{echo "name='insert'" ;}?>>
+                </div>
 
             </form>
-
+            </div>
 
         <script>
 
@@ -209,6 +357,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
                     let li = document.createElement('li');
 
                     li.innerText = this.format(times);
+                    
+                    this.results.innerHTML = '';
                     this.results.appendChild(li);
 
                     document.querySelector('#getwatch').setAttribute("value", this.format(times));
