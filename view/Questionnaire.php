@@ -173,7 +173,7 @@ if(isset($_POST['accept'])) {
     <?php
 
 
-         echo'   <div>';
+         echo'   <div style= "display: inline-block; position: fixed; top: 13px; right: 198px; font-size: 18px;">';
            echo   $_SESSION['donar_name'] .'</div>';
             ?>
             <!--ملاحظه-->
