@@ -174,9 +174,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician' || $_SESSI
 
                           </select>
                     </td>
-                    <td><input class="form-control" type="number" name="hp" <?php if(isset($edit)){echo "value='".$edit['hp']."'" ;} ?> required></td>
-                    <td><input class="form-control" type="number" name="pluse" <?php if(isset($edit)){echo "value='".$edit['pluse']."'" ;} ?>  required></td>
-                    <td><input class="form-control" type="number" name="bp"   <?php if(isset($edit)){echo "value='".$edit['bp']."'" ;} ?>required></td>
+                    <td><input class="form-control" type="number" name="hp"  step="any"<?php if(isset($edit)){echo "value='".$edit['hp']."'" ;} ?> required></td>
+                    <td><input class="form-control" type="number" name="pluse"  step="any"<?php if(isset($edit)){echo "value='".$edit['pluse']."'" ;} ?>  required></td>
+                    <td><input class="form-control" type="number" name="bp"   step="any" <?php if(isset($edit)){echo "value='".$edit['bp']."'" ;} ?>required></td>
 
                 </tr>
             </table>
