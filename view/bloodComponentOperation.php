@@ -207,12 +207,12 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2' || $_SESSION['job
                 </tr>
                 </thead>
                 <tr>
-                    <td><input class="form-control" type="text" name="centrifuge" <?php if(isset($edit)){ echo "value='".$edit['centerNo']."'" ;}?>>
-                    <td><input class="form-control" type="text" name="unit" <?php if(isset($edit)){ echo "value='".$edit['unitNo']."'" ;}?>>
-                    <td><input class="form-control" type="time" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
-                    <td><input class="form-control" type="time" name="timeSeparated" <?php if(isset($edit)){ echo "value='".$edit['timeSeparated']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="centrifuge" <?php if(isset($edit)){ echo "value='".$edit['centerNo']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="unit" <?php if(isset($edit)){ echo "value='".$edit['unitNo']."'" ;}?>>
+                    <td><input required class= "form-control" type="time" name="timeCollected" value="<?php echo $time_Collected['timeCollection'] ?>" readonly>
+                    <td><input required class="form-control" type="time" name="timeSeparated" <?php if(isset($edit)){ echo "value='".$edit['timeSeparated']."'" ;}?>>
 
-                    <td><select class="form-control" name="prbc">
+                    <td><select required class="form-control" name="prbc">
                             <?php if(isset($edit)){ echo'<option value="'.$edit['prbc'].'">'.$edit['prbc'].'</option> ';}?>
                         <option value="less collection">less collection</option>
                         <option value="high collection">high collection</option>
@@ -222,7 +222,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2' || $_SESSION['job
                         </select></td>
 
 
-                    <td><select class="form-control" name="pc">
+                    <td><select  required class="form-control" name="pc">
                             <?php if(isset($edit)){ echo'<option value="'.$edit['pc'].'">'.$edit['pc'].'</option> ';}?>
                             <option value="open system">open system</option>
                             <option value="bloody">bloody</option>
@@ -234,7 +234,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2' || $_SESSION['job
 
 
 
-                    <td><select class="form-control" name="ffp">
+                    <td><select required class="form-control" name="ffp">
                             <?php if(isset($edit)){ echo'<option value="'.$edit['ffp'].'">'.$edit['ffp'].'</option> ';}?>
                             <option value="open system">open system</option>
                             <option value="bloody">bloody</option>
@@ -245,32 +245,32 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse_2' || $_SESSION['job
 
 
 
-                    <td><input class="form-control" type="text" name="cryo" <?php if(isset($edit)){ echo "value='".$edit['cryo']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="cryo" <?php if(isset($edit)){ echo "value='".$edit['cryo']."'" ;}?>>
 
-                    <td><input class="form-control" type="text" name="wb" <?php if(isset($edit)){ echo "value='".$edit['Fwb']."'" ;}?>>
-                    <td><input class="form-control" type="text" name="Fprbc" <?php if(isset($edit)){ echo "value='".$edit['Fprbc']."'" ;}?>>
-                    <td><input class="form-control" type="text" name="Fpc" <?php if(isset($edit)){ echo "value='".$edit['Fpc']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="wb" <?php if(isset($edit)){ echo "value='".$edit['Fwb']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="Fprbc" <?php if(isset($edit)){ echo "value='".$edit['Fprbc']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="Fpc" <?php if(isset($edit)){ echo "value='".$edit['Fpc']."'" ;}?>>
 
-                    <td><input class="form-control" type="text" name="bag" <?php if(isset($edit)){ echo "value='".$edit['bagType']."'" ;}?>>
-                    <td><input class="form-control" type="text" name="ABO" <?php if(isset($edit)){ echo "value='".$edit['ABO']."'" ;}?>>
-                    <td><input class="form-control" type="text" name="note" <?php if(isset($edit)){ echo "value='".$edit['note']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="bag" <?php if(isset($edit)){ echo "value='".$edit['bagType']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="ABO" <?php if(isset($edit)){ echo "value='".$edit['ABO']."'" ;}?>>
+                    <td><input required class="form-control" type="text" name="note" <?php if(isset($edit)){ echo "value='".$edit['note']."'" ;}?>>
 
                 </tr>
             </table>
 
             <div class="form-group col-xs-4">
                     <label > Performed By</label>
-                    <input class="form-control" type="text" name="performed" <?php if(isset($edit)){ echo "value='".$edit['performed']."'" ;}?>>
+                    <input required class="form-control" type="text" name="performed" <?php if(isset($edit)){ echo "value='".$edit['performed']."'" ;}?>>
             </div>
 
             <div class="form-group col-xs-4">
                     <label > Approved By</label>
-                    <input class="form-control" type="text" name="approved" <?php if(isset($edit)){ echo "value='".$edit['approved']."'" ;}?> >
+                    <input required class="form-control" type="text" name="approved" <?php if(isset($edit)){ echo "value='".$edit['approved']."'" ;}?> >
             </div>
 
             <div class="form-group col-xs-4">
                     <label > Signature</label>
-                    <input class="form-control" type="text" name="sign"  <?php if(isset($edit)){ echo "value='".$edit['sign']."'" ;}?>>
+                    <input required class="form-control" type="text" name="sign"  <?php if(isset($edit)){ echo "value='".$edit['sign']."'" ;}?>>
             </div>
 
             <input type="hidden" value="<?php echo $_GET['nid']; ?>" name="NID">
