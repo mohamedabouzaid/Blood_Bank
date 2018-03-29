@@ -177,17 +177,20 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
     <?php echo"sign: ". $unit['sign']; ?><br>
 
 
-    <h3>the Result of NAT Test</h3>
-    <?php
+    <h3>the Result of NAT Test</h3><?php  if ($NAT==null) {echo "NOT FINISED";}
+    else {
+
     echo 'HBV: '.$NAT['HBV'].'<br>   
     HCV:'. $NAT['HCV'].' <br>
     HIV: '. $NAT['HIV'].'  <br>';
-    ?>
+}?>
 
 
 
 
-    <h3>the Result of Serology Test</h3>
+    <h3>the Result of Serology Test</h3><?php  if ($edit==null) {echo "NOT FINISED";}
+
+    else{?>
 
     HBsAg <input type="radio"<?php if(isset($edit)&&$edit['HBsAg']=='Reactive'){echo 'checked';} ?>> Reactive<br>
     <input type="radio" <?php if(isset($edit)&&$edit['HBsAg']=='Non Reactive'){echo 'checked';} ?>>Non Reactive<br><br>
@@ -258,11 +261,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
 
 
 
+<?php }?>
+
 
     <h3>the Result of Malaria Test</h3>
-    <?php
+   <?php
+     if ($mal==null) {echo "NOT FINISED";}
+     else{
         echo 'Result:'. $mal['test'].'<br>';
-    echo 'confirmation:'. $mal['confirmation'].'<br>';?>
+    echo 'confirmation:'. $mal['confirmation'].'<br>';}?>
 
 
     <a href="?do=accept&unit=<?php echo $_GET['unit']; ?>&mod=<?php echo $_GET['do']; ?>"> Accept</a>
