@@ -199,6 +199,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
 
     }
 
+
     ?>
 
 
@@ -371,16 +372,16 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-4">
-                        <label >s/co1</label>
-                        <input type="text" class="form-control" name="s_list[]"  required<?php if(isset($edits)){echo "value=".$edits[3]; }?> ><br>
+                        <label >s/co2</label>
+                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[3]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
                         <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[4]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
-                        <label >s/c03</label>
-                         <input type="text" class="form-control" name="s_list[]"  required<?php if(isset($edits)){echo "value=".$edits[5]; }?>><br><br>
+                        <label >s/co2</label>
+                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br>
                     </div>
                     <div class="form-group col-md-12">
                         <label class="">LIA
