@@ -120,8 +120,10 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician' || $_SESSI
         $edits=physician::search($_GET['nid']);
         $edit=$edits[0];}
 
-        else{echo "The Health information did't inserte";
-        exit();
+        else{ echo '<h3 class="col-md-10 col-md-offset-1" style="margin-top: 75px;  background:#ffffffeb; text-align:center">You Must insert first</h3>';
+
+            exit();
+
         }
     }
 
@@ -130,7 +132,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician' || $_SESSI
     // is already inserted
     if(physician::search($_GET['nid']) !=null && $_GET['do']=='insert'){
 
-   echo "The Health information is already inserted";
+        echo '<h3 class="col-md-10 col-md-offset-1" style="margin-top: 75px;  background:#ffffffeb; text-align:center">You Already insert</h3>';
+
+        exit();
 
     }
     else {
