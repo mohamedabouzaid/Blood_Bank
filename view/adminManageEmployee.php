@@ -44,6 +44,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
 
 <div class="w3-bar w3-light-grey">
     <a href="adminManageEmployee.php" class="w3-bar-item w3-button">Admin Manage Employees</a>     <!-- Admin Manage Employees Department home button -->
+    <a href="admin.php" class="w3-bar-item w3-button">Admin Home</a>
     <a href="adminEmployeeOperation.php?do=create" class="w3-bar-item w3-button">Create Empolyee</a>
 
         <!--    search    -->
