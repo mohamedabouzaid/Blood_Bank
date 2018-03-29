@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 03:44 PM
+-- Generation Time: Mar 29, 2018 at 10:59 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -183,8 +183,30 @@ INSERT INTO `empolyees` (`NID`, `userName`, `password`, `job`) VALUES
 (3545635467, 'adel', '123456', 'lab'),
 (4444444444, 'mahmoud', '123456', 'Physician'),
 (5555555555, 'samir', '123456', 'Nurse'),
+(5656565656, 'hala', '123456', 'Empolyee of hospital'),
 (6666666666, 'amal', '123456', 'Nurse_2'),
 (7676787897, 'karim', '123456', 'medical_supervisor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hospitall`
+--
+
+CREATE TABLE `hospitall` (
+  `id` int(11) NOT NULL,
+  `empployee_id` double NOT NULL,
+  `bloodOrder` longtext CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hospitall`
+--
+
+INSERT INTO `hospitall` (`id`, `empployee_id`, `bloodOrder`) VALUES
+(1, 5656565656, 'order 1'),
+(2, 5656565656, 'order 2'),
+(3, 5656565656, 'order 3');
 
 -- --------------------------------------------------------
 
@@ -204,7 +226,9 @@ CREATE TABLE `malarialab` (
 --
 
 INSERT INTO `malarialab` (`id`, `component_unitNo`, `test`, `confirmation`) VALUES
-(7, 'c2 ', 'Positive', 'Not seen');
+(7, 'c2 ', 'Positive', 'Not seen'),
+(8, 'c1 ', 'Positive', 'Seen'),
+(9, 'cr ', 'Positive', 'Seen');
 
 -- --------------------------------------------------------
 
@@ -225,7 +249,9 @@ CREATE TABLE `natlab` (
 --
 
 INSERT INTO `natlab` (`id`, `component_unitNo`, `HBV`, `HCV`, `HIV`) VALUES
-(7, 'c2 ', 'Non Reactive', 'Non Reactive', 'invalid');
+(7, 'c2 ', 'Non Reactive', 'Non Reactive', 'invalid'),
+(8, 'c1 ', 'Reactive', 'Non Reactive', 'invalid'),
+(9, 'cr ', 'Reactive', 'Non Reactive', 'invalid');
 
 -- --------------------------------------------------------
 
@@ -279,7 +305,9 @@ CREATE TABLE `serology` (
 --
 
 INSERT INTO `serology` (`id`, `component_unitNo`, `HBsAg`, `neut`, `HCVab`, `lia`, `HIVag`, `lia2`, `HTLV`, `lia3`, `syphilis`, `tb`, `HBs`, `HBc`, `s`, `HBsText`) VALUES
-(6, 'c2 ', 'Reactive', 'Reactive-confirmed', 'Reactive', 'positive', 'Non Reactive', 'negative', 'Reactive', 'positive', 'Reactive', '1/320', '10>100', 'Reactive', 'As-be-xe--fy--asd-nhyui-nfbhud-fri-mon-tud', '25');
+(6, 'c2 ', 'Reactive', 'Reactive-confirmed', 'Reactive', 'positive', 'Non Reactive', 'negative', 'Reactive', 'positive', 'Reactive', '1/320', '10>100', 'Reactive', 'As-be-xe--fy--asd-nhyui-nfbhud-fri-mon-tud', '25'),
+(7, 'c1 ', 'Non Reactive', 'Reactive-confirmed', 'Reactive', 'negative', 'Non Reactive', 'negative', 'Reactive', 'positive', 'Non Reactive', '1/320', '0>10', 'Non Reactive', '1-2-3-4-5-6-7-8-9-10-11-12', ''),
+(8, 'cr ', 'Reactive', 'Reactive-confirmed', 'Reactive', 'positive', 'Reactive', 'negative', 'Reactive', 'indeterminate', 'Reactive', '1/160', 'Reactive', 'Non Reactive', 'co1-co2-co3-co4-co5-co6-co7-co8-co9-co10-co11-co12', '');
 
 -- --------------------------------------------------------
 
@@ -342,6 +370,13 @@ ALTER TABLE `empolyees`
   ADD PRIMARY KEY (`NID`);
 
 --
+-- Indexes for table `hospitall`
+--
+ALTER TABLE `hospitall`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bloodordercon` (`empployee_id`);
+
+--
 -- Indexes for table `malarialab`
 --
 ALTER TABLE `malarialab`
@@ -387,16 +422,22 @@ ALTER TABLE `clinic`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `hospitall`
+--
+ALTER TABLE `hospitall`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `malarialab`
 --
 ALTER TABLE `malarialab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `natlab`
 --
 ALTER TABLE `natlab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `questionnaire`
@@ -408,7 +449,7 @@ ALTER TABLE `questionnaire`
 -- AUTO_INCREMENT for table `serology`
 --
 ALTER TABLE `serology`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `state`
@@ -437,6 +478,12 @@ ALTER TABLE `clinic`
 --
 ALTER TABLE `component`
   ADD CONSTRAINT `keyy` FOREIGN KEY (`donar_NID`) REFERENCES `donars` (`NID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hospitall`
+--
+ALTER TABLE `hospitall`
+  ADD CONSTRAINT `bloodordercon` FOREIGN KEY (`empployee_id`) REFERENCES `empolyees` (`NID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `malarialab`
