@@ -150,7 +150,7 @@ elseif (isset($_GET['do'])&&$_GET['do']=='reject'){
     //no user found in table
     else{
 
-        echo  "no user found ";
+        echo  '<div class="col-md-10 col-md-offset-1"> No user found </div>';
 
     }
 
