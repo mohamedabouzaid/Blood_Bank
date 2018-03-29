@@ -11,18 +11,18 @@ class serology
 //insert serology RESULT
     public function insert($unitNo,$HBsAg,$neut,$HCVab,
                 $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
-                $HBs,$HBc,$s)
+                $HBs,$HBc,$s,$HBsText)
     {
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("INSERT INTO  serology (component_unitNo,HBsAg,neut,HCVab,
                 lia,HIVag,lia2,HTLV,lia3,syphilis,tb,
-                HBs,HBc,s)
-                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                HBs,HBc,s,HBsText)
+                               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->execute(array($unitNo,$HBsAg,$neut,$HCVab,
                 $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
-                $HBs,$HBc,$s));
+                $HBs,$HBc,$s,$HBsText));
 
             return "Insert record  successfully";
 
@@ -40,18 +40,18 @@ class serology
     //insert Bacterial RESULT
     public function update($unitNo,$HBsAg,$neut,$HCVab,
                            $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
-                           $HBs,$HBc,$s){
+                           $HBs,$HBc,$s,$HBsText){
 
         include 'vars.php';
         try {
             //sql statment
             $stmt = $con->prepare("update serology set HBsAg=?,neut=?,HCVab=?,
                 lia=?,HIVag=?,lia2=?,HTLV=?,lia3=?,syphilis=?,tb=?,
-                HBs=?,HBc=?,s=?
+                HBs=?,HBc=?,s=?,HBsText=?
                                           WHERE component_unitNo=?      ");
             $stmt->execute(array($HBsAg,$neut,$HCVab,
                 $lia,$HIVag,$lia2,$HTLV,$lia3,$syphilis,$tb,
-                $HBs,$HBc,$s,$unitNo));
+                $HBs,$HBc,$s,$HBsText,$unitNo));
             return "update record  successfully";
 
         } catch (PDOException $e) {
