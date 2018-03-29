@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2018 at 02:42 PM
+-- Generation Time: Mar 29, 2018 at 03:03 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -45,9 +45,8 @@ CREATE TABLE `bloodsample` (
 --
 
 INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `arm`, `visual`, `timeprocess`) VALUES
-(123, 3333333334, 34, '14:59:00', 'B−', 'Slow bleed-Relative', 'Right', 'Yes', '00:02:84'),
-(234, 3333333333, 78, '13:00:00', 'O−', ' Aspirin-Relative', 'Right', 'No', '00:01:87'),
-(1234, 1234567890, 45, '12:00:00', 'AB−', 'Slow bleed-Relative', 'Left', 'No', '00:02:13');
+(3456, 3333333333, 34, '00:00:00', 'O−', 'other', 'Right', 'No', ''),
+(123456, 2222222222, 0, '13:58:00', 'AB−', 'Slow bleed- Aspirin-Relative', 'Right', 'Yes', '00:02:10');
 
 -- --------------------------------------------------------
 
@@ -62,9 +61,9 @@ CREATE TABLE `clinic` (
   `height` int(11) NOT NULL,
   `temp` int(11) NOT NULL,
   `bloodGroup` varchar(255) NOT NULL,
-  `hp` int(11) NOT NULL,
-  `pluse` int(11) NOT NULL,
-  `bp` int(11) NOT NULL
+  `hp` float NOT NULL,
+  `pluse` float NOT NULL,
+  `bp` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -72,10 +71,9 @@ CREATE TABLE `clinic` (
 --
 
 INSERT INTO `clinic` (`id`, `donar_NID`, `weight`, `height`, `temp`, `bloodGroup`, `hp`, `pluse`, `bp`) VALUES
-(1, 1234567890, 56, 175, 49, 'B+', 23, 24, 24),
-(2, 2222222222, 89, 200, 67, 'O−', 56, 89, 34),
-(3, 3333333333, 67, 46, 54, 'AB−', 45, 88, 456),
-(4, 3333333334, 1, 2, 3, 'B+', 4, 56, 6);
+(5, 1111111111, 80, 180, 45, 'A+', 4.5, 2.56, 34.1),
+(6, 2222222222, 70, 170, 38, 'AB+', 23.3, 15.4, 22.5),
+(7, 3333333333, 100, 190, 40, 'O−', 23.78, 14.56, 56.7);
 
 -- --------------------------------------------------------
 
@@ -113,9 +111,8 @@ CREATE TABLE `component` (
 --
 
 INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `ABO`, `note`, `approval`, `final`, `daySelect`, `dateSelect`, `approved`, `sign`, `performed`) VALUES
-(3333333334, 'bn', 'b2', '14:59:00', '02:58:00', 'open system', 'bloody', 'lipemic', 'c', 'sd', 'sc', '', '', '', '', NULL, NULL, 'Tuesday', '0000-00-00', 'as', 'as', 'ma'),
-(3333333333, 'no1', 'c1', '13:00:00', '11:01:00', 'hanging', 'no space', 'lipemic', 'abc', 'cda', 'pye', 'qw', 'bgd', 'gdr', 'bd', 0, 1, 'Sunday', '0000-00-00', 'mahmoud', 'mou', 'ali'),
-(1234567890, 'no2', 'c2', '12:00:00', '15:59:00', 'hanging', 'lipemic', 'lipemic', 'ng', 'rt', 'rrt', 'pc', 'bag', 'hf', 'ew', 0, 1, 'Sunday', '0000-00-00', 'ahmed', 'med', 'hosam');
+(3333333333, 'sd', 'c1', '00:00:00', '02:01:00', 'hanging', 'bloody', 'bloody', 'a', 'c', 'd', 'e', 'f', 'g', 'h', NULL, NULL, 'Thursday', '0000-00-00', 'ali', 'aaa', 'mohamed'),
+(2222222222, 'fg', 'c2', '13:58:00', '14:58:00', 'open system', 'bloody', 'no space', 's', 'd', 'g', 'r', 'y', 'u', 'o', NULL, NULL, 'Thursday', '0000-00-00', 'hosam', 'hhhh', 'mona');
 
 -- --------------------------------------------------------
 
@@ -153,10 +150,9 @@ CREATE TABLE `donars` (
 --
 
 INSERT INTO `donars` (`NID`, `firstName`, `secondName`, `thirdName`, `familyName`, `phone`, `age`, `typeDonar`, `birthday`, `patient`, `sponsor`, `district`, `city`, `street`, `sex`, `healthCenter`, `profession`, `nationality`, `fiend`, `signDate`, `place`, `bloodNo`) VALUES
-(1234567890, 'محمد', 'ابوزيد', 'ابراهيم', 'العارف', 0120000000, 22, 'طوعى', '1995-11-07', '', 'حسان بن وليد', '', 'الاسماعيليه', '', 'male', '', 'مبرمج', 1, 1, '03/25/2018', 'الاسماعيليه', 123),
-(2222222222, 'mohmoud', 'samir', 'mosad', 'ali', 0111111111, 32, 'تعويضى', '1985-07-11', 'على محمد', '', '', 'madina', '', 'male', '', 'prof', 0, 0, '03/25/2018', 'maka', 3213),
-(3333333333, 'فاطمه', 'على', 'احمد', 'حسن', 0159999999, 42, 'طوعى', '1975-07-11', '', '', '', 'الشارقه', '', 'female', '', 'مدرسه', 0, 1, '03/25/2018', 'المدينه', 333),
-(3333333334, 'adadsd', 'adadad', 'adasdd', 'sadasdsad', 3333333334, 22, 'طوعى', '1995-11-07', '', '', '', 'weqweqwqweqwe', '', 'male', '', 'dasdfsdfsdf', 0, 0, '03/27/2018', 'kkkkkkk', 345654321);
+(1111111111, 'محمد', 'ابوزيد', 'ابراهيم', 'على', 0120000000, 22, 'طوعى', '1995-11-07', '', '', '', 'الاسماعيليه', '', 'male', '', 'مبرمج', 0, 1, '03/29/2018', 'الاسماعيليه', 123123),
+(2222222222, 'mohamed', 'ali', 'hassan', 'mahmoud', 0110000000, 22, 'تعويضى', '1995-07-11', 'hala', 'abdo', '', 'portsaid', '', 'female', '', 'lteacher', 1, 0, '03/29/2018', 'cairo', 321),
+(3333333333, 'hana', 'mohamed', 'ali', 'omar', 0150000000, 22, 'طوعى', '1995-07-11', '', '', '', 'suez', '', 'female', '', 'مدرسه', 0, 1, '03/29/2018', 'alex', 6785);
 
 -- --------------------------------------------------------
 
@@ -204,8 +200,7 @@ CREATE TABLE `malarialab` (
 --
 
 INSERT INTO `malarialab` (`id`, `component_unitNo`, `test`, `confirmation`) VALUES
-(2, 'c1 ', 'Positive', 'Seen'),
-(3, 'c2 ', 'Negative', 'Seen');
+(7, 'c2 ', 'Positive', 'Not seen');
 
 -- --------------------------------------------------------
 
@@ -226,8 +221,7 @@ CREATE TABLE `natlab` (
 --
 
 INSERT INTO `natlab` (`id`, `component_unitNo`, `HBV`, `HCV`, `HIV`) VALUES
-(2, 'c1 ', 'Non Reactive', 'invalid', 'Non Reactive'),
-(3, 'c2 ', 'Non Reactive', 'Non Reactive', 'Non Reactive');
+(7, 'c2 ', 'Non Reactive', 'Non Reactive', 'invalid');
 
 -- --------------------------------------------------------
 
@@ -246,10 +240,9 @@ CREATE TABLE `questionnaire` (
 --
 
 INSERT INTO `questionnaire` (`id`, `donar_NID`, `questions`) VALUES
-(1, 1234567890, '3-0-0-0-0-0-0-3-0-0-3-0-0-0-3-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-3-0-3-0-0-3-0-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1-موافق'),
-(2, 2222222222, '3-1-1-1-1-1-1-3-1-1-3-1-1-1-3-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-3-1-1-3-1-3-1-1-3-1-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-موافق'),
-(3, 3333333333, '3-1-1-0-0-1-3-0-1-3-0-1-0-3-0-3-1-0-1-0-0-1-0-0-1-0-1-0-1-0-1-3-0-1-3-0-3-1-0-3-1-0-3-1-0-1-0-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-موافق'),
-(4, 3333333334, '3-0-1-0-1-0-1-3-0-1-3-0-0-1-3-0-3-1-0-0-0-0-1-1-1-0-0-0-0-0-1-1-3-0-0-3-1-3-1-0-3-0-1-3-0-0-0-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-موافق');
+(5, 1111111111, '3-0-0-0-0-0-0-3-0-0-3-0-0-0-3-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-3-0-3-0-0-3-0-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1-موافق'),
+(6, 2222222222, '3-1-1-1-1-1-1-3-1-1-3-1-1-1-3-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-3-1-1-3-1-3-1-1-3-1-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-موافق'),
+(7, 3333333333, '3-0-1-0-1-0-1-3-0-1-3-0-1-0-3-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-3-1-0-3-1-3-0-1-3-0-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-1-0-1-1-موافق');
 
 -- --------------------------------------------------------
 
@@ -272,16 +265,16 @@ CREATE TABLE `serology` (
   `tb` varchar(255) CHARACTER SET utf8 NOT NULL,
   `HBs` varchar(255) CHARACTER SET utf8 NOT NULL,
   `HBc` varchar(255) NOT NULL,
-  `s` longtext NOT NULL
+  `s` longtext NOT NULL,
+  `HBsText` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `serology`
 --
 
-INSERT INTO `serology` (`id`, `component_unitNo`, `HBsAg`, `neut`, `HCVab`, `lia`, `HIVag`, `lia2`, `HTLV`, `lia3`, `syphilis`, `tb`, `HBs`, `HBc`, `s`) VALUES
-(3, 'c1 ', 'Non Reactive', 'Reactive-confirmed', 'Non Reactive', 'positive', 'Non Reactive', 'negative', 'Reactive', 'negative', 'Reactive', '1/640', '0>10', 'Non Reactive', 'a-b-c-d-e-f-n-m-o-w-e-r'),
-(4, 'c2 ', 'Non Reactive', 'Non confirmed', 'Reactive', 'indeterminate', 'Non Reactive', 'positive', 'Reactive', 'positive', 'Reactive', '1/160', '10>100', 'Non Reactive', 'a-s-d-f-g-h-j-k-l-e-y-u');
+INSERT INTO `serology` (`id`, `component_unitNo`, `HBsAg`, `neut`, `HCVab`, `lia`, `HIVag`, `lia2`, `HTLV`, `lia3`, `syphilis`, `tb`, `HBs`, `HBc`, `s`, `HBsText`) VALUES
+(6, 'c2 ', 'Reactive', 'Reactive-confirmed', 'Reactive', 'positive', 'Non Reactive', 'negative', 'Reactive', 'positive', 'Reactive', '1/320', '10>100', 'Reactive', 'As-be-xe--fy--asd-nhyui-nfbhud-fri-mon-tud', '25');
 
 -- --------------------------------------------------------
 
@@ -300,10 +293,9 @@ CREATE TABLE `state` (
 --
 
 INSERT INTO `state` (`id`, `donar_NID`, `status`) VALUES
-(1, 1234567890, 0),
-(2, 2222222222, 1),
-(3, 3333333333, 0),
-(4, 3333333334, 0);
+(5, 1111111111, 1),
+(6, 2222222222, 0),
+(7, 3333333333, 0);
 
 --
 -- Indexes for dumped tables
@@ -386,37 +378,37 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `clinic`
 --
 ALTER TABLE `clinic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `malarialab`
 --
 ALTER TABLE `malarialab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `natlab`
 --
 ALTER TABLE `natlab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `serology`
 --
 ALTER TABLE `serology`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
