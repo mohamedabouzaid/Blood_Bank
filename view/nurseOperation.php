@@ -158,8 +158,10 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
         include '../model/NurseModel.php';
         $check = NurseModel::search($_GET['nid']);
         if ($check) {
-        echo '<h3 class="col-md-10 col-md-offset-1">Blood is already inserted</h3>';
-           die();
+
+            echo '<h3 class="col-md-10 col-md-offset-1" style="margin-top: 75px;  background:#ffffffeb; text-align:center">Blood is already inserted</h3>';
+
+            exit();
 
         }}
    //edit
@@ -167,8 +169,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
             include '../model/NurseModel.php';
             $edits = NurseModel::search($_GET['nid']);
             if ($edits==Null) {
-                echo "You should enter blood first ";
-                die();
+                echo '<h3 class="col-md-10 col-md-offset-1" style="margin-top: 75px;  background:#ffffffeb; text-align:center">You must inter blood first</h3>';
+
+                exit();
 
             }
             $edit=$edits[0];
@@ -203,7 +206,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
 
                 <div class="form-group col-xs-6 left" style="margin-top:0">
                     <label >Sealed by ID</label>
-                    <input  class="form-control" type="number" placeholder="Blood ID" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
+                    <input required class="form-control" type="number" placeholder="Blood ID" name="ID_Blood" <?php if(isset($edit)){ echo "value='".$edit['ID']."'" ;}?>><br>
                 </div>
 
                 <div class="form-group col-xs-6 " >
@@ -220,7 +223,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
                     <label > Visual inspection of bag  </label>
                     <div class="radio">
                         <label>
-                           <input type="radio" name="visual" value="Yes" <?php if(isset($edit )&&$edit['visual']=='Yes'){ echo "checked" ;}?>>Yes
+                           <input required type="radio" name="visual" value="Yes" <?php if(isset($edit )&&$edit['visual']=='Yes'){ echo "checked" ;}?>>Yes
                         </label>
                      </div>
                     <div class="radio">
@@ -234,14 +237,14 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
 
                 <div class="form-group col-xs-6 left" style="margin-top: -53px;">
                     <label >Time of collections</label>
-                    <input class="form-control" placeholder="Time of collections" type="time" name="time"<?php if(isset($edit)){ echo "value='".$edit['timeCollection']."'" ;}?>><br>
+                    <input  required class="form-control" placeholder="Time of collections" type="time" name="time"<?php if(isset($edit)){ echo "value='".$edit['timeCollection']."'" ;}?>><br>
                 </div>
 
                 <div class="form-group col-xs-6 left">
                     <label class="checkbox">Arm Inspection </label>
                     <div class="radio">
                         <label>
-                            <input  type="radio" name="arm" value="Left" <?php if(isset($edit )&&$edit['arm']=='Left'){ echo "checked" ;}?>>Left
+                            <input required type="radio" name="arm" value="Left" <?php if(isset($edit )&&$edit['arm']=='Left'){ echo "checked" ;}?>>Left
                         </label>
                      </div>
                     <div class="radio">
@@ -255,7 +258,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
 
                 <div class="form-group col-xs-6 left" style="margin-top: -38px;">
                     <label >Bag Weight</label>
-                     <input class="form-control"  type="number" placeholder="Bag Weight" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>>
+                     <input required class="form-control"  type="number" placeholder="Bag Weight" name="bagWeight"<?php if(isset($edit)){ echo "value='".$edit['bagWeight']."'" ;}?>>
                 </div>
                
 
@@ -268,7 +271,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
                     <label >Comments </label>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="comments_list[]" value="Slow bleed"
+                            <input  required type="checkbox" name="comments_list[]" value="Slow bleed"
                                 <?php if(isset($edit)){foreach ($comments as $comment){if($comment=="Slow bleed"){echo"checked";}}} ?>
                             > Slow bleed
                         </label>
