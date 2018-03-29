@@ -141,6 +141,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Receptionist' || $_SESSION
                     $edit['healthCenter'] = $_POST['healthCenter'];
                     $edit['place'] = $_POST['place'];
                     $edit['signDate'] = $_POST['signDate'];
+                    $edit['bloodNo']=$_POST['bloodNo'];
                 }
 
 
