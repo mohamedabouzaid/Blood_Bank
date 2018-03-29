@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 03:03 PM
+-- Generation Time: Mar 29, 2018 at 03:44 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -45,8 +45,9 @@ CREATE TABLE `bloodsample` (
 --
 
 INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `arm`, `visual`, `timeprocess`) VALUES
+(123, 7777777777, 32, '02:58:00', 'A−', 'Slow bleed', 'Left', 'Yes', ''),
 (3456, 3333333333, 34, '00:00:00', 'O−', 'other', 'Right', 'No', ''),
-(123456, 2222222222, 0, '13:58:00', 'AB−', 'Slow bleed- Aspirin-Relative', 'Right', 'Yes', '00:02:10');
+(123456, 2222222222, 0, '13:58:00', 'AB−', 'Slow bleed- Aspirin-Relative', 'Right', 'Yes', '');
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,8 @@ CREATE TABLE `clinic` (
 INSERT INTO `clinic` (`id`, `donar_NID`, `weight`, `height`, `temp`, `bloodGroup`, `hp`, `pluse`, `bp`) VALUES
 (5, 1111111111, 80, 180, 45, 'A+', 4.5, 2.56, 34.1),
 (6, 2222222222, 70, 170, 38, 'AB+', 23.3, 15.4, 22.5),
-(7, 3333333333, 100, 190, 40, 'O−', 23.78, 14.56, 56.7);
+(7, 3333333333, 100, 190, 40, 'O−', 23.78, 14.56, 56.7),
+(8, 7777777777, 40, 190, 231, 'B+', 1.2, 31, 11.7);
 
 -- --------------------------------------------------------
 
@@ -112,7 +114,8 @@ CREATE TABLE `component` (
 
 INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `ABO`, `note`, `approval`, `final`, `daySelect`, `dateSelect`, `approved`, `sign`, `performed`) VALUES
 (3333333333, 'sd', 'c1', '00:00:00', '02:01:00', 'hanging', 'bloody', 'bloody', 'a', 'c', 'd', 'e', 'f', 'g', 'h', NULL, NULL, 'Thursday', '0000-00-00', 'ali', 'aaa', 'mohamed'),
-(2222222222, 'fg', 'c2', '13:58:00', '14:58:00', 'open system', 'bloody', 'no space', 's', 'd', 'g', 'r', 'y', 'u', 'o', NULL, NULL, 'Thursday', '0000-00-00', 'hosam', 'hhhh', 'mona');
+(2222222222, 'fg', 'c2', '13:58:00', '14:58:00', 'open system', 'bloody', 'no space', 's', 'd', 'g', 'r', 'y', 'u', 'o', 0, NULL, 'Thursday', '0000-00-00', 'hosam', 'hhhh', 'mona'),
+(7777777777, '12', 'cr', '02:58:00', '10:02:00', 'open system', 'bloody', 'open system', 'a', 'c', 'd', 'e', 'f', 'g', 'h', NULL, NULL, 'Thursday', '0000-00-00', 'ali', 'mohamed', 'hosam');
 
 -- --------------------------------------------------------
 
@@ -152,7 +155,8 @@ CREATE TABLE `donars` (
 INSERT INTO `donars` (`NID`, `firstName`, `secondName`, `thirdName`, `familyName`, `phone`, `age`, `typeDonar`, `birthday`, `patient`, `sponsor`, `district`, `city`, `street`, `sex`, `healthCenter`, `profession`, `nationality`, `fiend`, `signDate`, `place`, `bloodNo`) VALUES
 (1111111111, 'محمد', 'ابوزيد', 'ابراهيم', 'على', 0120000000, 22, 'طوعى', '1995-11-07', '', '', '', 'الاسماعيليه', '', 'male', '', 'مبرمج', 0, 1, '03/29/2018', 'الاسماعيليه', 123123),
 (2222222222, 'mohamed', 'ali', 'hassan', 'mahmoud', 0110000000, 22, 'تعويضى', '1995-07-11', 'hala', 'abdo', '', 'portsaid', '', 'female', '', 'lteacher', 1, 0, '03/29/2018', 'cairo', 321),
-(3333333333, 'hana', 'mohamed', 'ali', 'omar', 0150000000, 22, 'طوعى', '1995-07-11', '', '', '', 'suez', '', 'female', '', 'مدرسه', 0, 1, '03/29/2018', 'alex', 6785);
+(3333333333, 'hana', 'mohamed', 'ali', 'omar', 0150000000, 22, 'طوعى', '1995-07-11', '', '', '', 'suez', '', 'female', '', 'مدرسه', 0, 1, '03/29/2018', 'alex', 6785),
+(7777777777, 'mohamed', 'ali', 'said', 'helmy', 0193333333, 22, 'طوعى', '1995-11-07', '', '', '', 'gada', '', 'male', '', 'ddoc', 0, 0, '03/29/2018', 'alex', 123);
 
 -- --------------------------------------------------------
 
@@ -242,7 +246,8 @@ CREATE TABLE `questionnaire` (
 INSERT INTO `questionnaire` (`id`, `donar_NID`, `questions`) VALUES
 (5, 1111111111, '3-0-0-0-0-0-0-3-0-0-3-0-0-0-3-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-3-0-3-0-0-3-0-0-3-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1-موافق'),
 (6, 2222222222, '3-1-1-1-1-1-1-3-1-1-3-1-1-1-3-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-3-1-1-3-1-3-1-1-3-1-1-3-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-موافق'),
-(7, 3333333333, '3-0-1-0-1-0-1-3-0-1-3-0-1-0-3-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-3-1-0-3-1-3-0-1-3-0-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-1-0-1-1-موافق');
+(7, 3333333333, '3-0-1-0-1-0-1-3-0-1-3-0-1-0-3-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-3-1-0-3-1-3-0-1-3-0-1-3-0-1-0-1-0-1-0-1-0-1-0-1-0-1-0-1-1-0-1-1-موافق'),
+(8, 7777777777, '3-0-0-0-0-0-0-3-0-0-3-0-0-0-3-1-3-1-1-1-1-1-0-0-0-0-0-0-1-1-1-1-3-1-0-3-0-3-0-0-3-0-0-3-0-0-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-موافق');
 
 -- --------------------------------------------------------
 
@@ -293,9 +298,10 @@ CREATE TABLE `state` (
 --
 
 INSERT INTO `state` (`id`, `donar_NID`, `status`) VALUES
-(5, 1111111111, 1),
+(5, 1111111111, 0),
 (6, 2222222222, 0),
-(7, 3333333333, 0);
+(7, 3333333333, 0),
+(8, 7777777777, 0);
 
 --
 -- Indexes for dumped tables
@@ -378,7 +384,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `clinic`
 --
 ALTER TABLE `clinic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `malarialab`
@@ -396,7 +402,7 @@ ALTER TABLE `natlab`
 -- AUTO_INCREMENT for table `questionnaire`
 --
 ALTER TABLE `questionnaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `serology`
@@ -408,7 +414,7 @@ ALTER TABLE `serology`
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

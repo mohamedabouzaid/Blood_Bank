@@ -565,17 +565,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                 <td class="col-md-6 left">
                     <div class="form-group col-md-12">
                         <label class="">
-                            <label class="radio">
-                                <input type="radio" name="HBs" value="10>100"
-                                <?php if(isset($edit)&&$edit['HBs']=='10>100'){echo 'checked';} ?>>10>100           
-                            </label>
-                            <label class="radio">
-                                 <input type="number" name="HBsText"<?php if(isset($edit['HBsText'])){echo 'value="'.$edit['HBsText'].'"';} ?>>
-                            </label>
-                            <label class="radio">            
-                                <input type="radio" name="HBs" value=">1000"
-                                    <?php if(isset($edit)&&$edit['HBs']=='>1000'){echo 'checked';} ?>>>1000
-                            </label>
+
                         </label>
                     </div>
                 </td>
