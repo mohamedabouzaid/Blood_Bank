@@ -136,9 +136,10 @@ else{
 
     //check update
    if( $_GET['do']=='update'&&$updateCkeck ==null){
+       echo '<h3 class="col-md-10 col-md-offset-1" style="margin-top: 75px;  background:#ffffffeb; text-align:center">You must check first</h3>';
 
-         echo "you must insert first";
-         exit();
+       exit();
+
 
 
    }
