@@ -85,6 +85,7 @@ if(isset($_POST['create'])){
                     <option value="lab">Lab</option>
                     <option value="medical_supervisor">medical_supervisor</option>
                     <option value="medical_director">medical_director</option>
+                    <option value="Empolyee of hospital">Empolyee of hospital</option>
              </select><br><br>
         <input type="submit" value="save" name="<?php echo $_GET['do'] ?>">
     </form>

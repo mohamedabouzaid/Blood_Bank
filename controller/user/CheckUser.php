@@ -16,6 +16,12 @@
          header('location:labTechnician.php');
 
      }
+
+     elseif($_SESSION['job']=='Empolyee of hospital'){
+
+         header('location:hospital.php');
+
+     }
      elseif($_SESSION['job']=='Physician'){
 
          header('location:physician.php');

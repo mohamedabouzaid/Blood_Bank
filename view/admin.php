@@ -35,7 +35,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin')
 <!--frame-->
     <a  href='adminManageEmployee.php'>Manage Employees </a><br>
     <a  href='adminDonationManage.php'>Donation Management</a><br>
-    <a  href='?do=order'>Hospital Order </a><br>
+    <a  href='adminHospitalOrder.php'>Hospital Order </a><br>
 <?php
 
 }

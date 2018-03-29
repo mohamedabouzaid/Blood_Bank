@@ -86,6 +86,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             header('location:../../view/admin.php');
 
         }
+        elseif($_SESSION['job']=='Empolyee of hospital'){
+
+            header('location:../../view/hospital.php');
+
+        }
 
 
     }
