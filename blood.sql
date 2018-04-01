@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 10:59 PM
+-- Generation Time: Apr 02, 2018 at 12:22 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -47,7 +47,8 @@ CREATE TABLE `bloodsample` (
 INSERT INTO `bloodsample` (`ID`, `donar_NID`, `bagWeight`, `timeCollection`, `bloodGroup`, `comment`, `arm`, `visual`, `timeprocess`) VALUES
 (123, 7777777777, 32, '02:58:00', 'A−', 'Slow bleed', 'Left', 'Yes', ''),
 (3456, 3333333333, 34, '00:00:00', 'O−', 'other', 'Right', 'No', ''),
-(123456, 2222222222, 0, '13:58:00', 'AB−', 'Slow bleed- Aspirin-Relative', 'Right', 'Yes', '');
+(123456, 2222222222, 0, '13:58:00', 'AB−', 'Slow bleed- Aspirin-Relative', 'Right', 'Yes', ''),
+(123456765, 1111111111, 23, '13:59:00', 'O−', '', 'Right', 'No', '00:01:65');
 
 -- --------------------------------------------------------
 
@@ -113,9 +114,9 @@ CREATE TABLE `component` (
 --
 
 INSERT INTO `component` (`donar_NID`, `centerNo`, `unitNo`, `timeCollected`, `timeSeparated`, `prbc`, `pc`, `ffp`, `cryo`, `Fwb`, `Fprbc`, `Fpc`, `bagType`, `ABO`, `note`, `approval`, `final`, `daySelect`, `dateSelect`, `approved`, `sign`, `performed`) VALUES
-(3333333333, 'sd', 'c1', '00:00:00', '02:01:00', 'hanging', 'bloody', 'bloody', 'a', 'c', 'd', 'e', 'f', 'g', 'h', NULL, NULL, 'Thursday', '0000-00-00', 'ali', 'aaa', 'mohamed'),
-(2222222222, 'fg', 'c2', '13:58:00', '14:58:00', 'open system', 'bloody', 'no space', 's', 'd', 'g', 'r', 'y', 'u', 'o', 0, NULL, 'Thursday', '0000-00-00', 'hosam', 'hhhh', 'mona'),
-(7777777777, '12', 'cr', '02:58:00', '10:02:00', 'open system', 'bloody', 'open system', 'a', 'c', 'd', 'e', 'f', 'g', 'h', NULL, NULL, 'Thursday', '0000-00-00', 'ali', 'mohamed', 'hosam');
+(3333333333, 'sd', 'c1', '00:00:00', '02:01:00', 'hanging', 'bloody', 'bloody', 'a', 'c', 'd', 'e', 'f', 'g', 'h', 0, NULL, 'Thursday', '0000-00-00', 'ali', 'aaa', 'mohamed'),
+(2222222222, 'fg', 'c2', '13:58:00', '14:58:00', 'open system', 'bloody', 'no space', 's', 'd', 'g', 'r', 'y', 'u', 'o', 1, NULL, 'Thursday', '0000-00-00', 'hosam', 'hhhh', 'mona'),
+(7777777777, '12', 'cr', '02:58:00', '10:02:00', 'open system', 'bloody', 'open system', 'a', 'c', 'd', 'e', 'f', 'g', 'h', 0, NULL, 'Thursday', '0000-00-00', 'ali', 'mohamed', 'hosam');
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,6 @@ CREATE TABLE `malarialab` (
 --
 
 INSERT INTO `malarialab` (`id`, `component_unitNo`, `test`, `confirmation`) VALUES
-(7, 'c2 ', 'Positive', 'Not seen'),
 (8, 'c1 ', 'Positive', 'Seen'),
 (9, 'cr ', 'Positive', 'Seen');
 
@@ -249,7 +249,6 @@ CREATE TABLE `natlab` (
 --
 
 INSERT INTO `natlab` (`id`, `component_unitNo`, `HBV`, `HCV`, `HIV`) VALUES
-(7, 'c2 ', 'Non Reactive', 'Non Reactive', 'invalid'),
 (8, 'c1 ', 'Reactive', 'Non Reactive', 'invalid'),
 (9, 'cr ', 'Reactive', 'Non Reactive', 'invalid');
 
@@ -305,7 +304,6 @@ CREATE TABLE `serology` (
 --
 
 INSERT INTO `serology` (`id`, `component_unitNo`, `HBsAg`, `neut`, `HCVab`, `lia`, `HIVag`, `lia2`, `HTLV`, `lia3`, `syphilis`, `tb`, `HBs`, `HBc`, `s`, `HBsText`) VALUES
-(6, 'c2 ', 'Reactive', 'Reactive-confirmed', 'Reactive', 'positive', 'Non Reactive', 'negative', 'Reactive', 'positive', 'Reactive', '1/320', '10>100', 'Reactive', 'As-be-xe--fy--asd-nhyui-nfbhud-fri-mon-tud', '25'),
 (7, 'c1 ', 'Non Reactive', 'Reactive-confirmed', 'Reactive', 'negative', 'Non Reactive', 'negative', 'Reactive', 'positive', 'Non Reactive', '1/320', '0>10', 'Non Reactive', '1-2-3-4-5-6-7-8-9-10-11-12', ''),
 (8, 'cr ', 'Reactive', 'Reactive-confirmed', 'Reactive', 'positive', 'Reactive', 'negative', 'Reactive', 'indeterminate', 'Reactive', '1/160', 'Reactive', 'Non Reactive', 'co1-co2-co3-co4-co5-co6-co7-co8-co9-co10-co11-co12', '');
 
