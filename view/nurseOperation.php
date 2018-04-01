@@ -13,7 +13,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
         if (!empty($_POST['comments_list'])) {
             $comment = implode('-', $_POST['comments_list']);
         } else {
-            $comment = "other";
+            $comment = "";
         }
 
 //insert data of blood
@@ -271,7 +271,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='Nurse' || $_SESSION['job']
                     <label >Comments </label>
                     <div class="checkbox">
                         <label>
-                            <input  required type="checkbox" name="comments_list[]" value="Slow bleed"
+                            <input   type="checkbox" name="comments_list[]" value="Slow bleed"
                                 <?php if(isset($edit)){foreach ($comments as $comment){if($comment=="Slow bleed"){echo"checked";}}} ?>
                             > Slow bleed
                         </label>
