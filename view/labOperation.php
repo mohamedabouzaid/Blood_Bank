@@ -231,7 +231,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                  
                  <label for="">Think film</label>
 
-                    <select required name="confirmation"  class="form-control">
+                    <select  name="confirmation"  class="form-control">
                         <?php if(isset($edit['confirmation'])) {echo '<option value="'.$edit['confirmation'].'">'.$edit['confirmation'].'</option>';}?>
                         <option value="Seen"> Seen</option>
                         <option value="Not seen">Not seen</option>br><br>
