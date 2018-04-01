@@ -206,9 +206,9 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
     HCV Ab <input  readonly type="radio" <?php if(isset($edit)&&$edit['HCVab']=='Reactive'){echo 'checked';} else{echo 'disabled';} ?>> Reactive<br>
     <input  readonly type="radio"<?php if(isset($edit)&&$edit['HCVab']=='Non Reactive'){echo 'checked';} else{echo 'disabled';} ?>>Non Reactive<br><br>
     Confirmation<br>
-    s/co1<input readonly type="text" <?php if(isset($edits)){echo "value=".$edits[3]; }?> ><br>
+    s/co1<input readonly type="text" <?php if(isset($edits)){echo "value=".$edits[3]; }?>><br>
     s/co2<input readonly type="text" <?php if(isset($edits)){echo "value=".$edits[4]; }?>><br>
-    s/c03 <input readonly type="text" <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br><br>
+    s/co2<input readonly type="text" <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br> <br>
     LIA<br>
     <input readonly type="radio" <?php if(isset($edit)&&$edit['lia']=='negative'){echo 'checked';}  else{echo 'disabled';}?>>negative<br>
     <input readonly type="radio" <?php if(isset($edit)&&$edit['lia']=='positive'){echo 'checked';}  else{echo 'disabled';}?>>positive<br>
@@ -251,9 +251,12 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
     <input readonly type="radio" <?php if(isset($edit)&&$edit['tb']=='1/1280'){echo 'checked';}  else{echo 'disabled';} ?>>1/1280<br><br>
 
 
-    HBs Ab <input type="radio" readonly <?php if(isset($edit)&&$edit['HBs']=='0>10'){echo 'checked';} else{echo 'disabled';} ?>> 0>10<br><br>
+    HBs Ab
+            <input readonly type="radio" <?php if(isset($edit)&&$edit['HBs']=='Reactive'){echo 'checked';} else{echo 'disabled';} ?>>Reactive<br><br>
+           <input type="radio" readonly   <?php if(isset($edit)&&$edit['HBs']=='0>10'){echo 'checked';} else{echo 'disabled';} ?>> 0>10<br><br>
 
     <input readonly type="radio" <?php if(isset($edit)&&$edit['HBs']=='10>100'){echo 'checked';} else{echo 'disabled';} ?>>10>100<br><br>
+   <input type="text" readonly <?php if(isset($edit['HBsText'])){echo "value=".$edit['HBsText']; }?> ><br>
     <input readonly type="radio" <?php if(isset($edit)&&$edit['HBs']=='<100'){echo 'checked';}  else{echo 'disabled';}?>><100<br><br>
 
     HBc <input type="radio" readonly <?php if(isset($edit)&&$edit['HBc']=='Reactive'){echo 'checked';} else{echo 'disabled';} ?>> Reactive<br>
