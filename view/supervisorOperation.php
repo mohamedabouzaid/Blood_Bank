@@ -261,7 +261,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor' || $_S
      else{
 
     echo 'Result:'. $mal['test'].'<br>';
-    echo 'confirmation:'. $mal['confirmation'].'<br>';}?>
+    echo 'confirmation:<br>';?>
+    <label for="">Think film</label><br>
+
+    Seen<input type="radio" name="confirmation" value="Seen" readonly <?php if(isset($mal)&&$mal['confirmation']=='Seen')
+    {echo 'checked';} ?>><br>
+    Not Seen<input type="radio" name="confirmation" value="Not seen" readonly <?php if(isset($mal)&&$mal['confirmation']=='Not seen')
+    {echo 'checked';} ?>>
+
+<?php }?>
 
 
 

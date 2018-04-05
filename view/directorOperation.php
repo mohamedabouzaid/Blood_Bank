@@ -194,7 +194,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
 
     HBsAg <input type="radio"<?php if(isset($edit)&&$edit['HBsAg']=='Reactive'){echo 'checked';} else{echo 'disabled';} ?> readonly> Reactive<br>
     <input type="radio" <?php if(isset($edit)&&$edit['HBsAg']=='Non Reactive'){echo 'checked';} else{echo 'disabled';}  ?> readonly>Non Reactive<br><br>
-    Confirmation<br>
+
+        Confirmation<br>
     s/co1<input type="text"  <?php if(isset($edits)){echo "value=".$edits[0]; } ?> readonly><br>
     s/co2<input type="text"  <?php if(isset($edits)){echo "value=".$edits[1]; }?> readonly><br>
     s/c03 <input type="text" <?php if(isset($edits)){echo "value=".$edits[2]; }?> readonly><br><br>
@@ -272,7 +273,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_director' || $_SES
      if ($mal==null) {echo "NOT FINISED";}
      else{
         echo 'Result:'. $mal['test'].'<br>';
-    echo 'confirmation:'. $mal['confirmation'].'<br>';}?>
+         echo 'confirmation:<br>';?>
+         <label for="">Think film</label><br>
+
+         Seen<input type="radio" name="confirmation" value="Seen" readonly <?php if(isset($mal)&&$mal['confirmation']=='Seen')
+         {echo 'checked';} ?>><br>
+         Not Seen<input type="radio" name="confirmation" value="Not seen" readonly <?php if(isset($mal)&&$mal['confirmation']=='Not seen')
+         {echo 'checked';} ?>>
+
+     <?php }?>
 
 
     <a href="?do=accept&unit=<?php echo $_GET['unit']; ?>&mod=<?php echo $_GET['do']; ?>"> Accept</a>

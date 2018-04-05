@@ -228,14 +228,15 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                     {echo 'checked';} ?>>
                 </td>
                 <td class="center">
-                 
-                 <label for="">Think film</label>
 
-                    <select  name="confirmation"  class="form-control">
-                        <?php if(isset($edit['confirmation'])) {echo '<option value="'.$edit['confirmation'].'">'.$edit['confirmation'].'</option>';}?>
-                        <option value="Seen"> Seen</option>
-                        <option value="Not seen">Not seen</option>br><br>
-                    </select>
+
+                 <label for="">Think film</label><br>
+
+                    Seen<input type="radio" name="confirmation" value="Seen" required <?php if(isset($edit)&&$edit['confirmation']=='Seen')
+                    {echo 'checked';} ?>><br>
+                    Not Seen<input type="radio" name="confirmation" value="Not seen" required <?php if(isset($edit)&&$edit['confirmation']=='Not seen')
+                    {echo 'checked';} ?>>
+
                 </td>
             </tr>
         </table>
