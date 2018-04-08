@@ -220,23 +220,24 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <tr>
                 <td class="center">Opt.MAI</td>
                 <td class="center">
-                    <input type="radio" name="test" value="Positive" required <?php if(isset($edit)&&$edit['test']=='Positive')
+                    <input  onclick="addRequired('1')" type="radio" name="test" value="Positive" required <?php if(isset($edit)&&$edit['test']=='Positive')
                     {echo 'checked';} ?>>
                 </td class="center">
                 <td class="center">
-                    <input type="radio" name="test" value="Negative" required<?php if(isset($edit)&&$edit['test']=='Negative')
+                    <input onclick="removeRequired('1')" type="radio" name="test" value="Negative" required<?php if(isset($edit)&&$edit['test']=='Negative')
                     {echo 'checked';} ?>>
                 </td>
-                <td class="center">
-
-
-                 <label for="">Think film</label><br>
-
-                    Seen<input type="radio" name="confirmation" value="Seen" required <?php if(isset($edit)&&$edit['confirmation']=='Seen')
-                    {echo 'checked';} ?>><br>
-                    Not Seen<input type="radio" name="confirmation" value="Not seen" required <?php if(isset($edit)&&$edit['confirmation']=='Not seen')
-                    {echo 'checked';} ?>>
-
+                <td class="left">
+                  <label class="">Think film
+                    <label class="radio">
+                        <input class="1" type="radio" name="confirmation" value="Seen"  <?php if(isset($edit)&&$edit['confirmation']=='Seen')
+                        {echo 'checked';} ?>>Seen
+                    </label>
+                    <label class="radio">
+                        <input class="1" type="radio" name="confirmation" value="Not seen"  <?php if(isset($edit)&&$edit['confirmation']=='Not seen')
+                        {echo 'checked';} ?>>Not Seen
+                    </label>
+                  </label>
                 </td>
             </tr>
         </table>
@@ -281,11 +282,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                     {echo 'checked';} ?>> 
                 </td>
                 <td class="center">
-                    <input type="radio" name="HCV" value="Non Reactive" <?php if(isset($edit)&&$edit['HCV']=='Non Reactive')
+                    <input type="radio" name="HCV" value="Non Reactive" required <?php if(isset($edit)&&$edit['HCV']=='Non Reactive')
                       {echo 'checked';} ?>>
                 </td>
                 <td class="center">
-                    <input type="radio" name="HCV" value="invalid"  <?php if(isset($edit)&&$edit['HCV']=='invalid')
+                    <input type="radio" name="HCV" value="invalid"  required <?php if(isset($edit)&&$edit['HCV']=='invalid')
                      {echo 'checked';} ?>>
                 </td>
             </tr>
@@ -298,11 +299,11 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                       {echo 'checked';} ?>> 
                 </td>
                 <td class="center">
-                    <input type="radio" name="HIV" value="Non Reactive" <?php if(isset($edit)&&$edit['HIV']=='Non Reactive')
+                    <input type="radio" name="HIV" value="Non Reactive" required <?php if(isset($edit)&&$edit['HIV']=='Non Reactive')
                      {echo 'checked';} ?>>
                 </td>
                 <td class="center">
-                    <input type="radio" name="HIV" value="invalid"  <?php if(isset($edit)&&$edit['HIV']=='invalid')
+                    <input type="radio" name="HIV" value="invalid"  required <?php if(isset($edit)&&$edit['HIV']=='invalid')
                         {echo 'checked';} ?>>
                 </td>
             </tr>
@@ -322,37 +323,37 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                 <th class="col-md-2">Non Reactive</th>
                 <th class="col-md-6">Confirmation</th>
             </tr>
-            <tr>
+            <tr>    
                 <td class="col-md-2 center">HBsAg </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HBsAg" value="Reactive" required
+                    <input onclick="addRequired('2')" type="radio" name="HBsAg" value="Reactive" required
                     <?php if(isset($edit)&&$edit['HBsAg']=='Reactive'){echo 'checked';} ?>> 
                 </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HBsAg" value="Non Reactive"
+                    <input onclick="removeRequired('2')" type="radio" name="HBsAg" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['HBsAg']=='Non Reactive'){echo 'checked';} ?>>
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-4">
                         <label >s/co1</label>
-                        <input type="text" class="form-control"  name="s_list[]" required  <?php if(isset($edits)){echo "value=".$edits[0]; }?>>
+                        <input type="text" class="form-control 2"  name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[0]; }?>>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
-                         <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[1]; }?>><br>
+                         <input type="text" class="form-control 2" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[1]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/c03</label>
-                         <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[2]; }?>>
+                         <input type="text" class="form-control 2" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[2]; }?>>
                     </div>
                     <div class="form-group col-md-12">
                         <label class="">Neutraliation
                         <label class="radio">
-                            <input type="radio" name="neut" value="Reactive-confirmed" required
+                            <input class="2" type="radio" name="neut" value="Reactive-confirmed"
                             <?php if(isset($edit)&&$edit['neut']=='Reactive-confirmed'){echo 'checked';} ?>>Reactive-confirmed
                         </label>
                         <label class="radio">
-                            <input type="radio" name="neut" value="Non-confirmed"
+                            <input class="2" type="radio" name="neut" value="Non-confirmed"
                             <?php if(isset($edit)&&$edit['neut']=='Non-confirmed'){echo 'checked';} ?>>Non-confirmed
                          </label>
                          </label>
@@ -364,38 +365,38 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <tr>
                 <td class="col-md-2 center">HCV Ab</td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HCVab" value="Reactive"  required
+                    <input onclick="addRequired('3')" type="radio" name="HCVab" value="Reactive"  required
                     <?php if(isset($edit)&&$edit['HCVab']=='Reactive'){echo 'checked';} ?>>
                  </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HCVab" value="Non Reactive"
+                    <input onclick="removeRequired('3')" type="radio" name="HCVab" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['HCVab']=='Non Reactive'){echo 'checked';} ?>>
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[3]; }?>><br>
+                        <input type="text" class="form-control 3" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[3]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[4]; }?>><br>
+                        <input type="text" class="form-control 3" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[4]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br>
+                        <input type="text" class="form-control 3" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br>
                     </div>
                     <div class="form-group col-md-12">
                         <label class="">LIA
                             <label class="radio">
-                                <input type="radio" name="lia" value="negative" required
+                                <input class="3" type="radio" name="lia" value="negative"
                                 <?php if(isset($edit)&&$edit['lia']=='negative'){echo 'checked';} ?>>negative
                             </label>
                             <label class="radio">
-                                <input type="radio" name="lia" value="positive"
+                                <input class="3" type="radio" name="lia" value="positive"
                                 <?php if(isset($edit)&&$edit['lia']=='positive'){echo 'checked';} ?>>positive
                         </label>
                             <label class="radio">
-                                <input type="radio" name="lia" value="indeterminate"
+                                <input class="3" type="radio" name="lia" value="indeterminate"
                                 <?php if(isset($edit)&&$edit['lia']=='indeterminate'){echo 'checked';} ?>>indeterminate
                         </label>
                         </label>
@@ -406,34 +407,34 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <tr>
                 <td class="col-md-2 center">HIV Ag/Ab</td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HIVag" value="Reactive" required
+                    <input onclick="addRequired(4)" type="radio" name="HIVag" value="Reactive" required
                     <?php if(isset($edit)&&$edit['HIVag']=='Reactive'){echo 'checked';} ?>>    
                  </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HIVag" value="Non Reactive"
+                    <input onclick="removeRequired(4)" type="radio" name="HIVag" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['HIVag']=='Non Reactive'){echo 'checked';} ?>>
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-4">
                         <label >s/co1</label>
-                        <input type="text" class="form-control" name="s_list[]"  required <?php if(isset($edits)){echo "value=".$edits[6]; }?> ><br>
+                        <input type="text" class="form-control 4" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[6]; }?> ><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[7]; }?>><br>
+                        <input type="text" class="form-control 4" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[7]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/c03</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[8]; }?>><br><br>
+                        <input type="text" class="form-control 4" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[8]; }?>><br><br>
                     </div>
                     <div class="form-group col-md-12">
-                        <label class="">
+                        <label class="">LIA
                             <label class="radio">
-                                <input type="radio" name="lia2" value="negative" required
+                                <input class="4" type="radio" name="lia2" value="negative" 
                                 <?php if(isset($edit)&&$edit['lia2']=='negative'){echo 'checked';} ?>>negative
                             </label>
                             <label class="radio">
-                                <input type="radio" name="lia2" value="positive"
+                                <input class="4" type="radio" name="lia2" value="positive"
                                 <?php if(isset($edit)&&$edit['lia2']=='positive'){echo 'checked';} ?>>positive                
                             </label>
                         </label>
@@ -445,38 +446,38 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <tr>
                 <td class="col-md-2 center">HTLV-1/11</td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HTLV" value="Reactive" required
+                    <input onclick="addRequired(5)" type="radio" name="HTLV" value="Reactive" required
                     <?php if(isset($edit)&&$edit['HTLV']=='Reactive'){echo 'checked';} ?>> 
                 </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HTLV" value="Non Reactive"
+                    <input onclick="removeRequired(5)" type="radio" name="HTLV" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['HTLV']=='Non Reactive'){echo 'checked';} ?>>    
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-4">
                         <label >s/co1</label>
-                        <input type="text" class="form-control" name="s_list[]"  required <?php if(isset($edits)){echo "value=".$edits[9]; }?>>
+                        <input type="text" class="form-control 5" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[9]; }?>>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/co2</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[10]; }?>><br>
+                        <input type="text" class="form-control 5" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[10]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
                         <label >s/c03</label>
-                        <input type="text" class="form-control" name="s_list[]" required <?php if(isset($edits)){echo "value=".$edits[11]; }?>><br><br>
+                        <input type="text" class="form-control 5" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[11]; }?>><br><br>
                     </div>
                     <div class="form-group col-md-12">
                         <label class="">LIA
                             <label class="radio">
-                                <input type="radio" name="lia3" value="negative" required
+                                <input class="5" type="radio" name="lia3" value="negative"
                                 <?php if(isset($edit)&&$edit['lia3']=='negative'){echo 'checked';} ?>>negative                
                             </label>
                             <label class="radio">
-                                <input type="radio" name="lia3" value="positive"
+                                <input class="5" type="radio" name="lia3" value="positive"
                                 <?php if(isset($edit)&&$edit['lia3']=='positive'){echo 'checked';} ?>>positive            
                             </label>
                             <label class="radio">
-                                <input type="radio" name="lia3" value="indeterminate"
+                                <input class="5" type="radio" name="lia3" value="indeterminate"
                                 <?php if(isset($edit)&&$edit['lia3']=='indeterminate'){echo 'checked';} ?>>indeterminate
                             </label>
                         </label>
@@ -488,34 +489,34 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <tr>
                 <td class="col-md-2 center">syphilis</td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="syphilis" value="Reactive" required
+                    <input onclick="addRequired(6)" type="radio" name="syphilis" value="Reactive" required
                     <?php if(isset($edit)&&$edit['syphilis']=='Reactive'){echo 'checked';} ?>>
                 </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="syphilis" value="Non Reactive"
+                    <input onclick="removeRequired(6)" type="radio" name="syphilis" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['syphilis']=='Non Reactive'){echo 'checked';} ?>>    
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-12">
                         <label class="">TBHA
                             <label class="radio">
-                                <input type="radio" name="tb" value="1/80" required
+                                <input class="6" type="radio" name="tb" value="1/80" 
                                 <?php if(isset($edit)&&$edit['tb']=='1/80'){echo 'checked';} ?>>1/80              
                             </label>
                             <label class="radio">
-                                <input type="radio" name="tb" value="1/160"
+                                <input class="6" type="radio" name="tb" value="1/160"
                                 <?php if(isset($edit)&&$edit['tb']=='1/160'){echo 'checked';} ?>>1/160          
                             </label>
                             <label class="radio">
-                                <input type="radio" name="tb" value="1/320"
+                                <input class="6" type="radio" name="tb" value="1/320"
                                 <?php if(isset($edit)&&$edit['tb']=='1/320'){echo 'checked';} ?>>1/320
                             </label>
                             <label class="radio">
-                                <input type="radio" name="tb" value="1/640"
+                                <input class="6" type="radio" name="tb" value="1/640"
                                 <?php if(isset($edit)&&$edit['tb']=='1/640'){echo 'checked';} ?>>1/640
                             </label>
                             <label class="radio">
-                                <input type="radio" name="tb" value="1/1280"
+                                <input class="6" type="radio" name="tb" value="1/1280"
                                 <?php if(isset($edit)&&$edit['tb']=='1/1280'){echo 'checked';} ?>>1/1280
                             </label>
                         </label>
@@ -527,25 +528,25 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
             <tr>
                 <td class="col-md-2 center">HBs Ab</td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HBs" value="Reactive"
+                    <input onclick="addRequired(7)" type="radio" name="HBs" value="Reactive" required
                     <?php if(isset($edit)&&$edit['HBs']=='Reactive'){echo 'checked';} ?>> 
                 </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HBs" value="0>10" required
+                    <input onclick="removeRequired(7)" type="radio" name="HBs" value="0>10" required
                     <?php if(isset($edit)&&$edit['HBs']=='0>10'){echo 'checked';} ?>>(0>10)
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-12">
                         <label class="">
                             <label class="radio">
-                                <input type="radio" name="HBs" value="10>100"
+                                <input onclick="addRequired(8)" class="7" type="radio" name="HBs" value="10>100"
                                 <?php if(isset($edit)&&$edit['HBs']=='10>100'){echo 'checked';} ?>>10>100           
                             </label>
                             <label class="radio">
-                                 <input type="number" name="HBsText"<?php if(isset($edit['HBsText'])){echo 'value="'.$edit['HBsText'].'"';} ?>>
+                                 <input class="8" type="number" name="HBsText"<?php if(isset($edit['HBsText'])){echo 'value="'.$edit['HBsText'].'"';} ?>>
                             </label>
                             <label class="radio">            
-                                <input type="radio" name="HBs" value=">1000"
+                                <input onclick="removeRequired(8)" class="7" type="radio" name="HBs" value=">1000"
                                     <?php if(isset($edit)&&$edit['HBs']=='>1000'){echo 'checked';} ?>>>1000
                             </label>
                         </label>
@@ -561,7 +562,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                     <?php if(isset($edit)&&$edit['HBc']=='Reactive'){echo 'checked';} ?>>
                 </td>
                 <td class="col-md-2 center">
-                    <input type="radio" name="HBc" value="Non Reactive"
+                    <input type="radio" name="HBc" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['HBc']=='Non Reactive'){echo 'checked';} ?>>
                 </td>
                 <td class="col-md-6 left">
@@ -588,7 +589,33 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
         </div>
     </form>
     <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up"></span></button>
+
+
+<script src="../resource/js/jquery.min.js"></script>
 <script>
+
+function addRequired(id) {
+   $('.' + id).attr("required", "true");
+}
+
+function removeRequired(id) {
+   $('.' + id).removeAttr("required");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
@@ -606,7 +633,6 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 </script>
-
 
     <?php
 
