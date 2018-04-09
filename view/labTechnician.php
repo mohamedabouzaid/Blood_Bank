@@ -110,7 +110,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab_Technician' || $_SESSI
     //no user found in table
     else{
 
-        echo  "no user found ";
+        echo  ' <h3 class="col-md-10 col-md-offset-1" style=" margin-top: 71px;background: #EEE;text-align: center;">
+        no user found </h3>';
 
        }
 

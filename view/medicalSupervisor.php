@@ -42,65 +42,108 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor' || $_S
     }
 ?>
 
+<!DOCTYPE html>
 
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <meta charset="UTF-8">
-        <title>Clinic</title>
-    </head>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clinic</title>
+    <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resource/css/Questionnaire.css">
+    <link rel="stylesheet" href="../resource/css/header.css">
+    <link rel="stylesheet" href="../resource/css/Recieptionist.css">
+    <style>
+         .col-md-10{
+            background: #e24440;
+            padding: 17px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 1px #000;
+        }
+        #container-table {
+            margin-top:45px;
+        }
+    </style>
+</head>
 
 <body>
+    
+    <header class="container">
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav links">
+                    <li>
+                       <a href="medicalSupervisor.php">Medical Supervisor</a>   <!-- supervisor home button -->
+                    </li>
+                    <li>
+                        <a href="medicalSupervisor.php?do=accept">Accept</a>     <!-- accept donar button -->
+                    </li>
+                    <li>
+                         <a href="medicalSupervisor.php?do=reject" >Reject</a>     <!-- reject donar button -->
+                    </li>
+   
+                </ul>
+                <!-- search  -->
+                <ul class="nav navbar-nav" style="margin: 9px 36px 0;">
+                    <li>
+                        <form class="form-inline" action="" method="post">
+                            <div class="form-group">
+                                <div class="input-group">
+                                <input class="form-control " type="text" name="search" placeholder="Search..." style="width: 296px">                                     
+                            </div>
+                            <button class="btn btn-danger" type="submit" value="search" style="margin-left: -4px"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
 
-
-<div class="w3-bar w3-light-grey">
-    <a href="medicalSupervisor.php" class="w3-bar-item w3-button">Medical Supervisor</a>   <!-- supervisor home button -->
-    <a href="medicalSupervisor.php?do=accept" class="w3-bar-item w3-button">Accept</a>     <!-- accept donar button -->
-    <a href="medicalSupervisor.php?do=reject" class="w3-bar-item w3-button">Reject</a>     <!-- reject donar button -->
-    <!--search form-->
-    <form action="" method="post">
-        <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
-        <input type="submit" value="search"  class="w3-bar-item w3-button w3-blue">
-    </form>
-    <div class="w3-dropdown-hover">
-        <!-- user name -->
-        <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>   <!-- logout button -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                   <span class="name"> <?php echo $_SESSION['userName'] ?></span>
+                </li>
+                <li><a class="btn" id="login" href="../controller/user/Logoutcontroller.php">Logout</a> </li>       <!-- login button-->
+            </ul>
+            </div>
         </div>
-    </div>
+        </nav>
+    </header>
+
+        <img src="../resource/images/3.jpg" alt="" class="bg-image" style="margin-top:7px">
+        <div class="blure-body" style="background: linear-gradient(to left, #ffffff00 ,#f85f65b8);"></div>
 
 
-</div>
 
+
+   
 <?php
 
     if($units!= null)
     {
-        echo '<table  class="w3-table w3-striped">
-                                          <caption >Users</caption>
-                                          <tr class="w3-blue">
-                                              <th>Unit NO</th>
-                                              <th> Approval</th>
-                                              <th> Eddit</th>
-                                
-                                          </tr>';
+        echo '
+        <div class="col-md-10 col-md-offset-1"  id="container-table" style="background: #e87e79c7;">
+            <table  class="table table-hover">
+                <caption >Users</caption>
+                    <tr class="w3-blue">
+                        <th>Unit NO</th>
+                        <th> Approval</th>
+                        <th> Edit</th>
+        
+                    </tr>';
         foreach ($units as $unit) {
 
-            echo "   <tr>
-                                                <td>" . $unit['unitNo'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='supervisorOperation.php ?do=insert& unit=" . $unit['unitNo'] . "'>check </a></td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='supervisorOperation.php ?do=update& unit=" . $unit['unitNo'] . "'>update </a></td>
-                                                 
-                                                </tr>";
+            echo "<tr>
+                    <td>" . $unit['unitNo'] . "</td>
+                    <td><a  class=\"btn btn-default\" href='supervisorOperation.php?do=insert&unit=" . $unit['unitNo'] . "'>check </a></td>
+                    <td><a  class=\"btn btn-default\" href='supervisorOperation.php?do=update&unit=" . $unit['unitNo'] . "'>update </a></td>
+                        
+                </tr>";
 
         }
-        echo    "</table>";
+        echo "</table> </div>";
 
         if(isset($_SESSION['operation'])&&$_SESSION['operation']!=null){
 
@@ -112,7 +155,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='medical_supervisor' || $_S
     //no user found in table
     else{
 
-        echo  "no user found ";
+        echo  ' <h3 class="col-md-10 col-md-offset-1" style=" margin-top: 71px;background: #EEE;text-align: center;">
+        no user found </h3>';
 
     }
 

@@ -38,37 +38,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
 
 
         ?>
-
-<!-- 
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <meta charset="UTF-8">
-            <title>lab Department</title>
-        </head>
-
-
-        <body>
-
-
-        <div class="w3-bar w3-light-grey">
-            <a href="lab.php" class="w3-bar-item w3-button">lab Department Home</a>     <!-- lab Department home button --
-
-            <div class="w3-dropdown-hover">
-                <!-- user name --
-                <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>
-                    <!-- logout button --
-                </div>
-            </div>
-
-
-        </div> -->
-
-        <!DOCTYPE html>
+ <!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
@@ -374,7 +344,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                 </td>
                 <td class="col-md-6 left">
                     <div class="form-group col-md-4">
-                        <label >s/co2</label>
+                        <label >s/co1</label>
                         <input type="text" class="form-control 3" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[3]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
@@ -382,7 +352,7 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                         <input type="text" class="form-control 3" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[4]; }?>><br>
                     </div>
                     <div class="form-group col-md-4">
-                        <label >s/co2</label>
+                        <label >s/co3</label>
                         <input type="text" class="form-control 3" name="s_list[]" <?php if(isset($edits)){echo "value=".$edits[5]; }?>><br>
                     </div>
                     <div class="form-group col-md-12">
@@ -564,13 +534,6 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='lab' || $_SESSION['job']==
                 <td class="col-md-2 center">
                     <input type="radio" name="HBc" value="Non Reactive" required
                     <?php if(isset($edit)&&$edit['HBc']=='Non Reactive'){echo 'checked';} ?>>
-                </td>
-                <td class="col-md-6 left">
-                    <div class="form-group col-md-12">
-                        <label class="">
-
-                        </label>
-                    </div>
                 </td>
             </tr>
 
