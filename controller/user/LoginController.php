@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         }
         elseif($_SESSION['job']=='Empolyee of hospital'){
 
-            header('location:../../view/hospital.php');
+            header('location:../../view/Hospital.php');
 
         }
 
