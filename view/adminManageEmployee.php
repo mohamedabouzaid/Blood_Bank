@@ -28,48 +28,137 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
 
     ?>
 
+<!DOCTYPE html>
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <meta charset="UTF-8">
-        <title>Admin Manage Employees</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Manage Employees</title>
+    <link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resource/css/Questionnaire.css">
+    <link rel="stylesheet" href="../resource/css/header.css">
+    <link rel="stylesheet" href="../resource/css/Recieptionist.css">
+    <style>
+        .col-md-10{
+            background: #e24440;
+            padding: 17px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 1px #000;
+            margin-top:29px;
+        }
+        #container-table {
+            margin-top: 74px;
+        }
+        header{
+            background: #FFF;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 5;
+            padding: 7px;
+        }
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #FFF;
+            color: #555;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 23px;
+        }
 
+        #myBtn:hover {
+            background-color: #555;
+            color: #FFF;
+        }
+        .center{
+            text-align:center
+        }
+        .left{
+            text-align:left
+        }
+        .table>tbody>tr>th {
+            color: #fffffff2;
+            text-align: center;
+        }
+        h4{
+            text-align: left;
+            color: #fffffff2;
+        }
+        input[type="number"]{
+            color: #666;
+        }
+    </style>
+</head>
 
 <body>
+    
+    <header class="">
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a href="Home.php" class="navbar-brand" ><img src="../resource/images/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav links">
+                    <li class="active">
+                         <a href="adminManageEmployee.php" >Admin Manage Employees</a>     <!-- Admin Manage Employees Department home button -->
+                    </li>
+                    <li>
+                         <a href="admin.php" >Admin Home</a>
+                    </li>
+                    <li>
+                         <a href="adminEmployeeOperation.php?do=create" >Create Empolyee</a>
+                    </li>
+   
+                </ul>
+                <!-- search  -->
+                <ul class="nav navbar-nav" style="margin: 9px 36px 0;">
+                    <li>
+                        <form class="form-inline" action="" method="post">
+                            <div class="form-group">
+                                <div class="input-group">
+                                <input class="form-control " type="text" name="search" placeholder="Search..." style="width: 296px">                                     
+                            </div>
+                            <button class="btn btn-danger" type="submit" value="search" style="margin-left: -4px"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
 
-
-<div class="w3-bar w3-light-grey">
-    <a href="adminManageEmployee.php" class="w3-bar-item w3-button">Admin Manage Employees</a>     <!-- Admin Manage Employees Department home button -->
-    <a href="admin.php" class="w3-bar-item w3-button">Admin Home</a>
-    <a href="adminEmployeeOperation.php?do=create" class="w3-bar-item w3-button">Create Empolyee</a>
-
-        <!--    search    -->
-        <form action="" method="post">
-            <input type="text" name="search"  class="w3-bar-item w3-input" placeholder="Search..">
-            <input type="submit" value="search"  class="w3-bar-item w3-button w3-blue">
-        </form>
-    <div class="w3-dropdown-hover">
-        <!-- user name -->
-        <button class="w3-button"><?php echo $_SESSION['userName'] ?></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="../controller/user/Logoutcontroller.php" class="w3-bar-item w3-button"> logout</a>   <!-- logout button -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                   <span class="name"> <?php echo $_SESSION['userName'] ?></span>
+                </li>
+                <li><a class="btn" id="login" href="../controller/user/Logoutcontroller.php">Logout</a> </li>       <!-- login button-->
+            </ul>
+            </div>
         </div>
-    </div>
+        </nav>
+    </header>
+        <img src="../resource/images/3.jpg" alt="" class="bg-image" style="margin-top:47px">
+        <div class="blure-body" style="background: #84101582; margin-top:47px;"></div>
 
 
-</div>
+
 
 
 <?php
     if($employees!= null)
     {
-        echo '<table  class="w3-table w3-striped">
-                                          <caption >Employees</caption>
-                                          <tr class="w3-blue">
+        echo '
+        <div class="col-md-10 col-md-offset-1"  id="container-table" style="background: #e87e7900;">
+             <table  class="table table-hover">
+                                          <caption>Employees</caption>
+                                          <tr class="center">
                                               <th>رقم السجل المدنى</th>
                                               <th>الاسم</th>
                                               <th>المهنه</th>
@@ -78,17 +167,41 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
                                           </tr>';
         foreach ($employees as $employee) {
 
-            echo "   <tr>
+            echo "   <tr class='center'>
                                                 <td>" . $employee['NID'] . "</td>
                                                 <td>" .  $employee['userName'] . "</td>
-                                                 <td>" . $employee['job'] . "</td>
-                                                 <td><a  class=\"w3-btn w3-gray\" href='adminEmployeeOperation.php?do=edit&employee=" . serialize($employee) . "'>Update </a></td>
-                                                  <td><a  class=\"w3-btn w3-gray\" href='?do=delete& nid=".$employee['NID']."'>Delete </a></td>
+                                                <td>" . $employee['job'] . "</td>
+                                                <td><a  class=\"btn btn-default\" href='adminEmployeeOperation.php?do=edit&employee=" . serialize($employee) . "'>Update </a></td>
+                                                <td><a  class=\"btn btn-default\" href='?do=delete& nid=".$employee['NID']."'>Delete </a></td>
                                                  
                                                 </tr>";
 
         }
-        echo    "</table>";
+        echo "</table> </div>";
+        echo '
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up"></span></button>
+        
+        <script> 
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+        
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        
+        
+        ';
 
         if(isset($_SESSION['operation'])&&$_SESSION['operation']!=null){
 
@@ -100,7 +213,8 @@ if(isset($_SESSION['userName']) && $_SESSION['job']=='admin') {
     //no user found in table
     else{
 
-        echo  "no user found ";
+        echo  ' <h3 class="col-md-10 col-md-offset-1" style=" margin-top: 71px;background: #EEE;text-align: center;">
+        no user found </h3>';
 
     }
 
@@ -113,3 +227,4 @@ else {
     header('location:Login.php');
 
 }
+
